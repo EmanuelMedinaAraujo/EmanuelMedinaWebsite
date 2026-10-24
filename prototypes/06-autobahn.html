@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Emanuel Medina — Autobahn</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{--asphalt:#1b1c1e;--asph2:#232427;--mark:#f2f2ee;--blue:#1d4f9c;--yellow:#f6c400;--mute:#8a8b8f}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--asphalt);color:var(--mark);font-family:Barlow,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.35;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='1.3' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .5 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  .cond{font-family:"Barlow Condensed",sans-serif}
+  a{color:inherit}
+  header{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:24px;position:relative}
+  .gantry{display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
+  .sign{background:var(--blue);border:4px solid var(--mark);border-radius:10px;box-shadow:0 0 0 3px var(--blue),0 30px 60px -20px #000;padding:20px 30px;text-align:left}
+  .sign.big{padding:28px 44px}
+  .sign h1{font-family:"Barlow Condensed";font-weight:700;font-size:clamp(56px,10vw,150px);line-height:.88;letter-spacing:.005em}
+  .sign .row{display:flex;justify-content:space-between;align-items:center;gap:30px;font-family:"Barlow Condensed";font-weight:600;font-size:clamp(20px,2.4vw,30px);margin-top:14px;border-top:3px solid var(--mark);padding-top:12px}
+  .shield{display:inline-flex;align-items:center;justify-content:center;background:var(--mark);color:var(--blue);border-radius:6px;padding:0 10px;font-weight:800;height:1.3em;font-size:.9em}
+  .yel{background:var(--yellow);color:#111;border-color:#111;box-shadow:0 0 0 3px var(--yellow),0 30px 60px -20px #000}
+  .tag{margin-top:40px;max-width:620px;font-size:19px;line-height:1.55;color:#c9cacd}
+  .scrollcue{position:absolute;bottom:30px;font-family:"Barlow Condensed";letter-spacing:.2em;text-transform:uppercase;color:var(--mute);font-size:14px}
+  #road{position:relative;padding:80px 0 160px}
+  #road svg{position:absolute;left:0;top:0;width:100%;pointer-events:none}
+  .stop{position:relative;width:min(440px,42vw);margin:0 0 140px;z-index:2}
+  .stop.l{margin-left:5vw}.stop.r{margin-left:auto;margin-right:5vw}
+  .exit{background:var(--blue);border:3px solid var(--mark);border-radius:8px;box-shadow:0 0 0 3px var(--blue),0 30px 50px -20px #000;padding:18px 22px}
+  .exit.y{background:var(--yellow);color:#111;border-color:#111;box-shadow:0 0 0 3px var(--yellow),0 30px 50px -20px #000}
+  .exit.g{background:#1d6b3a;box-shadow:0 0 0 3px #1d6b3a,0 30px 50px -20px #000}
+  .exit .top{display:flex;justify-content:space-between;align-items:center;font-family:"Barlow Condensed";font-weight:600;font-size:16px;letter-spacing:.06em;text-transform:uppercase;opacity:.85}
+  .exit h2{font-family:"Barlow Condensed";font-weight:700;font-size:40px;line-height:1;margin:10px 0 4px}
+  .exit .k{font-family:"Barlow Condensed";font-weight:500;font-size:20px;opacity:.9}
+  .exit p{font-size:15.5px;line-height:1.5;margin-top:12px;border-top:2px solid currentColor;padding-top:12px}
+  .exit .km{float:right;font-family:"Barlow Condensed";font-weight:700}
+  .post{width:10px;height:60px;background:linear-gradient(90deg,#666,#aaa,#666);margin:0 auto}
+  .speed{display:flex;align-items:center;gap:18px;margin-top:14px}
+  .speed .lim{width:64px;height:64px;border-radius:50%;background:#fff;border:8px solid #c4161c;color:#111;display:flex;align-items:center;justify-content:center;font-family:"Barlow Condensed";font-weight:800;font-size:26px;flex:none}
+  .end{text-align:center;padding:60px 24px 120px;position:relative;z-index:2}
+  .end .sign{display:inline-block;text-align:center}
+  .end h2{font-family:"Barlow Condensed";font-weight:700;font-size:clamp(44px,7vw,96px);line-height:.95}
+  .end .links{display:flex;gap:16px;justify-content:center;margin-top:18px;flex-wrap:wrap}
+  .end .links a{font-family:"Barlow Condensed";font-weight:600;font-size:22px;text-decoration:none;background:var(--mark);color:var(--blue);padding:6px 14px;border-radius:6px}
+  .odo{position:fixed;right:20px;bottom:20px;z-index:5;background:#000c;border:1px solid #333;border-radius:8px;padding:10px 14px;font-family:"Barlow Condensed";font-size:14px;letter-spacing:.1em;color:var(--mute);text-transform:uppercase}
+  .odo b{display:block;color:var(--yellow);font-size:30px;letter-spacing:.02em}
+  @media (max-width:760px){.stop,.stop.l,.stop.r{width:auto;margin:0 16px 100px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="gantry">
+    <div class="sign big">
+      <h1>Emanuel<br>Medina</h1>
+      <div class="row"><span>Software Engineer</span><span class="shield">A9</span><span>München</span></div>
+    </div>
+  </div>
+  <p class="tag">I've spent five years at Vector building the software that virtual test drives run on. Now I'm on an M.Sc. at TUM. Scroll down the road.</p>
+  <div class="scrollcue">▼ &nbsp;Abfahrt&nbsp; ▼</div>
+</header>
+
+<section id="road">
+  <svg id="sv"><path id="lane" fill="none"/></svg>
+
+  <div class="stop l"><div class="exit g"><div class="top"><span>Ausfahrt 2012</span><span>Beilstein</span></div><h2>Abitur</h2><div class="k">Herzog-Christoph-Gymnasium</div><p>MINT-EC certificate with distinction. Robot arm with flex-sensor sleeve, Fraunhofer Talent School, trombone in the district youth orchestra.</p></div><div class="post"></div></div>
+
+  <div class="stop r"><div class="exit"><div class="top"><span>Ausfahrt 2020</span><span>TUM</span></div><h2>B.Sc. Computer Science</h2><div class="k">Application area: Physics</div><p>Thesis: learning-based inverse kinematics in PyTorch. MLP vs LSTM vs PPO; the plain MLP won. Hackathons along the way: hackaTUM ×2, Check24.</p></div><div class="post"></div></div>
+
+  <div class="stop l"><div class="exit"><div class="top"><span>Ausfahrt 2021</span><span>Vector</span></div><h2>DYNA4</h2><div class="k">Virtual driving tests · Java / Eclipse RCP</div><p>Five major releases, 5.0 → 9.0. Trace-signal alias system with its own file format and quickfixes; SWTBot/JUnit coverage; Jenkins ↔ JIRA.</p></div><div class="post"></div></div>
+
+  <div class="stop r"><div class="exit y"><div class="top"><span>Baustelle 2022–24</span><span>Triathlon</span></div><h2>Ironman</h2><div class="k">3.8 km · 180 km · 42.2 km</div><div class="speed"><div class="lim">∞</div><p style="border:0;margin:0;padding:0">Two years of training, finished in <b>14:21:26</b>. No speed limit, just a very long road.</p></div></div><div class="post"></div></div>
+
+  <div class="stop l"><div class="exit"><div class="top"><span>Ausfahrt 2024</span><span>Vector</span></div><h2>VSceneCreator</h2><div class="k">3D OpenDRIVE editor · Unity / C#</div><p>Shipped alphas 0.1 → 0.4. Explore Mode with a hierarchy tree; lazy loading for <b>up to 70%</b> faster mode switches; support for single-sided lanes. Literally roads.</p></div><div class="post"></div></div>
+
+  <div class="stop r"><div class="exit"><div class="top"><span>Ausfahrt 2026</span><span>Hackathon</span></div><h2>LoveNeverDies</h2><div class="k">Bavarian Ministry of Justice challenge</div><p>An E2E-encrypted estate assistant, ten days, a team of lawyers. Post-quantum hybrid keys, a Shamir vault, a 141-node legal decision tree.</p></div><div class="post"></div></div>
+
+  <div class="stop l"><div class="exit"><div class="top"><span>Rastplatz</span><span>Side projects</span></div><h2>Built on the way</h2><div class="k">Offline-first, no servers</div><p><a href="https://github.com/EmanuelMedinaAraujo/SchafPlay">SchafPlay</a>, P2P Schafkopf over WebRTC · <a href="https://fit-finder.pages.dev">FitFinder</a>, an offline closet · <a href="https://emanuelmedinaaraujo.github.io/gluecksrad/">Glücksrad</a>, a fair wheel · VoiceRefine, a personal speech-to-text model.</p></div><div class="post"></div></div>
+
+  <div class="stop r"><div class="exit g"><div class="top"><span>Ausfahrt 2026</span><span>TUM</span></div><h2>M.Sc. Informatics</h2><div class="k">You are here</div><p>Started October 2026, still working at Vector alongside. Next exit: to be decided. Maybe with you.</p></div><div class="post"></div></div>
+</section>
+
+<section class="end">
+  <div class="sign"><h2>Next exit:<br>say hello</h2>
+    <div class="links"><a href="mailto:medina.emanuel@proton.me">medina.emanuel@proton.me</a><a href="https://github.com/EmanuelMedinaAraujo">GitHub</a><a href="https://linkedin.com/in/Emanuel-Medina-Araujo">LinkedIn</a></div></div>
+</section>
+
+<div class="odo">Jahr<b id="km">2012</b></div>
+
+<script>
+const road=document.getElementById('road'),sv=document.getElementById('sv'),kmEl=document.getElementById('km');
+let path,car,len,edgeL,edgeR,mid;
+function build(){
+  const W=road.clientWidth,H=road.scrollHeight;sv.setAttribute('viewBox',`0 0 ${W} ${H}`);sv.style.height=H+'px';
+  const n=Math.ceil(H/700),amp=Math.min(W*.18,220);let d=`M ${W/2} 0`;
+  for(let i=0;i<n;i++){const y0=i*700,s=i%2?-1:1;d+=` C ${W/2+s*amp} ${y0+250}, ${W/2+s*amp} ${y0+450}, ${W/2} ${y0+700}`}
+  const lw=Math.min(150,W*.22);
+  sv.innerHTML=`<path d="${d}" stroke="#2c2d31" stroke-width="${lw+26}" fill="none"/>
+  <path d="${d}" stroke="#ffffff" stroke-width="${lw}" fill="none" opacity=".9"/>
+  <path d="${d}" stroke="#2c2d31" stroke-width="${lw-8}" fill="none"/>
+  <path d="${d}" stroke="#f2f2ee" stroke-width="4" stroke-dasharray="36 30" fill="none"/>
+  <path id="p" d="${d}" fill="none"/>
+  <g id="car"><rect x="-15" y="-28" width="30" height="56" rx="9" fill="#f6c400"/><rect x="-11" y="-14" width="22" height="13" rx="3" fill="#1b1c1e"/><rect x="-11" y="10" width="22" height="8" rx="3" fill="#1b1c1e"/>
+  <path d="M-12 -28 l-60 -320 h144 l-60 320z" fill="url(#beam)" opacity=".18"/></g>
+  <defs><linearGradient id="beam" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#fff8cc"/><stop offset="1" stop-color="#fff8cc" stop-opacity="0"/></linearGradient></defs>`;
+  path=sv.querySelector('#p');car=sv.querySelector('#car');len=path.getTotalLength();move();
+}
+function move(){
+  const r=road.getBoundingClientRect(),vh=innerHeight;
+  const p=Math.max(0,Math.min(1,(vh*.6-r.top)/r.height));
+  const L=p*len,a=path.getPointAtLength(L),b=path.getPointAtLength(Math.min(len,L+2));
+  const ang=Math.atan2(b.y-a.y,b.x-a.x)*180/Math.PI-90;
+  car.setAttribute('transform',`translate(${a.x} ${a.y}) rotate(${ang+180})`);
+  kmEl.textContent=Math.floor(2012+p*14.9);
+}
+addEventListener('load',build);addEventListener('resize',build);addEventListener('scroll',move,{passive:true});
+document.fonts&&document.fonts.ready.then(build);
+</script>
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Emanuel Medina — Trumpf</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..900,0..100&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{--felt:#174b34;--felt2:#0f3624;--ivory:#f7f0e1;--ink:#1d1a15;--red:#c0202f;--gold:#d39a12;--brown:#6b3c1c;--green:#2d7a3a}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:Fraunces,serif;color:var(--ivory);min-height:100vh;-webkit-font-smoothing:antialiased;
+    background:radial-gradient(ellipse at 50% 35%,#1f6044 0%,var(--felt) 40%,var(--felt2) 100%);background-attachment:fixed}
+  body:after{content:"";position:fixed;inset:0;pointer-events:none;opacity:.18;mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  .mono{font-family:"DM Mono",monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+  a{color:inherit}
+  header{text-align:center;padding:44px 24px 0}
+  header .mono{opacity:.7}
+  h1{font-weight:300;font-variation-settings:"SOFT" 100;font-size:clamp(56px,10vw,150px);line-height:.9;letter-spacing:-.03em;margin:18px 0}
+  h1 em{font-style:italic;font-weight:600;color:#f3d48a}
+  .sub{max-width:620px;margin:0 auto;font-size:19px;line-height:1.5;opacity:.88}
+  .table{position:relative;height:520px;margin-top:0;perspective:1600px}
+  .card{position:absolute;left:50%;bottom:70px;width:200px;height:310px;margin-left:-100px;transform-origin:50% 140%;
+    transition:transform .5s cubic-bezier(.2,.8,.2,1),z-index 0s;cursor:pointer;transform-style:preserve-3d}
+  .card .in{position:absolute;inset:0;transform-style:preserve-3d;transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+  .card.flip .in{transform:rotateY(180deg)}
+  .face{position:absolute;inset:0;border-radius:14px;backface-visibility:hidden;background:var(--ivory);color:var(--ink);
+    box-shadow:0 1px 0 #fff inset,0 18px 40px -12px #0009,0 2px 6px #0004;padding:14px;overflow:hidden}
+  .face.back{transform:rotateY(180deg);display:flex;flex-direction:column}
+  .face:before{content:"";position:absolute;inset:7px;border:1px solid #1d1a1522;border-radius:9px;pointer-events:none}
+  .idx{position:absolute;display:flex;flex-direction:column;align-items:center;font-family:"DM Mono";font-weight:500;font-size:14px;line-height:1}
+  .idx svg{width:18px;height:18px;margin-top:4px}
+  .idx.tl{top:14px;left:14px}.idx.br{bottom:14px;right:14px;transform:rotate(180deg)}
+  .pip{position:absolute;left:34%;top:44%;transform:translate(-50%,-50%);width:92px;height:92px}
+  .ttl{position:absolute;left:0;right:0;bottom:46px;text-align:left;padding:0 16px}
+  .ttl b{display:block;font-size:20px;font-weight:600;letter-spacing:-.01em;line-height:1.05}
+  .ttl span{font-family:"DM Mono";font-size:10px;letter-spacing:.08em;text-transform:uppercase;opacity:.6}
+  .back h3{font-size:19px;font-weight:600;line-height:1.1;margin:10px 4px 8px}
+  .back p{font-size:13.5px;line-height:1.45;margin:0 4px}
+  .back .foot{margin-top:auto;padding:0 4px 4px;display:flex;justify-content:space-between;align-items:center}
+  .back .foot svg{width:22px;height:22px}
+  .back a{font-family:"DM Mono";font-size:11px;text-transform:uppercase;letter-spacing:.06em}
+  .hintline{text-align:center;opacity:.6}
+  .rules{max-width:1080px;margin:40px auto 0;padding:0 24px 80px;display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
+  .rules h2{font-weight:400;font-style:italic;font-size:30px;margin-bottom:12px;color:#f3d48a}
+  .rules p,.rules li{font-size:16px;line-height:1.55;opacity:.9}
+  .rules ul{list-style:none}
+  .rules li{padding:8px 0;border-top:1px solid #ffffff1f}
+  .rules li b{font-weight:600}
+  .rules li .mono{float:right;opacity:.6;margin-top:3px}
+  footer{text-align:center;padding:48px 24px 64px;border-top:1px solid #ffffff1f}
+  footer h2{font-weight:300;font-size:clamp(36px,6vw,80px);letter-spacing:-.02em}
+  footer h2 a{font-style:italic;color:#f3d48a;text-decoration:none;border-bottom:2px solid}
+  footer .links{margin-top:20px;display:flex;gap:28px;justify-content:center}
+  @media (max-width:900px){
+    .table{height:auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:18px;padding:24px;perspective:none}
+    .card{position:relative;left:auto;bottom:auto;margin:0;width:auto;height:280px;transform:none!important}
+    .rules{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <symbol id="herz" viewBox="0 0 100 100"><path fill="#c0202f" d="M50 88 C20 66 6 50 6 32 6 18 17 8 30 8c9 0 16 5 20 12 4-7 11-12 20-12 13 0 24 10 24 24 0 18-14 34-44 56z"/></symbol>
+    <symbol id="schellen" viewBox="0 0 100 100"><circle cx="50" cy="52" r="38" fill="#d39a12"/><path d="M12 48h76" stroke="#7a1414" stroke-width="7"/><circle cx="50" cy="70" r="7" fill="#3a2a0a"/><path d="M50 70v14" stroke="#3a2a0a" stroke-width="4"/><circle cx="38" cy="32" r="7" fill="#fff6"/></symbol>
+    <symbol id="eichel" viewBox="0 0 100 100"><ellipse cx="50" cy="60" rx="24" ry="30" fill="#b06a2c"/><path d="M22 44c0-14 12-22 28-22s28 8 28 22c-8 4-18 6-28 6s-20-2-28-6z" fill="#6b3c1c"/><path d="M50 22V8" stroke="#6b3c1c" stroke-width="6" stroke-linecap="round"/><ellipse cx="42" cy="64" rx="5" ry="10" fill="#fff4"/></symbol>
+    <symbol id="gras" viewBox="0 0 100 100"><path d="M50 6C80 30 84 62 50 94 16 62 20 30 50 6z" fill="#2d7a3a"/><path d="M50 18v72M50 40l-14-10M50 40l14-10M50 58l-18-12M50 58l18-12" stroke="#cfe8c8" stroke-width="3" fill="none" stroke-linecap="round"/></symbol>
+  </defs>
+</svg>
+
+<header>
+  <div class="mono">Munich · Software engineer · TUM · Vector</div>
+  <h1>Emanuel Medina<br><em>spielt aus.</em></h1>
+  <p class="sub">Eight cards, one hand. Click a card to turn it. (Yes, I also wrote a peer-to-peer engine for this game.)</p>
+</header>
+
+<div class="table" id="table"></div>
+<p class="hintline mono">hover to lift · click to flip</p>
+
+<section class="rules">
+  <div>
+    <h2>Who's dealing</h2>
+    <p>I'm Emanuel, a software engineer in Munich. Since 2021 I've built tools for virtual driving at Vector. Now I'm doing an M.Sc. in Informatics at TUM. I like offline-first apps, strong cryptography, and robots that reach where you point.</p>
+  </div>
+  <div>
+    <h2>The table so far</h2>
+    <ul>
+      <li><b>Vector · VSceneCreator</b><span class="mono">2024 —</span></li>
+      <li><b>Vector · DYNA4</b><span class="mono">2021–24</span></li>
+      <li><b>M.Sc. Informatics, TUM</b><span class="mono">2026 —</span></li>
+      <li><b>B.Sc. Computer Science, TUM</b><span class="mono">2020–26</span></li>
+    </ul>
+  </div>
+  <div>
+    <h2>House rules</h2>
+    <ul>
+      <li>Ironman finisher, <b>14:21:26</b></li>
+      <li>Trombone and piano, advanced</li>
+      <li>C#, Java, TypeScript, Python, C++</li>
+      <li>Unity, React, PyTorch, WebRTC</li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <h2>Mitspielen? <a href="mailto:medina.emanuel@proton.me">Write me.</a></h2>
+  <div class="links mono"><a href="https://github.com/EmanuelMedinaAraujo">GitHub</a><a href="https://linkedin.com/in/Emanuel-Medina-Araujo">LinkedIn</a><span>medina.emanuel@proton.me</span></div>
+</footer>
+
+<script>
+const hand=[
+ {r:'O',s:'eichel',t:'VSceneCreator',k:'Vector · Unity/C#',d:'A 3D OpenDRIVE editor. I helped ship alphas 0.1–0.4, architected Explore Mode, and made edit-mode switches up to 70% faster with lazy loading.'},
+ {r:'O',s:'gras',t:'DYNA4',k:'Vector · Java/RCP',d:'Simulation for virtual driving tests. Five major releases, a trace-signal alias system with validation and quickfixes, and a reworked signal view.'},
+ {r:'O',s:'herz',t:'LoveNeverDies',k:'Hackathon · 2026',d:'An E2E-encrypted estate assistant for bereaved families, built in ten days with lawyers. Post-quantum hybrid keys; the server only stores ciphertext.',u:'https://github.com/EmanuelMedinaAraujo/LoveNeverDies'},
+ {r:'U',s:'schellen',t:'SchafPlay',k:'P2P · WebRTC',d:'This very game, played peer-to-peer with no signalling server. Host-authoritative, so opponents\' hands never go over the wire. Comes with heuristic AI opponents.',u:'https://github.com/EmanuelMedinaAraujo/SchafPlay'},
+ {r:'A',s:'eichel',t:'Inverse Kinematics',k:'Bachelor thesis',d:'MLP, LSTM, hybrid and PPO solvers for 2- and 3-DOF arms in PyTorch. The humble MLP beat them all.',u:'https://github.com/EmanuelMedinaAraujo/BachelorThesis'},
+ {r:'10',s:'gras',t:'FitFinder',k:'Live · offline',d:'What can I wear from what\'s clean? A closet app for the iPhone: photograph once, track laundry, see what\'s wearable now.',u:'https://fit-finder.pages.dev'},
+ {r:'K',s:'herz',t:'Ironman',k:'3.8 · 180 · 42.2',d:'Two years of training for one very long day. Finished in 14:21:26, solving problems on the fly under fatigue.'},
+ {r:'9',s:'schellen',t:'Glücksrad',k:'Live · 0 deps',d:'An ad-free wheel of fortune you flick to spin. Fair draws via crypto.getRandomValues. Installable, works offline.',u:'https://emanuelmedinaaraujo.github.io/gluecksrad/'},
+];
+const tb=document.getElementById('table'),n=hand.length,sp=Math.min(122,(innerWidth-300)/n);
+const pip=s=>`<svg><use href="#${s}"/></svg>`;
+hand.forEach((c,i)=>{
+  const el=document.createElement('div');el.className='card';
+  el.innerHTML=`<div class="in"><div class="face front"><div class="idx tl">${c.r}${pip(c.s)}</div><svg class="pip"><use href="#${c.s}"/></svg><div class="ttl"><b>${c.t}</b><span>${c.k}</span></div><div class="idx br">${c.r}${pip(c.s)}</div></div>
+  <div class="face back"><span class="mono" style="font-size:10px;opacity:.6;margin:4px">${c.k}</span><h3>${c.t}</h3><p>${c.d}</p><div class="foot">${c.u?`<a href="${c.u}" target="_blank" onclick="event.stopPropagation()">Open ↗</a>`:'<span></span>'}${pip(c.s)}</div></div></div>`;
+  const a=(i-(n-1)/2)*6,base=`translateX(${(i-(n-1)/2)*sp}px) rotate(${a}deg)`;
+  el.style.transform=base;el.style.zIndex=i;el.dataset.base=base;
+  el.onmouseenter=()=>{if(!el.classList.contains('flip'))el.style.transform=base+' translateY(-50px)'};
+  el.onmouseleave=()=>{if(!el.classList.contains('flip'))el.style.transform=base};
+  el.onclick=()=>{const on=!el.classList.contains('flip');
+    document.querySelectorAll('.card.flip').forEach(o=>{o.classList.remove('flip');o.style.transform=o.dataset.base;o.style.zIndex=o.dataset.z});
+    if(on){el.dataset.z=i;el.classList.add('flip');el.style.zIndex=50;el.style.transform=`translateX(0) translateY(-150px) rotate(0) scale(1.35)`}};
+  el.dataset.z=i;tb.appendChild(el);
+});
+</script>
+</body>
+</html>
