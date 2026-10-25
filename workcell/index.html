@@ -1,0 +1,520 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Emanuel Medina — Software Engineer · Working Student at Vector · M.Sc. TUM</title>
+<meta name="description" content="Emanuel Medina Araujo: software engineer in Munich with 5+ years as a working student at Vector Informatik (DYNA4, VSceneCreator), M.Sc. Informatics student at TUM. Projects in post-quantum cryptography, WebRTC and robotics.">
+<meta name="author" content="Emanuel Medina Araujo">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#e9e7e2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f1012" media="(prefers-color-scheme: dark)">
+<!-- Open Graph / Twitter. TODO: add og:image + twitter:image (1200x630) and og:url once the final domain is known. -->
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Emanuel Medina — Software Engineer">
+<meta property="og:description" content="5+ years as a working student at Vector building simulation and 3D tooling for automated driving. M.Sc. Informatics at TUM.">
+<meta property="profile:first_name" content="Emanuel">
+<meta property="profile:last_name" content="Medina Araujo">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Emanuel Medina — Software Engineer">
+<meta name="twitter:description" content="5+ years as a working student at Vector. M.Sc. Informatics at TUM. Robotics, cryptography, offline-first software.">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="alternate" type="text/plain" href="../llms.txt" title="llms.txt">
+<link rel="preload" href="../assets/fonts/Geist-normal-300-800.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="modulepreload" href="../assets/vendor/three.module.min.js">
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
+<link rel="stylesheet" href="styles.css">
+<script>
+  (function(){var d=document.documentElement,s=null;try{s=localStorage.getItem('theme')}catch(e){}
+  d.dataset.theme=s||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');d.classList.add('js');
+  if('WebGLRenderingContext' in window)d.classList.add('gl')})();
+</script>
+<script type="importmap">{"imports":{"three":"../assets/vendor/three.module.min.js","three/addons/environments/RoomEnvironment.js":"../assets/vendor/RoomEnvironment.js"}}</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Person",
+  "name":"Emanuel Medina Araujo",
+  "alternateName":"Emanuel Medina",
+  "jobTitle":"Software Engineer (Working Student)",
+  "worksFor":{"@type":"Organization","name":"Vector Informatik GmbH","url":"https://www.vector.com/"},
+  "alumniOf":{"@type":"CollegeOrUniversity","name":"Technical University of Munich","url":"https://www.tum.de/"},
+  "address":{"@type":"PostalAddress","addressLocality":"Munich","addressCountry":"DE"},
+  "email":"mailto:medina.emanuel@proton.me",
+  "sameAs":["https://github.com/EmanuelMedinaAraujo","https://linkedin.com/in/Emanuel-Medina-Araujo"],
+  "knowsAbout":["C#","Java","TypeScript","Python","C++","Unity","React","PyTorch","Eclipse RCP","WebRTC","OpenDRIVE","Driving simulation","Post-quantum cryptography","End-to-end encryption","Inverse kinematics","Robotics","Automated testing"]
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<canvas id="stage" aria-hidden="true"></canvas>
+<div class="stage-fallback" aria-hidden="true"></div>
+<div class="tags" id="tags" aria-hidden="true"></div>
+<div class="hud" id="hud" aria-hidden="true"></div>
+
+<header class="site-header">
+  <a class="brand" href="#top" aria-label="Emanuel Medina, back to top">
+    <svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="currentColor"/><path d="M16 50 L28 28 L46 22" fill="none" stroke="#ff6a13" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="16" cy="50" r="5" fill="none" stroke="#ff6a13" stroke-width="4"/><circle cx="46" cy="22" r="4" fill="#ff6a13"/></svg>
+    <span>Emanuel <span class="full">Medina</span></span>
+  </a>
+  <nav class="nav" aria-label="Primary">
+    <a href="#vscenecreator">Experience</a>
+    <a href="#loveneverdies">Projects</a>
+    <a href="#education">Education</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <div class="header-actions">
+    <button class="icon-btn theme-toggle" type="button" aria-label="Switch to dark theme" aria-pressed="false">
+      <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6"/></svg>
+      <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7z"/></svg>
+    </button>
+    <a class="btn btn-sm btn-cv" href="../cv/Emanuel-Medina-CV.pdf" download aria-label="Download CV (PDF)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 20h14"/></svg><span>CV</span>
+    </a>
+    <a class="btn btn-sm btn-primary" href="mailto:medina.emanuel@proton.me">Email</a>
+  </div>
+</header>
+
+<nav class="chips" id="chips" aria-label="Sections">
+  <a href="#top">Intro</a><a href="#glance">At a glance</a><a href="#vscenecreator">VSceneCreator</a><a href="#dyna4">DYNA4</a><a href="#loveneverdies">LoveNeverDies</a><a href="#schafplay">SchafPlay</a><a href="#thesis">IK thesis</a><a href="#fitfinder">FitFinder</a><a href="#more">More</a><a href="#education">Education</a><a href="#off-the-clock">Off the clock</a><a href="#contact">Contact</a>
+</nav>
+
+<nav class="rail" id="rail" aria-label="Section index">
+  <ol>
+    <li class="grp" aria-hidden="true">Intro</li>
+    <li><a href="#top"><span>Overview</span></a></li>
+    <li><a href="#glance"><span>At a glance</span></a></li>
+    <li class="grp" aria-hidden="true">Experience</li>
+    <li><a href="#vscenecreator"><span>VSceneCreator</span></a></li>
+    <li><a href="#dyna4"><span>DYNA4</span></a></li>
+    <li class="grp" aria-hidden="true">Projects</li>
+    <li><a href="#loveneverdies"><span>LoveNeverDies</span></a></li>
+    <li><a href="#schafplay"><span>SchafPlay</span></a></li>
+    <li><a href="#thesis"><span>IK thesis</span></a></li>
+    <li><a href="#fitfinder"><span>FitFinder</span></a></li>
+    <li><a href="#more"><span>More work</span></a></li>
+    <li class="grp" aria-hidden="true">About</li>
+    <li><a href="#education"><span>Education</span></a></li>
+    <li><a href="#off-the-clock"><span>Off the clock</span></a></li>
+    <li><a href="#contact"><span>Contact</span></a></li>
+  </ol>
+</nav>
+
+<main id="main">
+  <div class="col">
+
+    <section class="sec hero tall" id="top" data-t="mouse" aria-labelledby="hero-title">
+      <div class="card">
+        <p class="status"><i aria-hidden="true"></i>Working student at Vector · M.Sc. Informatics at TUM · Munich</p>
+        <h1 id="hero-title">Emanuel<br>Medina<span aria-hidden="true">.</span></h1>
+        <p class="pitch">Software engineer with <b>5+ years as a working student at Vector</b>, building simulation and 3D tooling for automated driving across two products. Now on an <b>M.Sc. Informatics at TUM</b>, drawn to robotics, cryptography and software that keeps working offline.</p>
+        <div class="ctas">
+          <a class="btn btn-primary" href="mailto:medina.emanuel@proton.me">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m4 7 8 6 8-6"/></svg>Email me</a>
+          <a class="btn" href="../cv/Emanuel-Medina-CV.pdf" download>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 20h14"/></svg>Download CV</a>
+          <a class="btn" href="https://github.com/EmanuelMedinaAraujo" rel="me">GitHub</a>
+          <a class="btn" href="https://linkedin.com/in/Emanuel-Medina-Araujo" rel="me">LinkedIn</a>
+        </div>
+        <ul class="skills" aria-label="Core skills">
+          <li>C#</li><li>Java</li><li>TypeScript</li><li>Python</li><li>C/C++</li><li>Unity</li><li>React</li><li>PyTorch</li><li>WebRTC</li>
+        </ul>
+        <p class="hint"><i aria-hidden="true"></i>Move your pointer and the arm solves its inverse kinematics live. Click an exhibit to jump to it.</p>
+      </div>
+    </section>
+
+    <section class="sec" id="glance" data-t="mouse" aria-labelledby="glance-title">
+      <div class="card">
+        <p class="kicker"><span class="n">00</span> At a glance</p>
+        <h2 id="glance-title">The short version</h2>
+        <div class="stats">
+          <div><b>5+ yrs</b><span>working student at Vector, two products</span></div>
+          <div><b>5</b><span>major DYNA4 releases shipped (5.0 → 9.0)</span></div>
+          <div><b>up to 70%</b><span>faster edit-mode switching in VSceneCreator</span></div>
+          <div><b>133</b><span>test files securing LoveNeverDies’ row-level security</span></div>
+        </div>
+        <p class="index-group">Experience</p>
+        <ul class="index-list">
+          <li><a href="#vscenecreator"><b>VSceneCreator</b><span class="y">2024 – now</span><span class="d">3D OpenDRIVE road editor · Unity / C#</span></a></li>
+          <li><a href="#dyna4"><b>DYNA4</b><span class="y">2021 – 2024</span><span class="d">Virtual driving-test simulation · Java / Eclipse RCP</span></a></li>
+        </ul>
+        <p class="index-group">Projects</p>
+        <ul class="index-list">
+          <li><a href="#loveneverdies"><b>LoveNeverDies</b><span class="y">2026</span><span class="d">Post-quantum end-to-end encrypted estate assistant</span></a></li>
+          <li><a href="#schafplay"><b>SchafPlay</b><span class="y">2026</span><span class="d">Serverless peer-to-peer card game over WebRTC</span></a></li>
+          <li><a href="#thesis"><b>Learning-based inverse kinematics</b><span class="y">2024</span><span class="d">Bachelor thesis · PyTorch</span></a></li>
+          <li><a href="#fitfinder"><b>FitFinder</b><span class="y">Live</span><span class="d">Offline closet app for the iPhone</span></a></li>
+          <li><a href="#more"><b>6D pose survey · Glücksrad</b><span class="y">2026</span><span class="d">Robotics seminar paper · fair, dependency-free web app</span></a></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="sec" id="vscenecreator" data-t="0" aria-labelledby="vsc-title">
+      <div class="card">
+        <p class="kicker"><span class="n">01</span> Experience · Vector Informatik · Nov 2024 – now</p>
+        <h2 id="vsc-title">VSceneCreator</h2>
+        <p class="sub">Working Student Software Engineer · 3D OpenDRIVE road editor · Unity / C#</p>
+        <ul class="bullets">
+          <li><span class="num">Up to 70% faster</span> edit-mode switching by restructuring the base model to lazy-load non-essential and non-visible objects.</li>
+          <li><b>Architected a read-only Explore Mode</b> with a hierarchical overview tree and dynamic tooltips, turning the editor into a preview tool for licensed users and a better experience for free users.</li>
+          <li><b>Shipped alphas 0.1 → 0.4</b> with Product Management, including <span class="num">10% faster</span> file loading through batched object creation.</li>
+        </ul>
+        <ul class="tagrow" aria-label="Technologies"><li>Unity</li><li>C#</li><li>OpenDRIVE</li><li>Rider</li></ul>
+      </div>
+    </section>
+
+    <section class="sec" id="dyna4" data-t="1" aria-labelledby="dyna-title">
+      <div class="card">
+        <p class="kicker"><span class="n">02</span> Experience · Vector Informatik · Mar 2021 – Oct 2024</p>
+        <h2 id="dyna-title">DYNA4</h2>
+        <p class="sub">Working Student Software Engineer · Simulation for virtual driving tests · Java / Eclipse RCP</p>
+        <ul class="bullets">
+          <li><span class="num">5 major releases</span> (5.0 → 9.0) shipped with Product Management: features, critical bug fixes and UI work.</li>
+          <li><b>Engineered a trace-signal alias system</b> with its own file format, a custom persistence layer, and built-in validation with quickfixes.</li>
+          <li><b>Expanded SWTBot/JUnit suites</b> and linked Jenkins CI results to JIRA tickets, reducing manual QA effort.</li>
+        </ul>
+        <ul class="tagrow" aria-label="Technologies"><li>Java</li><li>Eclipse RCP</li><li>SWTBot</li><li>JUnit</li><li>Jenkins</li></ul>
+      </div>
+    </section>
+
+    <section class="sec" id="loveneverdies" data-t="2" aria-labelledby="lnd-title">
+      <div class="card">
+        <p class="kicker"><span class="n">03</span> Project · Aug 2026 · Legal Loves Tech Hackathon</p>
+        <h2 id="lnd-title">LoveNeverDies</h2>
+        <p class="sub">End-to-end encrypted estate assistant · Bavarian Ministry of Justice challenge</p>
+        <p>Built in ten days with a team that included lawyers. An installable PWA guides bereaved families through German inheritance deadlines with a <b>141-node legal decision tree</b>. The server only ever stores ciphertext, protected by hybrid <b>post-quantum</b> cryptography, and row-level security is verified by <span class="num">133</span> test files against the real Postgres migrations.</p>
+        <figure class="shot">
+          <img src="../assets/loveneverdies-hero.webp" width="1540" height="643" loading="lazy" decoding="async" alt="Four LoveNeverDies phone screens: task list, inheritance questionnaire, a private task with a deadline and probate-court lookup, and a pairing code.">
+        </figure>
+        <ul class="tagrow" aria-label="Technologies"><li>ML-KEM + X25519</li><li>React</li><li>Supabase</li><li>Vitest</li></ul>
+        <div class="links">
+          <a class="btn btn-sm btn-primary" href="#deep-loveneverdies" data-deep="deep-loveneverdies">Deep dive</a>
+          <a class="btn btn-sm" href="https://github.com/EmanuelMedinaAraujo/LoveNeverDies">Source on GitHub</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec" id="schafplay" data-t="3" aria-labelledby="sp-title">
+      <div class="card">
+        <p class="kicker"><span class="n">04</span> Project · 2026 · Live v1.0.0</p>
+        <h2 id="sp-title">SchafPlay</h2>
+        <p class="sub">Bavarian Schafkopf, peer-to-peer · React / TypeScript / WebRTC</p>
+        <p>An offline-first PWA with <b>no backend at all</b>: two devices connect directly over a WebRTC data channel using a compressed invite code (paste, QR or link). A host-authoritative engine redacts state per player, so <b>opponents’ hands never go over the wire</b>. Covered by a seeded Playwright suite in CI.</p>
+        <figure class="shot">
+          <img class="img-light" src="../assets/schafplay-light.webp" width="844" height="390" loading="lazy" decoding="async" alt="SchafPlay pairing screen with host, guest and solo modes and a compressed invite code.">
+          <img class="img-dark" src="../assets/schafplay-dark.webp" width="844" height="390" loading="lazy" decoding="async" alt="">
+        </figure>
+        <ul class="tagrow" aria-label="Technologies"><li>WebRTC</li><li>React</li><li>PWA</li><li>Playwright</li></ul>
+        <div class="links">
+          <a class="btn btn-sm btn-primary" href="#deep-schafplay" data-deep="deep-schafplay">Deep dive</a>
+          <a class="btn btn-sm" href="https://emanuelmedinaaraujo.github.io/SchafPlay/">Play it</a>
+          <a class="btn btn-sm" href="https://github.com/EmanuelMedinaAraujo/SchafPlay">Source</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec" id="thesis" data-t="4" aria-labelledby="ik-title">
+      <div class="card">
+        <p class="kicker"><span class="n">05</span> Bachelor thesis · TUM · 2024</p>
+        <h2 id="ik-title">Learning-based inverse kinematics</h2>
+        <p class="sub">PyTorch · MLP, LSTM, hybrid and probabilistic models</p>
+        <p>A quantitative comparison of learned IK solvers for 2- and 3-DOF arms. The surprise: a <b>plain MLP predicting angles directly</b> solved <span class="num">100%</span> of 10,000 test problems within tolerance, with the fastest inference (about 155 µs). The arm on this page uses the analytic solution instead.</p>
+        <figure class="chart">
+          <figcaption>Accuracy on 10,000 test problems, 3-DOF (within 0.01 tolerance, 5 seeded runs)</figcaption>
+          <ul class="bars">
+            <li class="best"><span>Direct MLP</span><span class="track"><span class="fill" style="--v:100%"></span></span><span class="v">100.0</span></li>
+            <li><span>Two-peak Normal</span><span class="track"><span class="fill" style="--v:99.72%"></span></span><span class="v">99.72</span></li>
+            <li><span>Normal + LSTM</span><span class="track"><span class="fill" style="--v:93.25%"></span></span><span class="v">93.25</span></li>
+            <li><span>Two-peak LSTM</span><span class="track"><span class="fill" style="--v:92.99%"></span></span><span class="v">92.99</span></li>
+            <li><span>Normal (reparam.)</span><span class="track"><span class="fill" style="--v:75.59%"></span></span><span class="v">75.59</span></li>
+            <li><span>Beta</span><span class="track"><span class="fill" style="--v:8.48%"></span></span><span class="v">8.48</span></li>
+          </ul>
+        </figure>
+        <div class="links">
+          <a class="btn btn-sm btn-primary" href="#deep-thesis" data-deep="deep-thesis">Deep dive</a>
+          <a class="btn btn-sm" href="https://github.com/EmanuelMedinaAraujo/BachelorThesis">Source on GitHub</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec" id="fitfinder" data-t="5" aria-labelledby="ff-title">
+      <div class="card">
+        <p class="kicker"><span class="n">06</span> Side project · Live</p>
+        <h2 id="ff-title">FitFinder</h2>
+        <p class="sub">“What can I wear from what’s clean?” · Vite / TypeScript</p>
+        <figure class="shot phone inline">
+          <img class="img-light" src="../assets/fitfinder-today-light.webp" width="390" height="844" loading="lazy" decoding="async" alt="FitFinder Today screen showing saved outfits that are wearable now.">
+          <img class="img-dark" src="../assets/fitfinder-today-dark.webp" width="390" height="844" loading="lazy" decoding="async" alt="">
+        </figure>
+        <p>An offline closet web app for the iPhone. Photograph each piece once, track what’s in the laundry, and see which saved outfits you can wear <b>right now</b>. It installs to the home screen and works without a connection.</p>
+        <ul class="tagrow" aria-label="Technologies"><li>TypeScript</li><li>Vite</li><li>Offline-first</li></ul>
+        <div class="links clear">
+          <a class="btn btn-sm btn-primary" href="https://fit-finder.pages.dev">Open the app</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec" id="more" data-t="idle" aria-labelledby="more-title">
+      <div class="card">
+        <p class="kicker"><span class="n">07</span> More work</p>
+        <h2 id="more-title">Also worth a look</h2>
+        <div class="mini">
+          <article>
+            <p class="mono">Robotics seminar · Apr – Jul 2026</p>
+            <h3>6D object pose estimation survey</h3>
+            <p>An IEEE-format survey from classical geometric registration to zero-shot foundation models, judged on generalisation, real-time capability and accuracy. No current method meets all three; hybrids of slow zero-shot initialisation and fast local tracking are the most viable direction.</p>
+          </article>
+          <article class="with-img">
+            <div>
+              <p class="mono">Live · zero dependencies</p>
+              <h3>Glücksrad</h3>
+              <p>An ad-free, installable wheel of fortune you flick to spin. Winners are drawn fairly with <code>crypto.getRandomValues</code>, and it works offline.</p>
+              <div class="links">
+                <a class="btn btn-sm" href="https://emanuelmedinaaraujo.github.io/gluecksrad/">Spin it</a>
+                <a class="btn btn-sm" href="https://github.com/EmanuelMedinaAraujo/gluecksrad">Source</a>
+              </div>
+            </div>
+            <figure class="shot phone">
+              <img class="img-light" src="../assets/gluecksrad-light.webp" width="390" height="844" loading="lazy" decoding="async" alt="Glücksrad wheel with six colourful segments and a spin button.">
+              <img class="img-dark" src="../assets/gluecksrad-dark.webp" width="390" height="844" loading="lazy" decoding="async" alt="">
+            </figure>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec" id="education" data-t="idle" aria-labelledby="edu-title">
+      <div class="card">
+        <p class="kicker"><span class="n">08</span> Education</p>
+        <h2 id="edu-title">Technical University of Munich</h2>
+        <ul class="edu">
+          <li><b>M.Sc. Informatics</b><span class="y">Oct 2026 – now</span><span>Technical University of Munich</span></li>
+          <li><b>B.Sc. Computer Science, application area Physics</b><span class="y">2020 – 2026</span><span>Completed alongside part-time engineering work at Vector. Thesis: learning-based inverse kinematics.</span></li>
+        </ul>
+        <ul class="tagrow" aria-label="All skills">
+          <li>C#</li><li>Java</li><li>TypeScript</li><li>JavaScript</li><li>Python</li><li>C/C++</li><li>SQL</li><li>Unity</li><li>React</li><li>React Native</li><li>PyTorch</li><li>Eclipse RCP</li><li>Supabase / Postgres</li><li>WebRTC</li><li>Playwright</li><li>Vitest</li><li>GitHub Actions</li><li>Jenkins</li><li>Linux</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="sec" id="off-the-clock" data-t="6" aria-labelledby="off-title">
+      <div class="card">
+        <p class="kicker"><span class="n">09</span> Off the clock</p>
+        <h2 id="off-title">Ironman finisher</h2>
+        <p class="finish" aria-label="Finish time 14 hours 21 minutes 26 seconds">14:21:26</p>
+        <div class="splits">
+          <div><span>Swim</span><b>3.8 km</b></div>
+          <div><span>Bike</span><b>180 km</b></div>
+          <div><span>Run</span><b>42.2 km</b></div>
+        </div>
+        <p>Two years of training for one very long day. When I’m not training or coding, I play trombone and piano.</p>
+      </div>
+    </section>
+
+    <section class="sec" id="contact" data-t="wave" aria-labelledby="contact-title">
+      <div class="card contact">
+        <p class="kicker"><span class="n">10</span> Contact</p>
+        <h2 id="contact-title">Let’s talk.</h2>
+        <p>I’m based in Munich. Email is the fastest way to reach me.</p>
+        <a class="email-big" href="mailto:medina.emanuel@proton.me">medina.emanuel@proton.me</a>
+        <div class="links">
+          <a class="btn btn-primary" href="mailto:medina.emanuel@proton.me">Email me</a>
+          <a class="btn" href="../cv/Emanuel-Medina-CV.pdf" download>Download CV</a>
+          <a class="btn" href="https://github.com/EmanuelMedinaAraujo" rel="me">GitHub</a>
+          <a class="btn" href="https://linkedin.com/in/Emanuel-Medina-Araujo" rel="me">LinkedIn</a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="in">
+    <span>© 2026 Emanuel Medina Araujo · No cookies, no tracking · <a href="../llms.txt">llms.txt</a> · <a href="../cv/">CV</a></span>
+    <p>This page renders a 4-axis arm with three.js and solves its inverse kinematics analytically, live in your browser.</p>
+  </div>
+</footer>
+
+<!-- ============ Deep dives ============ -->
+<dialog class="deep" id="deep-loveneverdies" aria-labelledby="deep-lnd-title">
+  <div class="deep-head"><h2 id="deep-lnd-title">LoveNeverDies, deep dive</h2>
+    <button class="icon-btn close" type="button" aria-label="Close deep dive" autofocus><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+  <div class="deep-body">
+    <p class="tldr">Built in ten days at the Legal Loves Tech Hackathon 2026 (Bavarian Ministry of Justice challenge) with a team that included lawyers. An installable PWA guides bereaved families through German inheritance steps, while the server only ever stores ciphertext under hybrid post-quantum cryptography, with row-level security verified by 133 Vitest files.</p>
+    <h3>Problem</h3>
+    <p>Bereaved families, often older and not tech-savvy, have to handle certificates of inheritance, a six-week renunciation window, probate courts and wills, and share highly sensitive documents while doing it.</p>
+    <h3>Architecture</h3>
+    <figure class="diagram">
+      <svg viewBox="0 0 640 200" role="img" aria-labelledby="dg-lnd">
+        <title id="dg-lnd">Data flow: the React PWA encrypts on the device, queues ciphertext in IndexedDB and syncs it to Supabase Postgres with row-level security; other family devices are notified via Realtime; Clerk issues JWTs.</title>
+        <defs><marker id="ah1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="currentColor"/></marker></defs>
+        <g style="color:var(--mute)">
+          <rect class="d-box hl" x="8" y="30" width="130" height="58" rx="10"/><text class="d-t" x="22" y="55">React PWA</text><text class="d-s" x="22" y="73">device keys</text>
+          <rect class="d-box" x="172" y="30" width="130" height="58" rx="10"/><text class="d-t" x="186" y="55">core/crypto</text><text class="d-s" x="186" y="73">ML-KEM · AES-GCM</text>
+          <rect class="d-box" x="336" y="30" width="130" height="58" rx="10"/><text class="d-t" x="350" y="55">IndexedDB</text><text class="d-s" x="350" y="73">offline queue</text>
+          <rect class="d-box hl" x="500" y="30" width="132" height="58" rx="10"/><text class="d-t" x="514" y="55">Supabase</text><text class="d-s" x="514" y="73">Postgres + RLS</text>
+          <rect class="d-box" x="500" y="134" width="132" height="54" rx="10"/><text class="d-t" x="514" y="158">Family device</text><text class="d-s" x="514" y="175">decrypts locally</text>
+          <rect class="d-box" x="336" y="134" width="130" height="54" rx="10"/><text class="d-t" x="350" y="158">Clerk</text><text class="d-s" x="350" y="175">auth · JWT</text>
+          <path class="d-a" d="M138 59H170" marker-end="url(#ah1)"/>
+          <path class="d-a" d="M302 59H334" marker-end="url(#ah1)"/>
+          <path class="d-a hl" d="M466 59H498" marker-end="url(#ah1)" style="color:var(--acc)"/>
+          <text class="d-l" x="452" y="22">ciphertext only</text>
+          <path class="d-a" d="M566 88V132" marker-end="url(#ah1)"/><text class="d-l" x="572" y="114">realtime</text>
+          <path class="d-a" d="M466 161H480Q490 161 490 140V100Q490 92 500 88" marker-end="url(#ah1)"/><text class="d-l" x="410" y="124">JWT</text>
+        </g>
+      </svg>
+      <figcaption>Encryption happens on the device. The server only sees ciphertext, versions and signatures.</figcaption>
+    </figure>
+    <ul>
+      <li>Each device generates hybrid <b>ML-KEM-768 + X25519</b> (key exchange) and <b>ML-DSA-65 + Ed25519</b> (signature) keypairs. Keys are non-extractable and never leave the device.</li>
+      <li>Key hierarchy: device key → case key → per-item data keys (<b>AES-256-GCM</b>), with separate keys for private items and the vault.</li>
+      <li>Offline-first: writes land in an IndexedDB queue and sync as ciphertext to Supabase Postgres, guarded by row-level security. Clerk issues the JWTs.</li>
+      <li>Sync is a version check plus a delta fetch above a per-case watermark, triggered by a Realtime “doorbell” with 30-second polling as fallback.</li>
+      <li>The vault key is <b>Shamir-split</b> so that ⌈2n/3⌉ of n relatives must cooperate. An Edge Function verifies both signatures before release.</li>
+      <li>Device pairing uses an 8-character rendezvous code plus a spoken 6-digit check derived from both public keys.</li>
+    </ul>
+    <h3>Key decisions</h3>
+    <ul class="decisions">
+      <li><b>Hybrid KEM and signatures</b>An attacker has to break a classical and a post-quantum algorithm.<span class="to">Trade-off: 64 extra bytes per signature.</span></li>
+      <li><b>Per-item data keys</b>Key rotation re-wraps 32-byte keys instead of re-encrypting payloads: “a few kilobytes instead of hundreds of megabytes”.</li>
+      <li><b>The vault opens on proof of reconstruction, not on a release counter</b>A validly signed but bogus share can’t flip a living person’s case.</li>
+      <li><b>No recovery phrase</b>Access is re-granted by relatives rather than restored from a secret.<span class="to">Trade-off: losing your only device means waiting for a relative to re-grant access.</span></li>
+      <li><b>No statute citations in the UI</b>The app should guide, not read as legal advice (ADR-0003).</li>
+    </ul>
+    <h3>Hard parts</h3>
+    <ul>
+      <li>Concurrent key rotation: a 2-minute row-locked lease plus compare-and-swap on the key generation.</li>
+      <li>Sync ordering: <code>bigserial</code> was rejected because it skips updates and can commit out of order. It was replaced by a per-case counter under row lock and a trigger that forbids un-deleting tombstones.</li>
+      <li>A threat model that documents ten accepted limits explicitly, e.g. that same-origin XSS could decrypt everything.</li>
+    </ul>
+    <h3>Numbers</h3>
+    <ul>
+      <li>Legal decision tree: <b>141 nodes</b>, 80 outcomes, depth 9 (authored by the team’s lawyers).</li>
+      <li>611 probate courts and 10,813 postcodes for court lookup.</li>
+      <li><b>133 Vitest files</b> run against all 20 real Postgres migrations on PGlite/WASM, plus 5 multi-user Playwright specs.</li>
+      <li>About 194 commits.</li>
+    </ul>
+    <h3>Stack</h3>
+    <ul class="stack"><li>React 19</li><li>TypeScript</li><li>Vite</li><li>PWA</li><li>Supabase</li><li>Postgres RLS</li><li>Edge Functions</li><li>Clerk</li><li>@noble/post-quantum</li><li>WebCrypto</li><li>Vitest</li><li>PGlite</li><li>Playwright</li></ul>
+    <div class="deep-foot"><a class="btn btn-sm btn-primary" href="https://github.com/EmanuelMedinaAraujo/LoveNeverDies">Read the source</a></div>
+  </div>
+</dialog>
+
+<dialog class="deep" id="deep-schafplay" aria-labelledby="deep-sp-title">
+  <div class="deep-head"><h2 id="deep-sp-title">SchafPlay, deep dive</h2>
+    <button class="icon-btn close" type="button" aria-label="Close deep dive" autofocus><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+  <div class="deep-body">
+    <p class="tldr">Bavarian Schafkopf with serverless peer-to-peer multiplayer: two devices connect directly over WebRTC with no backend. An offline-first PWA, live on GitHub Pages (v1.0.0), with a seeded Playwright suite running in CI.</p>
+    <h3>Problem</h3>
+    <p>Play Schafkopf with a friend, with AI filling the empty seats, and no accounts, servers or signalling infrastructure to run.</p>
+    <h3>Architecture</h3>
+    <figure class="diagram">
+      <svg viewBox="0 0 640 210" role="img" aria-labelledby="dg-sp">
+        <title id="dg-sp">The host runs the game engine and sends a compressed invite code to the guest; the guest replies with a code; then a WebRTC data channel carries redacted state to the guest and actions back. AI seats feed the engine.</title>
+        <defs><marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="currentColor"/></marker></defs>
+        <g style="color:var(--mute)">
+          <rect class="d-box hl" x="20" y="40" width="190" height="110" rx="12"/><text class="d-t" x="36" y="66">Host browser</text><text class="d-s" x="36" y="86">GameEngine</text><text class="d-s" x="36" y="104">rules.ts · redaction</text><text class="d-s" x="36" y="122">IndexedDB replays</text>
+          <rect class="d-box" x="430" y="40" width="190" height="110" rx="12"/><text class="d-t" x="446" y="66">Guest browser</text><text class="d-s" x="446" y="86">renders redacted</text><text class="d-s" x="446" y="104">state only</text>
+          <rect class="d-box" x="20" y="168" width="190" height="36" rx="10"/><text class="d-s" x="36" y="191">AI seats 2 &amp; 4 → engine</text>
+          <path class="d-a" d="M210 30H428" marker-end="url(#ah2)"/><text class="d-l" x="236" y="22">1 · invite code (paste / QR / link)</text>
+          <path class="d-a" d="M430 162H212" marker-end="url(#ah2)"/><text class="d-l" x="276" y="178">2 · reply code</text>
+          <path class="d-a hl" d="M210 80H428" marker-end="url(#ah2)" style="color:var(--acc)"/><text class="d-l" x="240" y="72">redacted state · DataChannel</text>
+          <path class="d-a hl" d="M430 112H212" marker-end="url(#ah2)" style="color:var(--acc)"/><text class="d-l" x="284" y="128">player actions</text>
+        </g>
+      </svg>
+      <figcaption>No signalling server: the SDP itself travels as a compact code.</figcaption>
+    </figure>
+    <ul>
+      <li>The host creates a WebRTC offer and data channel. The SDP is minified, deflated and base64url-encoded into a compact invite code.</li>
+      <li>The guest receives it by paste, QR code or link and returns a reply code. The host accepts it and the data channel opens.</li>
+      <li>The game engine runs only on the host. A single <code>processAction</code> entry point validates every move, and AI moves take the same path.</li>
+      <li>Before anything is sent, <code>redactStateFor</code> replaces other players’ hands with placeholders and hides the Sauspiel partner until it’s revealed.</li>
+      <li>Every game is recorded to IndexedDB for trick-by-trick replay analysis.</li>
+    </ul>
+    <h3>Key decisions</h3>
+    <ul class="decisions">
+      <li><b>No signalling server and no STUN</b>Zero infrastructure to run: two browsers and a code.<span class="to">Trade-off: LAN-first by design, with Tailscale documented for remote play.</span></li>
+      <li><b>A host-authoritative engine with one redaction boundary</b>Opponents’ hands never go over the wire, and the host overwrites the guest’s player ID, so values from the wire are never trusted.</li>
+      <li><b>Minify SDP before compressing</b>Only per-session entropy is kept (ICE credentials, DTLS fingerprint, candidates) and the rest is regenerated on decode, which keeps invite codes compact.</li>
+      <li><b><code>rules.ts</code> as the single source of legality</b>The engine, UI and AI can never disagree about which card is playable.</li>
+      <li><b>Pause on disconnect</b>Re-pairing attaches a fresh transport to the same game session.</li>
+    </ul>
+    <h3>Hard parts</h3>
+    <ul>
+      <li>A seeded, dependency-free shuffle (mulberry32 + Fisher–Yates), so Playwright can precompute identical deals in Node.</li>
+      <li>Treating the host as potentially hostile: every inbound string path is sanitised, and avatars are the only peer data that reaches an <code>&lt;img&gt;</code>.</li>
+      <li>A data-channel heartbeat detects dead links.</li>
+    </ul>
+    <h3>Numbers</h3>
+    <ul>
+      <li><b>17 Playwright specs</b> (about 62 tests) run on every pull request and push.</li>
+      <li>About 8.4k lines of TypeScript. v1.0.0 is deployed to GitHub Pages on release.</li>
+    </ul>
+    <h3>Stack</h3>
+    <ul class="stack"><li>React 19</li><li>TypeScript</li><li>Vite</li><li>WebRTC</li><li>CompressionStream</li><li>IndexedDB</li><li>Service Worker</li><li>Playwright</li><li>GitHub Actions</li></ul>
+    <div class="deep-foot"><a class="btn btn-sm btn-primary" href="https://emanuelmedinaaraujo.github.io/SchafPlay/">Play it</a><a class="btn btn-sm" href="https://github.com/EmanuelMedinaAraujo/SchafPlay">Read the source</a></div>
+  </div>
+</dialog>
+
+<dialog class="deep" id="deep-thesis" aria-labelledby="deep-ik-title">
+  <div class="deep-head"><h2 id="deep-ik-title">Inverse kinematics thesis, deep dive</h2>
+    <button class="icon-btn close" type="button" aria-label="Close deep dive" autofocus><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+  <div class="deep-body">
+    <p class="tldr">A quantitative comparison of learned inverse-kinematics solvers for 2- and 3-DOF arms. A plain MLP predicting joint angles directly solved 100% of 10,000 test problems within 0.01 tolerance across 5 seeded runs, with the fastest inference (about 155 µs), ahead of every probabilistic and LSTM variant tested.</p>
+    <h3>Problem</h3>
+    <p>Map an arm’s geometry (Denavit–Hartenberg parameters) and a goal position to joint angles. Compare direct versus probabilistic outputs, and feed-forward versus recurrent architectures.</p>
+    <h3>Training loop</h3>
+    <figure class="diagram">
+      <svg viewBox="0 0 640 170" role="img" aria-labelledby="dg-ik">
+        <title id="dg-ik">Training loop: a problem generator feeds a network; its sine and cosine outputs become angles via atan2; differentiable forward kinematics computes the end effector; the loss is the distance to the goal, backpropagated to the network.</title>
+        <defs><marker id="ah3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="currentColor"/></marker></defs>
+        <g style="color:var(--mute)">
+          <rect class="d-box" x="6" y="30" width="112" height="58" rx="10"/><text class="d-t" x="18" y="55">Problems</text><text class="d-s" x="18" y="73">DH + goal</text>
+          <rect class="d-box hl" x="140" y="30" width="112" height="58" rx="10"/><text class="d-t" x="152" y="55">Network</text><text class="d-s" x="152" y="73">MLP · LSTM</text>
+          <rect class="d-box" x="274" y="30" width="112" height="58" rx="10"/><text class="d-t" x="286" y="55">sin, cos</text><text class="d-s" x="286" y="73">→ atan2</text>
+          <rect class="d-box" x="408" y="30" width="112" height="58" rx="10"/><text class="d-t" x="420" y="55">Diff. FK</text><text class="d-s" x="420" y="73">end effector</text>
+          <rect class="d-box hl" x="542" y="30" width="92" height="58" rx="10"/><text class="d-t" x="554" y="55">Loss</text><text class="d-s" x="554" y="73">‖ee − goal‖</text>
+          <path class="d-a" d="M118 59H138" marker-end="url(#ah3)"/><path class="d-a" d="M252 59H272" marker-end="url(#ah3)"/><path class="d-a" d="M386 59H406" marker-end="url(#ah3)"/><path class="d-a" d="M520 59H540" marker-end="url(#ah3)"/>
+          <path class="d-a hl" d="M588 88V132H196V90" marker-end="url(#ah3)" style="color:var(--acc)"/><text class="d-l" x="330" y="150">backprop, no ground-truth angles needed</text>
+        </g>
+      </svg>
+    </figure>
+    <ul>
+      <li>Random DH parameters (link lengths 0.3–0.5) and reachable goals are generated synthetically, so one model learns arbitrary arms rather than a single robot.</li>
+      <li>Input: DH parameters plus goal. Output: (sin, cos) per joint, converted to angles with <code>atan2</code>.</li>
+      <li>Loss: end-effector-to-goal distance through <b>differentiable forward kinematics</b>, so training needs no labelled angles.</li>
+      <li>Compared MLP, LSTM, hybrid MLP+LSTM and probabilistic heads (Normal, Beta, two-peak), plus a PPO baseline with Stable-Baselines3.</li>
+      <li>Hydra configs → Optuna hyperparameter search → Weights &amp; Biases tracking → bootstrapped summaries.</li>
+    </ul>
+    <h3>Results (accuracy %, single inference)</h3>
+    <table class="tbl">
+      <thead><tr><th scope="col">Model</th><th scope="col">2-DOF</th><th scope="col">3-DOF</th><th scope="col">Inference</th></tr></thead>
+      <tbody>
+        <tr class="best"><td>Direct MLP</td><td>100.0</td><td>100.0</td><td>154 / 157 µs</td></tr>
+        <tr><td>Two-peak Normal</td><td>99.94</td><td>99.72</td><td>269 / 337 µs</td></tr>
+        <tr><td>Normal + LSTM</td><td>99.96</td><td>93.25</td><td>474 / 526 µs</td></tr>
+        <tr><td>Two-peak LSTM</td><td>67.71</td><td>92.99</td><td>366 / 514 µs</td></tr>
+        <tr><td>Normal (manual reparam.)</td><td>97.5</td><td>75.59</td><td>321 / 372 µs</td></tr>
+        <tr><td>Beta</td><td>5.19</td><td>8.48</td><td>207 / 257 µs</td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top:10px;font-size:14px;color:var(--mute)">10,000 test problems, 5 runs, accuracy is the share of problems solved within 0.01 tolerance. Best direct MLP from Optuna: hidden layers [2048, 256, 2048], Adam, batch size 512.</p>
+    <h3>Takeaways</h3>
+    <ul>
+      <li>IK is multimodal (several joint configurations reach the same goal), which motivated the two-peak distribution heads. In practice the direct model handled it best.</li>
+      <li>Some probabilistic variants collapsed entirely (Beta: 5–8%), a useful negative result for choosing practical IK models.</li>
+      <li>Solo project: about 4.7k lines of Python, 217 commits.</li>
+    </ul>
+    <h3>Stack</h3>
+    <ul class="stack"><li>Python</li><li>PyTorch</li><li>Stable-Baselines3</li><li>Gymnasium</li><li>Hydra</li><li>Optuna</li><li>Weights &amp; Biases</li></ul>
+    <div class="deep-foot"><a class="btn btn-sm btn-primary" href="https://github.com/EmanuelMedinaAraujo/BachelorThesis">Read the source</a></div>
+  </div>
+</dialog>
+
+<script type="module" src="main.js"></script>
+<script type="module" src="scene.js" onerror="document.documentElement.classList.remove('gl')"></script>
+</body>
+</html>

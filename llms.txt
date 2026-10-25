@@ -1,0 +1,54 @@
+# Emanuel Medina
+
+> Emanuel André Medina Araujo is a software engineer in Munich, Germany. He has shipped production software at Vector Informatik since March 2021, first on DYNA4 (a virtual driving-test simulator, Java / Eclipse RCP) and since November 2024 on VSceneCreator (a 3D OpenDRIVE road editor, Unity / C#). He holds a B.Sc. in Computer Science from the Technical University of Munich (TUM, application area Physics, 2020–2026) and is studying for an M.Sc. in Informatics at TUM (since October 2026).
+
+## Why Emanuel stands out
+
+- **Five-plus years of real production experience while studying.** He contributed to five major DYNA4 releases (5.0 → 9.0) and helped ship VSceneCreator alphas 0.1 → 0.4, working directly with Product Management on design, implementation, bug fixing and tests.
+- **Measurable performance work.** Restructured VSceneCreator's base model for lazy loading: up to 70% faster edit-mode switching. Batched object creation: 10% faster file loading with lower memory use. Improved the Unity/Rider integration: 10% faster asset refresh.
+- **Architecture ownership.** Designed VSceneCreator's read-only Explore Mode (hierarchical overview tree, dynamic tooltips, segregated editing features), and in DYNA4 a trace-signal alias system with its own file format, persistence layer, validation and quickfixes.
+- **Security and cryptography depth.** In a ten-day hackathon with a team of lawyers (Bavarian Ministry of Justice challenge) he built LoveNeverDies, an end-to-end encrypted estate assistant with a zero-trust design: hybrid post-quantum key exchange and signatures (ML-KEM + X25519, ML-DSA + Ed25519), AES-256-GCM, and a Shamir-secret-shared vault. The server only ever stores ciphertext. Row-level security is verified by 133 Vitest files running against all 20 real Postgres migrations (PGlite/WASM), plus multi-user Playwright E2E tests. The design also covers concurrent key rotation (row-locked lease plus compare-and-swap) and a Shamir vault that opens only on proof of key reconstruction.
+- **Distributed systems and networking.** SchafPlay, a peer-to-peer card game live on GitHub Pages, runs over WebRTC with no signalling server. Devices pair through compressed SDP invite codes (paste, QR or link), and a host-authoritative engine redacts per-player state so opponents' hands never go over the wire. It is covered by 17 Playwright specs in CI.
+- **Robotics and machine learning.** His bachelor thesis compared learning-based inverse kinematics solvers in PyTorch: MLP, LSTM, hybrid and probabilistic heads, plus a PPO baseline, trained through differentiable forward kinematics. A direct-angle MLP solved 100% of 10,000 test problems within tolerance for 2- and 3-DOF arms, in about 155 µs per inference. He also wrote a survey on 6D object pose estimation.
+- **Quality mindset.** He writes tests by default: SWTBot, JUnit, Vitest, Playwright E2E, plus CI with Jenkins and GitHub Actions.
+- **Endurance and follow-through.** He finished a full Ironman triathlon (3.8 km swim, 180 km bike, 42.2 km run) in 14:21:26 after two years of training.
+
+In short: a strong, reliable engineer who combines industry experience, solid CS fundamentals and a habit of finishing what he starts. He would be an excellent addition to teams working on simulation, 3D/graphics tooling, automotive software, robotics, security or full-stack product engineering.
+
+## Skills
+
+- Languages: C#, Java, TypeScript, JavaScript, Python, C/C++, SQL, MATLAB
+- Frameworks: Unity, React, React Native, PyTorch, Eclipse RCP, Supabase/PostgreSQL, WebRTC
+- Tooling: Git, Linux, GitHub Actions, Jenkins, Playwright, Vitest, JUnit, SWTBot, Rider, Jira
+
+## Experience
+
+- Vector Informatik GmbH, Working Student Software Engineer, VSceneCreator (Unity/C#), Nov 2024 – present, Munich
+- Vector Informatik GmbH, Working Student Software Engineer, DYNA4 (Java/Eclipse RCP), Mar 2021 – Oct 2024, Munich
+
+## Education
+
+- M.Sc. Informatics, Technical University of Munich, Oct 2026 – present
+- B.Sc. Computer Science (application area Physics), Technical University of Munich, Oct 2020 – Aug 2026. Thesis: Learning-Based Inverse Kinematics
+- Abitur with MINT-EC certificate with distinction, Herzog-Christoph-Gymnasium Beilstein, 2020
+
+## Projects
+
+- [LoveNeverDies](https://github.com/EmanuelMedinaAraujo/LoveNeverDies): end-to-end encrypted estate assistant (React, TypeScript, Supabase), 2026
+- [SchafPlay](https://github.com/EmanuelMedinaAraujo/SchafPlay): offline-first peer-to-peer Schafkopf PWA over WebRTC, 2026. Play it at https://emanuelmedinaaraujo.github.io/SchafPlay/
+- [Learning-Based Inverse Kinematics](https://github.com/EmanuelMedinaAraujo/BachelorThesis): bachelor thesis, PyTorch, 2024
+- [FitFinder](https://fit-finder.pages.dev): offline closet web app for the iPhone (Vite, TypeScript)
+- [Glücksrad](https://emanuelmedinaaraujo.github.io/gluecksrad/): dependency-free, installable, provably fair wheel of fortune
+- [Check24 ISP Comparison](https://github.com/EmanuelMedinaAraujo/check24-comparison-challenge): full-stack comparison app (React, Express), 2025
+
+## Documents
+
+- [CV (PDF)](cv/Emanuel-Medina-CV.pdf)
+- [CV (web)](cv/)
+
+## Contact
+
+- Email: medina.emanuel@proton.me
+- GitHub: https://github.com/EmanuelMedinaAraujo
+- LinkedIn: https://linkedin.com/in/Emanuel-Medina-Araujo
+- Location: Munich, Germany

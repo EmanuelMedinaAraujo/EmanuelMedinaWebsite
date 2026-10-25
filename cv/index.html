@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CV — Emanuel Medina</title>
+<meta name="description" content="CV of Emanuel Medina Araujo: working student software engineer at Vector Informatik since 2021, M.Sc. Informatics at TUM.">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="../assets/fonts/IBMPlexSans-normal-300-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
+<style>
+  :root{--ink:#16181d;--soft:#41454f;--mute:#767b86;--line:#e3e5e9;--acc:#1f5fd6}
+  *{box-sizing:border-box;margin:0;padding:0}
+  @page{size:A4;margin:10mm 13mm 8mm}
+  body{font-family:"IBM Plex Sans",system-ui,sans-serif;color:var(--ink);font-size:10.2pt;line-height:1.42;background:#f3f4f6;-webkit-font-smoothing:antialiased}
+  .page{max-width:820px;margin:32px auto;background:#fff;padding:48px 56px;box-shadow:0 10px 40px -20px #0003;border-radius:6px}
+  a{color:inherit;text-decoration:none}
+  header{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;padding-bottom:14px;border-bottom:2px solid var(--ink)}
+  h1{font-size:26pt;font-weight:650;letter-spacing:-.02em;line-height:1}
+  .role{margin-top:6px;color:var(--soft);font-size:11pt}
+  .contact{text-align:right;font-size:9.4pt;color:var(--soft);line-height:1.55}
+  .contact a{color:var(--acc)}
+  h2{font-size:9pt;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--acc);margin:18px 0 8px}
+  .item{margin-bottom:11px;break-inside:avoid}
+  .row{display:flex;justify-content:space-between;gap:16px;align-items:baseline}
+  .row b{font-weight:600;font-size:10.6pt}
+  .row span{color:var(--mute);font-size:9.2pt;white-space:nowrap;font-family:"IBM Plex Mono",monospace}
+  .sub{color:var(--soft);font-size:9.6pt}
+  ul{margin:4px 0 0 15px}
+  li{margin-bottom:2px;color:var(--soft)}
+  li b{color:var(--ink);font-weight:600}
+  .skills{display:grid;grid-template-columns:120px 1fr;gap:4px 12px;font-size:9.8pt}
+  .skills dt{font-weight:600}
+  .skills dd{color:var(--soft)}
+  .toolbar{max-width:820px;margin:24px auto -16px;display:flex;justify-content:space-between;font-size:14px;padding:0 4px}
+  .toolbar a{color:var(--acc);font-weight:500}
+  @media print{body{background:#fff;font-size:9.1pt;line-height:1.3}h2{margin:10px 0 5px}.item{margin-bottom:7px}header{padding-bottom:10px}h1{font-size:23pt}.page{margin:0;padding:0;box-shadow:none;max-width:none}.toolbar,.np{display:none}.contact{white-space:nowrap}}
+  @media (max-width:700px){.page{margin:0;padding:24px 20px;border-radius:0}header{flex-direction:column;align-items:flex-start}.contact{text-align:left}.row{flex-direction:column;gap:0}}
+</style>
+</head>
+<body>
+<div class="toolbar"><a href="../">← Back to site</a><a href="Emanuel-Medina-CV.pdf" download>Download PDF</a></div>
+<div class="page">
+  <header>
+    <div>
+      <h1>Emanuel Medina Araujo</h1>
+      <div class="role">Software Engineer · Working Student at Vector · M.Sc. Informatics, TUM</div>
+    </div>
+    <div class="contact">
+      Munich, Germany<br>
+      <a href="mailto:medina.emanuel@proton.me">medina.emanuel@proton.me</a><br>
+      <a href="https://github.com/EmanuelMedinaAraujo">github.com/EmanuelMedinaAraujo</a><br>
+      <a href="https://linkedin.com/in/Emanuel-Medina-Araujo">linkedin.com/in/Emanuel-Medina-Araujo</a>
+    </div>
+  </header>
+
+  <h2>Experience</h2>
+  <div class="item">
+    <div class="row"><b>Working Student Software Engineer — Vector Informatik GmbH</b><span>Nov 2024 – present</span></div>
+    <div class="sub">VSceneCreator, a 3D OpenDRIVE editor · Unity / C# · Munich</div>
+    <ul>
+      <li>Helped ship alpha versions <b>0.1 → 0.4</b> by designing and implementing features, fixing bugs and writing tests with Product Management.</li>
+      <li>Architected a read-only <b>Explore Mode</b> with a hierarchical overview tree and dynamic tooltips, segregating editing features: a preview tool for licensed users and a better UX for free users.</li>
+      <li>Restructured the base model to lazy-load non-essential and non-visible objects: <b>up to 70% faster</b> edit-mode switching.</li>
+      <li>Optimized file loading through batched object creation and a progress bar replacing freezes: <b>10% faster</b> loading and lower memory use.</li>
+      <li class="np">Added support for OpenDRIVE single-sided lanes via automatic conversion, preventing broken files.</li>
+    </ul>
+  </div>
+  <div class="item">
+    <div class="row"><b>Working Student Software Engineer — Vector Informatik GmbH</b><span>Mar 2021 – Oct 2024</span></div>
+    <div class="sub">DYNA4, simulation environment for virtual driving tests · Java / Eclipse RCP · Munich</div>
+    <ul>
+      <li>Developed features, fixed critical bugs and enhanced the UI across <b>5 major releases</b> (5.0 → 9.0) with Product Management.</li>
+      <li>Engineered a trace-signal alias view with a new file format, a custom persistence layer, and built-in validation with quickfixes.</li>
+      <li class="np">Reworked the trace signal view, and built tools to find unreferenced files and show all unsaved artifacts.</li>
+      <li>Expanded SWTBot/JUnit test suites and linked Jenkins CI results to JIRA tickets, reducing manual QA effort.</li>
+    </ul>
+  </div>
+
+  <h2>Education</h2>
+  <div class="item"><div class="row"><b>M.Sc. Informatics — Technical University of Munich</b><span>Oct 2026 – present</span></div></div>
+  <div class="item"><div class="row"><b>B.Sc. Computer Science, application area Physics — Technical University of Munich</b><span>Oct 2020 – Aug 2026</span></div>
+    <div class="sub">Thesis: Learning-Based Inverse Kinematics. Completed alongside part-time engineering work at Vector.</div></div>
+  <div class="item"><div class="row"><b>Abitur — Herzog-Christoph-Gymnasium Beilstein</b><span>2012 – 2020</span></div>
+    <div class="sub">MINT-EC certificate with distinction</div></div>
+
+  <h2>Selected Projects</h2>
+  <div class="item">
+    <div class="row"><b>LoveNeverDies — Legal Loves Tech Hackathon, Bavarian Ministry of Justice challenge</b><span>Aug 2026</span></div>
+    <ul>
+      <li>Built an end-to-end encrypted estate assistant for bereaved families (React, TypeScript, Supabase) in ten days with a team of lawyers, guided by a <b>141-node</b> legal decision tree.</li>
+      <li>Zero-trust design where the server only stores ciphertext: hybrid post-quantum key exchange and signatures (ML-KEM + X25519, ML-DSA + Ed25519), AES-256-GCM and a Shamir-secret-shared vault.</li>
+      <li>Verified row-level security with <b>130 Vitest files</b> against real Postgres migrations (PGlite/WASM) and multi-user Playwright E2E tests.</li>
+    </ul>
+  </div>
+  <div class="item">
+    <div class="row"><b>SchafPlay — peer-to-peer multiplayer card game (PWA), live on GitHub Pages</b><span>2026</span></div>
+    <ul>
+      <li>Offline-first PWA for Schafkopf (React, TypeScript) with serverless multiplayer over WebRTC data channels via manual SDP exchange.</li>
+      <li>Host-authoritative engine with per-player state redaction, heuristic AI opponents, and a seeded Playwright E2E suite in CI.</li>
+    </ul>
+  </div>
+  <div class="item">
+    <div class="row"><b>Learning-Based Inverse Kinematics — Bachelor thesis</b><span>Jun – Nov 2024</span></div>
+    <ul><li>Compared learned IK solvers (MLP, LSTM, hybrid and probabilistic heads, plus a PPO baseline) for 2- and 3-DOF manipulators in PyTorch, trained through differentiable forward kinematics. A direct-angle MLP solved 100% of 10,000 test problems within tolerance at about 155 µs per inference, outperforming every more complex variant.</li></ul>
+  </div>
+  <div class="item">
+    <div class="row"><b>6D Object Pose Estimation for Robotics — seminar paper (IEEE format)</b><span>Apr – Jul 2026</span></div>
+    <ul><li>Surveyed methods from geometric registration to zero-shot foundation models; identified hybrid architectures (zero-shot initialization plus fast local tracking) as the most viable direction.</li></ul>
+  </div>
+
+  <h2>Skills</h2>
+  <dl class="skills">
+    <dt>Languages</dt><dd>C#, Java, TypeScript, JavaScript, Python, C/C++, SQL, MATLAB</dd>
+    <dt>Frameworks</dt><dd>Unity, React, React Native, PyTorch, Eclipse RCP, Supabase/PostgreSQL, WebRTC</dd>
+    <dt>Tooling</dt><dd>Git, Linux, GitHub Actions, Jenkins, Playwright, Vitest, JUnit, SWTBot, Rider, Jira</dd>
+  </dl>
+
+  <h2>Beyond Code</h2>
+  <div class="sub">Full Ironman finisher (3.8 km swim, 180 km bike, 42.2 km run) in 14:21:26 · Trombone and piano, advanced</div>
+</div>
+</body>
+</html>
