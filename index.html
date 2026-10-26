@@ -12,10 +12,10 @@
   @media (prefers-color-scheme:dark){:root{--bg:#0f1012;--card:#17181b;--ink:#efeee9;--mute:#94928b;--line:#ffffff1a}}
   *{box-sizing:border-box;margin:0;padding:0}
   body{background:var(--bg);color:var(--ink);font-family:Geist,system-ui,sans-serif;min-height:100vh;display:grid;place-items:center;padding:32px 20px}
-  main{width:min(980px,100%)}
+  main{width:min(1180px,100%)}
   h1{font-size:clamp(32px,5vw,52px);letter-spacing:-.04em;font-weight:700}
   p{color:var(--mute);margin:8px 0 28px;font-size:17px}
-  .g{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+  .g{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
   a.c{display:block;text-decoration:none;color:inherit;background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden;transition:transform .2s,border-color .2s}
   a.c:hover{transform:translateY(-3px);border-color:var(--mute)}
   a.c img{display:block;width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;object-position:top;background:var(--line)}
@@ -24,16 +24,18 @@
   .m span{display:block;color:var(--mute);font-size:14.5px;margin-top:4px;line-height:1.45}
   .more{margin-top:20px;font-size:14px;color:var(--mute)}
   .more a{color:inherit}
-  @media (max-width:700px){.g{grid-template-columns:1fr}}
+  @media (max-width:980px){.g{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  @media (max-width:640px){.g{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 <main>
   <h1>Emanuel Medina</h1>
-  <p>Two candidate designs. Pick one to view.</p>
+  <p>Three candidate designs. Pick one to view.</p>
   <div class="g">
     <a class="c" href="reach/"><img src="assets/preview-reach.webp" alt="" width="960" height="600" loading="lazy"><div class="m"><b>Reach</b><span>Blueprint and drafting-paper design with a live 2D inverse-kinematics arm.</span></div></a>
     <a class="c" href="workcell/"><img src="assets/preview-workcell.webp" alt="" width="960" height="600" loading="lazy"><div class="m"><b>Workcell</b><span>Interactive 3D robot workcell. Click an exhibit to jump to its project.</span></div></a>
+    <a class="c" href="bento/"><img src="assets/preview-bento.webp" alt="" width="960" height="600" loading="lazy"><div class="m"><b>Bento</b><span>Bright, image-first tile grid with small playful interactions.</span></div></a>
   </div>
   <div class="more"><a href="cv/">CV</a> · <a href="llms.txt">llms.txt</a></div>
 </main>

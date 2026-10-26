@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Emanuel Medina — Software Engineer, Munich</title>
-<meta name="description" content="Emanuel Medina Araujo: working student software engineer at Vector Informatik since 2021 (Unity/C#, Java), M.Sc. Informatics at TUM. Projects in post-quantum encryption, WebRTC and learning-based inverse kinematics.">
+<meta name="description" content="Emanuel Medina Araujo: working student software engineer at Vector Informatik since 2021 (Unity/C#, Java), M.Sc. Informatics at TUM (graduating 2028), available up to 18 hours a week. Projects in encryption, peer-to-peer apps and robotics.">
 <meta name="author" content="Emanuel Medina Araujo">
 <meta name="color-scheme" content="dark light">
 <meta name="theme-color" content="#0b1526" media="(prefers-color-scheme: dark)">
@@ -19,7 +19,7 @@
 </script>
 <meta property="og:type" content="profile">
 <meta property="og:title" content="Emanuel Medina — Software Engineer, Munich">
-<meta property="og:description" content="Working student software engineer at Vector since 2021 · M.Sc. Informatics at TUM · post-quantum E2EE, WebRTC, robotics.">
+<meta property="og:description" content="Working student software engineer at Vector since 2021 · M.Sc. Informatics at TUM, graduating 2028 · up to 18 h/week.">
 <meta property="profile:first_name" content="Emanuel">
 <meta property="profile:last_name" content="Medina Araujo">
 <!-- TODO: add og:image / twitter:image once the final domain is known -->
@@ -84,9 +84,9 @@
         <p class="eyebrow">Software engineer · Munich</p>
         <h1 id="hero-title" class="hero__title">Emanuel Medina</h1>
         <p class="hero__status">
-          <span>Working student @ Vector</span><span class="sep" aria-hidden="true"></span><span>M.Sc. Informatics @ TUM</span><span class="sep" aria-hidden="true"></span><span>Munich</span>
+          <span>Working student at Vector</span><span class="sep" aria-hidden="true"></span><span>M.Sc. Informatics at TUM, graduating 2028</span><span class="sep" aria-hidden="true"></span><span>Up to 18 h/week</span><span class="sep" aria-hidden="true"></span><span>Munich</span>
         </p>
-        <p class="hero__pitch">Five-plus years building simulation and 3D tooling for automated driving at Vector, alongside my studies. I like fast, well-tested software, from Unity editors to post-quantum end-to-end encryption.</p>
+        <p class="hero__pitch">I build software that lets carmakers test driving features in simulation instead of on the road, and I have done it at Vector for over five years alongside my studies. In my own time I build apps people can actually use, from a card game that needs no server to an encrypted helper for grieving families.</p>
         <div class="hero__ctas">
           <a class="btn btn--primary" href="mailto:medina.emanuel@proton.me">
             <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m4 7 8 6 8-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
@@ -104,10 +104,10 @@
         </ul>
       </div>
 
-      <figure class="hero__arm" aria-label="Interactive robot arm solving inverse kinematics in real time; it follows your pointer.">
+      <figure class="hero__arm" aria-label="Interactive robot arm that works out its own joint angles to follow your pointer.">
         <canvas id="arm" aria-hidden="true"></canvas>
         <figcaption class="hero__caption">
-          <span class="mono">FABRIK · 4-DOF · live</span>
+          <span class="mono">Move your pointer. The arm follows.</span>
           <span class="mono hero__readout" id="readout" aria-hidden="true"></span>
         </figcaption>
       </figure>
@@ -118,10 +118,10 @@
   <section class="stats" aria-label="At a glance">
     <div class="wrap">
       <dl class="stats__grid">
-        <div class="stat"><dt>Working student at Vector</dt><dd><span class="metric">5+</span> years</dd></div>
-        <div class="stat"><dt>Major DYNA4 releases shipped</dt><dd><span class="metric">5</span></dd></div>
-        <div class="stat"><dt>Faster edit-mode switching</dt><dd><small class="pre">up to</small><span class="metric">70%</span></dd></div>
-        <div class="stat"><dt>Test files securing LoveNeverDies</dt><dd><span class="metric">133</span></dd></div>
+        <div class="stat"><dt>Software engineer at Vector, alongside university</dt><dd><span class="metric">5+</span> years</dd></div>
+        <div class="stat"><dt>Major releases of a driving simulator I worked on</dt><dd><span class="metric">5</span></dd></div>
+        <div class="stat"><dt>Apps of mine that are live and free to try</dt><dd><span class="metric">3</span></dd></div>
+        <div class="stat"><dt>Expected M.Sc. graduation, TUM</dt><dd><span class="metric">2028</span></dd></div>
       </dl>
     </div>
   </section>
@@ -132,7 +132,7 @@
       <header class="section__head">
         <p class="eyebrow">01 · Experience</p>
         <h2 id="exp-title">Vector Informatik</h2>
-        <p class="section__sub">Working student software engineer since March 2021, across two products for automotive simulation and testing.</p>
+        <p class="section__sub">Working student software engineer since March 2021. Vector makes tools that carmakers use to develop and test vehicle software.</p>
       </header>
 
       <div class="roles">
@@ -142,11 +142,11 @@
             <ul class="chips chips--sm"><li>Unity</li><li>C#</li></ul>
           </div>
           <div class="role__body">
-            <h3>VSceneCreator <span class="role__what">3D OpenDRIVE road editor</span></h3>
+            <h3>VSceneCreator <span class="role__what">A 3D editor for the roads and junctions that driving simulations run on</span></h3>
             <ul class="bullets">
-              <li><strong class="metric">Up to 70% faster</strong> edit-mode switching by restructuring the base model to lazy-load non-essential and non-visible objects.</li>
-              <li>Architected a read-only <strong>Explore Mode</strong> (hierarchy tree, dynamic tooltips) that became a preview tool for licensed users.</li>
-              <li>Shipped alphas 0.1 → 0.4 with Product Management, including <strong class="metric">10% faster</strong> file loading through batched object creation.</li>
+              <li>Made switching a scene into edit mode <strong class="metric">up to 70% faster</strong> by loading only the objects that are visible or actually needed.</li>
+              <li>Designed <strong>Explore Mode</strong>, a read-only way to look around a road scene. It now serves as a preview for licensed users and a friendlier first experience for free users.</li>
+              <li>Shipped alpha versions 0.1 → 0.4 together with Product Management, including <strong class="metric">10% faster</strong> file loading and a progress bar instead of a frozen screen.</li>
             </ul>
           </div>
         </article>
@@ -157,11 +157,11 @@
             <ul class="chips chips--sm"><li>Java</li><li>Eclipse RCP</li></ul>
           </div>
           <div class="role__body">
-            <h3>DYNA4 <span class="role__what">Simulation for virtual driving tests</span></h3>
+            <h3>DYNA4 <span class="role__what">A simulator for testing driving functions on a virtual road before a real one</span></h3>
             <ul class="bullets">
-              <li><strong class="metric">5 major releases</strong> (5.0 → 9.0) of features, critical fixes and UI work, built with Product Management.</li>
-              <li>Designed a trace-signal alias system with its own file format, persistence layer, validation and quickfixes.</li>
-              <li>Expanded SWTBot/JUnit suites and linked Jenkins results to JIRA, cutting manual QA effort.</li>
+              <li>Worked on <strong class="metric">5 major releases</strong> (5.0 → 9.0): new features, fixes for critical bugs and a better interface.</li>
+              <li>Designed a way for engineers to give measurement signals readable names, with its own file format, saving and loading, and automatic checks that offer one-click fixes.</li>
+              <li>Automated more interface tests and linked test results to the bug tracker, so the team spent less time testing by hand.</li>
             </ul>
           </div>
         </article>
@@ -175,7 +175,7 @@
       <header class="section__head">
         <p class="eyebrow">02 · Projects</p>
         <h2 id="proj-title">Selected work</h2>
-        <p class="section__sub">Side projects, a hackathon and research. The first three have technical deep dives.</p>
+        <p class="section__sub">Side projects, a hackathon and research. The first three have a deep dive for the technically curious.</p>
       </header>
 
       <div class="projects">
@@ -187,8 +187,8 @@
           <div class="card__body">
             <p class="card__meta mono">Aug 2026 · Legal Loves Tech hackathon · Bavarian Ministry of Justice challenge</p>
             <h3 class="card__title">LoveNeverDies</h3>
-            <p class="card__text">End-to-end encrypted estate assistant for bereaved families, built in ten days with a team of lawyers. Hybrid post-quantum keys, and the server only ever stores ciphertext.</p>
-            <ul class="chips chips--sm"><li>React</li><li>TypeScript</li><li>Supabase</li><li>ML-KEM + X25519</li></ul>
+            <p class="card__text">An app that guides grieving families through the paperwork and deadlines after a death. Built in ten days with a team of lawyers. Everything is encrypted on the family's own devices, so not even the server can read it.</p>
+            <ul class="chips chips--sm"><li>React</li><li>TypeScript</li><li>Supabase</li><li>Post-quantum encryption</li></ul>
             <div class="card__links">
               <button class="btn btn--ghost btn--sm" type="button" data-deep="loveneverdies">Deep dive</button>
               <a class="link" href="https://github.com/EmanuelMedinaAraujo/LoveNeverDies">Code on GitHub</a>
@@ -202,10 +202,10 @@
             <img src="../assets/schafplay-dark.webp" width="844" height="390" loading="lazy" decoding="async" alt="SchafPlay pairing screen: host, guest or solo mode, with an invite code and a reply-code field.">
           </div>
           <div class="card__body">
-            <p class="card__meta mono">2026 · Live v1.0.0</p>
+            <p class="card__meta mono">2026 · Live</p>
             <h3 class="card__title">SchafPlay</h3>
-            <p class="card__text">Bavarian Schafkopf, peer-to-peer over WebRTC with no backend. A host-authoritative engine keeps opponents' hands off the wire.</p>
-            <ul class="chips chips--sm"><li>React</li><li>WebRTC</li><li>PWA</li><li>Playwright</li></ul>
+            <p class="card__text">Schafkopf, the Bavarian card game, to play solo or with a friend on the same Wi-Fi. No accounts and no server: two devices connect directly through a QR code or link, and computer players fill the other seats. Each device only ever receives its own cards, so nobody can peek.</p>
+            <ul class="chips chips--sm"><li>React</li><li>TypeScript</li><li>WebRTC</li><li>Offline app (PWA)</li></ul>
             <div class="card__links">
               <button class="btn btn--ghost btn--sm" type="button" data-deep="schafplay">Deep dive</button>
               <a class="link" href="https://emanuelmedinaaraujo.github.io/SchafPlay/">Play</a>
@@ -218,9 +218,9 @@
         <article class="card" id="p-thesis">
           <div class="card__media card__media--chart">
             <figure class="chart" aria-labelledby="chart-cap">
-              <figcaption id="chart-cap" class="chart__cap mono">3-DOF accuracy · 10,000 test problems</figcaption>
+              <figcaption id="chart-cap" class="chart__cap mono">Share of 10,000 test reaches solved (3-joint arm)</figcaption>
               <ol class="chart__rows">
-                <li class="is-best"><span class="chart__label">Direct MLP</span><span class="chart__bar"><i style="--v:100"></i></span><span class="chart__val">100.0%</span></li>
+                <li class="is-best"><span class="chart__label">Simple network (MLP)</span><span class="chart__bar"><i style="--v:100"></i></span><span class="chart__val">100.0%</span></li>
                 <li><span class="chart__label">Two-peak Normal</span><span class="chart__bar"><i style="--v:99.72"></i></span><span class="chart__val">99.7%</span></li>
                 <li><span class="chart__label">Normal + LSTM</span><span class="chart__bar"><i style="--v:93.25"></i></span><span class="chart__val">93.3%</span></li>
                 <li><span class="chart__label">Two-peak LSTM</span><span class="chart__bar"><i style="--v:92.99"></i></span><span class="chart__val">93.0%</span></li>
@@ -230,10 +230,10 @@
             </figure>
           </div>
           <div class="card__body">
-            <p class="card__meta mono">2024 · Bachelor thesis · TUM</p>
-            <h3 class="card__title">Learning-Based Inverse Kinematics</h3>
-            <p class="card__text">Which network learns IK best? A plain MLP solved 100% of test problems at ~155 µs, beating LSTM and probabilistic variants.</p>
-            <ul class="chips chips--sm"><li>PyTorch</li><li>Optuna</li><li>Hydra</li></ul>
+            <p class="card__meta mono">2024 · Bachelor thesis · TUM · Learning-Based Inverse Kinematics</p>
+            <h3 class="card__title">How robot arms learn to reach</h3>
+            <p class="card__text">To grab something, a robot arm has to work out how to bend each joint. I compared neural networks that learn this. The simplest one won: it solved all 10,000 test cases, in about 0.16 milliseconds each.</p>
+            <ul class="chips chips--sm"><li>Python</li><li>PyTorch</li><li>Machine learning</li><li>Robotics</li></ul>
             <div class="card__links">
               <button class="btn btn--ghost btn--sm" type="button" data-deep="thesis">Deep dive</button>
               <a class="link" href="https://github.com/EmanuelMedinaAraujo/BachelorThesis">Code</a>
@@ -250,8 +250,8 @@
           <div class="card__body">
             <p class="card__meta mono">Live · iPhone web app</p>
             <h3 class="card__title">FitFinder</h3>
-            <p class="card__text">Offline closet: photograph each piece once, track laundry, see which outfits are wearable right now.</p>
-            <ul class="chips chips--sm"><li>Vite</li><li>TypeScript</li><li>Offline-first</li></ul>
+            <p class="card__text">A wardrobe app: photograph each piece once, track what is in the wash, and see which outfits you can wear today. Works offline.</p>
+            <ul class="chips chips--sm"><li>TypeScript</li><li>Vite</li><li>Offline-first</li></ul>
             <div class="card__links"><a class="link" href="https://fit-finder.pages.dev">Open the app</a></div>
           </div>
         </article>
@@ -268,7 +268,7 @@
           <div class="card__body">
             <p class="card__meta mono">2026 · Robotics seminar paper</p>
             <h3 class="card__title">6D Object Pose Estimation</h3>
-            <p class="card__text">IEEE-format survey, from geometric registration to zero-shot foundation models. Best path: zero-shot initialization plus fast local tracking.</p>
+            <p class="card__text">How can a robot tell exactly where an object is and how it is turned, just from a camera? A survey of the methods, from classic geometry to the newest AI models, and which combination works best.</p>
             <ul class="chips chips--sm"><li>Robotics</li><li>Computer vision</li></ul>
           </div>
         </article>
@@ -280,10 +280,10 @@
             <img class="img-dark" src="../assets/gluecksrad-dark.webp" width="390" height="844" loading="lazy" decoding="async" alt="Glücksrad wheel of fortune, dark theme.">
           </div>
           <div class="card__body">
-            <p class="card__meta mono">Live · zero dependencies</p>
+            <p class="card__meta mono">Live · installable</p>
             <h3 class="card__title">Glücksrad</h3>
-            <p class="card__text">Installable, ad-free wheel of fortune you flick to spin, with fair draws via <code>crypto.getRandomValues</code>.</p>
-            <ul class="chips chips--sm"><li>JavaScript</li><li>PWA</li></ul>
+            <p class="card__text">A wheel of fortune you spin with a flick. No ads, works offline and installs like an app. Every spin uses the browser's secure random generator, so it is genuinely fair.</p>
+            <ul class="chips chips--sm"><li>JavaScript</li><li>PWA</li><li>Zero dependencies</li></ul>
             <div class="card__links">
               <a class="link" href="https://emanuelmedinaaraujo.github.io/gluecksrad/">Open</a>
               <a class="link" href="https://github.com/EmanuelMedinaAraujo/gluecksrad">Code</a>
@@ -305,8 +305,8 @@
         <div class="panel">
           <h3 class="panel__title">Education</h3>
           <ol class="timeline">
-            <li><p class="mono timeline__date">Oct 2026 — now</p><p class="timeline__what">M.Sc. Informatics</p><p class="timeline__where">Technical University of Munich</p></li>
-            <li><p class="mono timeline__date">2020 — 2026</p><p class="timeline__what">B.Sc. Computer Science, application area Physics</p><p class="timeline__where">Technical University of Munich · completed alongside part-time engineering work</p></li>
+            <li><p class="mono timeline__date">Oct 2026 — 2028 (expected)</p><p class="timeline__what">M.Sc. Informatics</p><p class="timeline__where">Technical University of Munich</p></li>
+            <li><p class="mono timeline__date">2020 — 2026</p><p class="timeline__what">B.Sc. Computer Science, application area Physics</p><p class="timeline__where">Technical University of Munich · completed alongside part-time work at Vector</p></li>
           </ol>
         </div>
         <div class="panel">
@@ -315,7 +315,7 @@
           <ul class="splits mono" aria-label="Ironman distances">
             <li><b>3.8 km</b> swim</li><li><b>180 km</b> bike</li><li><b>42.2 km</b> run</li>
           </ul>
-          <p class="panel__note">Plays trombone and piano at an advanced level.</p>
+          <p class="panel__note">Plays trombone and piano.</p>
         </div>
       </div>
     </div>
@@ -327,7 +327,7 @@
       <div class="contact__box">
         <p class="eyebrow">04 · Contact</p>
         <h2 id="contact-title" class="contact__title">Let's talk.</h2>
-        <p class="contact__text">I'm based in Munich. Email is the fastest way to reach me.</p>
+        <p class="contact__text">I'm in Munich and available for up to 18 hours a week alongside my master's. Email is the fastest way to reach me.</p>
         <div class="hero__ctas">
           <a class="btn btn--primary" href="mailto:medina.emanuel@proton.me">medina.emanuel@proton.me</a>
           <a class="btn btn--ghost" href="../cv/Emanuel-Medina-CV.pdf" download>Download CV</a>
@@ -357,7 +357,8 @@
       <button class="icon-btn deep__close" type="button" data-close aria-label="Close deep dive"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
     </header>
     <div class="deep__body">
-      <p class="tldr"><b>TL;DR</b> A ten-day hackathon build for a Bavarian Ministry of Justice challenge. It's an installable PWA that walks bereaved families through German inheritance deadlines, and the server stores only ciphertext. The crypto is hybrid post-quantum, backed by 133 database-level test files.</p>
+      <p class="tldr"><b>In plain words</b> When someone dies, their family faces dozens of legal deadlines and documents. LoveNeverDies turns that into a guided checklist the whole family can share. Everything is locked on their own phones before it is uploaded, so the server only ever holds data it cannot read.</p>
+<p class="tldr"><b>TL;DR</b> A ten-day hackathon build for a Bavarian Ministry of Justice challenge: an installable PWA for German inheritance deadlines, end-to-end encrypted with hybrid post-quantum cryptography. The server stores only ciphertext.</p>
 
       <figure class="diagram">
         <svg viewBox="0 0 360 400" role="img" aria-labelledby="dg-lnd">
@@ -402,8 +403,8 @@
       <h3>Numbers</h3>
       <ul class="numbers">
         <li><b>141</b><span>node legal decision tree, 80 outcomes</span></li>
-        <li><b>133</b><span>Vitest files against 20 real Postgres migrations (PGlite/WASM)</span></li>
-        <li><b>5</b><span>multi-user Playwright E2E specs</span></li>
+        <li><b>10</b><span>days from idea to working app</span></li>
+        <li><b>0</b><span>readable family data on the server</span></li>
         <li><b>611</b><span>probate courts mapped from 10,813 postcodes</span></li>
       </ul>
 
@@ -424,7 +425,8 @@
       <button class="icon-btn deep__close" type="button" data-close aria-label="Close deep dive"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
     </header>
     <div class="deep__body">
-      <p class="tldr"><b>TL;DR</b> Bavarian Schafkopf with serverless peer-to-peer multiplayer: two devices connect directly over WebRTC, with no backend at all. It's an offline-first PWA, live as v1.0.0, with a seeded Playwright suite in CI.</p>
+      <p class="tldr"><b>In plain words</b> Most online games need a company server in the middle. SchafPlay doesn't: two phones on the same Wi-Fi talk to each other directly after scanning one QR code. The host's phone runs the game and only ever sends each player their own cards.</p>
+<p class="tldr"><b>TL;DR</b> Bavarian Schafkopf with serverless peer-to-peer multiplayer over WebRTC and no backend at all. An offline-first PWA, live as v1.0.0.</p>
 
       <figure class="diagram">
         <svg viewBox="0 0 360 350" role="img" aria-labelledby="dg-sp">
@@ -475,7 +477,8 @@
 
       <h3>Numbers</h3>
       <ul class="numbers">
-        <li><b>17</b><span>Playwright spec files, ~62 E2E tests, run on every push</span></li>
+        <li><b>1</b><span>QR code or link to connect two devices</span></li>
+<li><b>2</b><span>computer players at the table</span></li>
         <li><b>0</b><span>servers: GitHub Pages hosts static files only</span></li>
         <li><b>v1.0.0</b><span>released and deployed via GitHub Actions</span></li>
       </ul>
@@ -492,12 +495,13 @@
     <header class="deep__head">
       <div>
         <p class="eyebrow">Deep dive · Bachelor thesis · 2024</p>
-        <h2 id="dd-th-title">Learning-Based Inverse Kinematics</h2>
+        <h2 id="dd-th-title">How robot arms learn to reach</h2>
       </div>
       <button class="icon-btn deep__close" type="button" data-close aria-label="Close deep dive"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
     </header>
     <div class="deep__body">
-      <p class="tldr"><b>TL;DR</b> A quantitative comparison of learned IK solvers for 2- and 3-DOF planar arms. A plain MLP predicting angles directly solved 100% of 10,000 test problems within 0.01 tolerance, across 5 seeded runs, with the fastest inference (~155 µs). It beat every LSTM and probabilistic variant tested.</p>
+      <p class="tldr"><b>In plain words</b> A robot arm knows where it wants its hand to be, but has to work out the angle of every joint to get there. That is called inverse kinematics. I trained different neural networks to answer this instantly and compared them fairly. The simplest network was the best: right every time, and the fastest.</p>
+<p class="tldr"><b>TL;DR</b> Thesis title: Learning-Based Inverse Kinematics. A quantitative comparison of learned IK solvers for 2- and 3-DOF planar arms. A plain MLP predicting angles directly solved 100% of 10,000 test problems within 0.01 tolerance, across 5 seeded runs, with the fastest inference (~155 µs). It beat every LSTM and probabilistic variant tested.</p>
 
       <figure class="diagram">
         <svg viewBox="0 0 360 400" role="img" aria-labelledby="dg-th">

@@ -18,6 +18,7 @@
   header{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;padding-bottom:14px;border-bottom:2px solid var(--ink)}
   h1{font-size:26pt;font-weight:650;letter-spacing:-.02em;line-height:1}
   .role{margin-top:6px;color:var(--soft);font-size:11pt}
+  .avail{margin-top:4px;color:var(--acc);font-size:9.6pt;font-weight:500}
   .contact{text-align:right;font-size:9.4pt;color:var(--soft);line-height:1.55}
   .contact a{color:var(--acc)}
   h2{font-size:9pt;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--acc);margin:18px 0 8px}
@@ -44,7 +45,8 @@
   <header>
     <div>
       <h1>Emanuel Medina Araujo</h1>
-      <div class="role">Software Engineer · Working Student at Vector · M.Sc. Informatics, TUM</div>
+      <div class="role">Software Engineer · Working Student at Vector</div>
+      <div class="avail">M.Sc. Informatics at TUM, graduating 2028 · Available up to 18 h/week</div>
     </div>
     <div class="contact">
       Munich, Germany<br>
@@ -59,9 +61,9 @@
     <div class="row"><b>Working Student Software Engineer — Vector Informatik GmbH</b><span>Nov 2024 – present</span></div>
     <div class="sub">VSceneCreator, a 3D OpenDRIVE editor · Unity / C# · Munich</div>
     <ul>
-      <li>Helped ship alpha versions <b>0.1 → 0.4</b> by designing and implementing features, fixing bugs and writing tests with Product Management.</li>
+      <li>Shipped alpha versions <b>0.1 → 0.4</b> with Product Management: designing and implementing features, fixing bugs and writing tests.</li>
       <li>Architected a read-only <b>Explore Mode</b> with a hierarchical overview tree and dynamic tooltips, segregating editing features: a preview tool for licensed users and a better UX for free users.</li>
-      <li>Restructured the base model to lazy-load non-essential and non-visible objects: <b>up to 70% faster</b> edit-mode switching.</li>
+      <li>Restructured the scene model to load only visible and needed objects: <b>up to 70% faster</b> switching into edit mode.</li>
       <li>Optimized file loading through batched object creation and a progress bar replacing freezes: <b>10% faster</b> loading and lower memory use.</li>
       <li class="np">Added support for OpenDRIVE single-sided lanes via automatic conversion, preventing broken files.</li>
     </ul>
@@ -78,7 +80,7 @@
   </div>
 
   <h2>Education</h2>
-  <div class="item"><div class="row"><b>M.Sc. Informatics — Technical University of Munich</b><span>Oct 2026 – present</span></div></div>
+  <div class="item"><div class="row"><b>M.Sc. Informatics — Technical University of Munich</b><span>Oct 2026 – 2028 (expected)</span></div></div>
   <div class="item"><div class="row"><b>B.Sc. Computer Science, application area Physics — Technical University of Munich</b><span>Oct 2020 – Aug 2026</span></div>
     <div class="sub">Thesis: Learning-Based Inverse Kinematics. Completed alongside part-time engineering work at Vector.</div></div>
   <div class="item"><div class="row"><b>Abitur — Herzog-Christoph-Gymnasium Beilstein</b><span>2012 – 2020</span></div>
@@ -90,14 +92,14 @@
     <ul>
       <li>Built an end-to-end encrypted estate assistant for bereaved families (React, TypeScript, Supabase) in ten days with a team of lawyers, guided by a <b>141-node</b> legal decision tree.</li>
       <li>Zero-trust design where the server only stores ciphertext: hybrid post-quantum key exchange and signatures (ML-KEM + X25519, ML-DSA + Ed25519), AES-256-GCM and a Shamir-secret-shared vault.</li>
-      <li>Verified row-level security with <b>130 Vitest files</b> against real Postgres migrations (PGlite/WASM) and multi-user Playwright E2E tests.</li>
+      <li>Mapped <b>10,813</b> German postcodes to their <b>611</b> probate courts, so families see at once where to file.</li>
     </ul>
   </div>
   <div class="item">
     <div class="row"><b>SchafPlay — peer-to-peer multiplayer card game (PWA), live on GitHub Pages</b><span>2026</span></div>
     <ul>
       <li>Offline-first PWA for Schafkopf (React, TypeScript) with serverless multiplayer over WebRTC data channels via manual SDP exchange.</li>
-      <li>Host-authoritative engine with per-player state redaction, heuristic AI opponents, and a seeded Playwright E2E suite in CI.</li>
+      <li>Host-authoritative engine that sends each player only their own cards, with heuristic AI opponents filling empty seats; live as v1.0.0.</li>
     </ul>
   </div>
   <div class="item">

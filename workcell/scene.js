@@ -9,9 +9,11 @@ const tagLayer = document.getElementById('tags');
 const hud = document.getElementById('hud');
 const col = document.querySelector('.col');
 const footer = document.querySelector('.site-footer');
-const small = matchMedia('(max-width: 899px)');
+const rail = document.getElementById('rail');
+// "band": phones/tablets held upright; the stage is a fixed strip at the top (see styles.css).
+const band = matchMedia('(max-width: 899px) and (orientation: portrait)');
 const reduce = matchMedia('(prefers-reduced-motion: reduce)');
-const lowPower = small.matches || matchMedia('(pointer: coarse)').matches || (navigator.hardwareConcurrency || 8) <= 4;
+const lowPower = matchMedia('(max-width: 899px)').matches || matchMedia('(pointer: coarse)').matches || (navigator.hardwareConcurrency || 8) <= 4;
 
 const PALETTE = {
   light: { bg: 0xe9e7e2, floor: 0xe9e7e2, floorRough: 1, floorMetal: 0, ped: 0xf4f3ef, pedTop: 0x2a2a2c, ring: 0x141414, ringOp: .15, grid: 0x000000, gridOp: .05,
@@ -167,7 +169,7 @@ function init() {
       card.position.set((k - 1.5) * .035, .14, k * .008); card.rotation.z = -(k - 1.5) * .22; it.add(card);
     });
   });
-  pedestal(4, 'IK thesis', 'thesis', it => { // mini 2-link arm
+  pedestal(4, 'Thesis', 'thesis', it => { // mini 2-link arm
     const b = mesh(new THREE.CylinderGeometry(.05, .06, .04, 20), M(0x2a2a2c)); b.position.y = .02; it.add(b);
     const l1 = new THREE.Group(); l1.position.y = .04; l1.rotation.z = .5; it.add(l1);
     const s1 = mesh(new THREE.BoxGeometry(.03, .16, .03), M(0x7fb4ff, .4)); s1.position.y = .08; l1.add(s1);
@@ -221,22 +223,25 @@ function init() {
   setSection((window.__wc && window.__wc.t) || 'mouse');
   addEventListener('wc:section', e => setSection(e.detail.t));
 
+  // Pointer position in the canvas's normalised device coordinates.
+  const toNdc = (x, y, v) => v.set(x / W * 2 - 1, -(y / H) * 2 + 1);
   function pick(clientX, clientY) {
-    ray.setFromCamera(new THREE.Vector2(clientX / innerWidth * 2 - 1, -(clientY / innerHeight) * 2 + 1), camera);
+    ray.setFromCamera(toNdc(clientX, clientY, new THREE.Vector2()), camera);
     const hit = ray.intersectObjects(pickables, false)[0];
     return hit ? hit.object.userData.ex : -1;
   }
   addEventListener('pointermove', e => {
-    ndc.set(e.clientX / innerWidth * 2 - 1, -(e.clientY / innerHeight) * 2 + 1);
-    pointerSeen = true;
     const over = e.target === canvas;
+    if (band.matches && !over) return; // in the band layout only the stage itself steers the arm
+    toNdc(e.clientX, e.clientY, ndc);
+    pointerSeen = true;
     const h = over && e.pointerType === 'mouse' ? pick(e.clientX, e.clientY) : -1;
     if (h !== hovered) { hovered = h; canvas.style.cursor = h >= 0 ? 'pointer' : ''; }
     invalidate();
   }, { passive: true });
   addEventListener('pointerdown', e => {
     if (e.target !== canvas) return;
-    ndc.set(e.clientX / innerWidth * 2 - 1, -(e.clientY / innerHeight) * 2 + 1);
+    toNdc(e.clientX, e.clientY, ndc);
     pointerSeen = true;
     invalidate();
   }, { passive: true });
@@ -246,38 +251,43 @@ function init() {
   });
 
   /* ---------- layout ---------- */
-  let W = 0, H = 0;
+  // The canvas starts at the top-left of the viewport, so client coordinates map 1:1.
+  let W = 0, H = 0, labelsAll = true;
+  const headerH = () => document.querySelector('.site-header')?.offsetHeight || 0;
   function resize() {
-    W = innerWidth; H = innerHeight;
+    W = canvas.clientWidth || innerWidth; H = canvas.clientHeight || innerHeight;
     renderer.setSize(W, H, false);
     camera.aspect = W / H;
-    if (small.matches) {
-      // Frame the scene in the top ~45% of the screen, cards scroll below.
-      camera.fov = 42;
-      const hTan = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * camera.aspect;
-      camDist = THREE.MathUtils.clamp(1.95 / hTan, 7.2, 13);
-      camera.setViewOffset(W, H, 0, H * .25, W, H);
+    camera.fov = band.matches ? 38 : 32;
+    const vTan = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)), hTan = vTan * camera.aspect;
+    const top = headerH();
+    if (band.matches) {
+      // Fit the whole cell (pedestals, arm at full reach, active label) into the strip below the header.
+      const useH = (H - top) / H;
+      camDist = THREE.MathUtils.clamp(Math.max(2.45 / hTan, 2.05 / (vTan * useH)), 6, 16);
+      camera.setViewOffset(W, H, 0, -top / 2, W, H);
     } else {
-      camera.fov = 32;
-      const colRight = col ? col.getBoundingClientRect().right : W * .4;
-      const rail = 96; // keep exhibits and labels clear of the section rail on the right
-      const avail = Math.max(W - colRight - rail, W * .35);
-      const hTan = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * camera.aspect;
-      camDist = THREE.MathUtils.clamp(2.3 * W / (avail * hTan), 7.2, 13);
-      const centre = (colRight + W - rail) / 2;
-      camera.setViewOffset(W, H, -(centre - W / 2), 0, W, H);
+      // Frame the cell in the free space between the text column and the section rail.
+      const colRight = col ? col.getBoundingClientRect().right + 24 : W * .4;
+      const railLeft = rail && getComputedStyle(rail).display !== 'none' ? rail.getBoundingClientRect().left - 16 : W - 16;
+      const avail = Math.max(railLeft - colRight, W * .3);
+      labelsAll = avail >= 520; // all seven labels only fit when there is room for them
+      const useH = (H - top) / H;
+      camDist = THREE.MathUtils.clamp(Math.max(2.55 * W / (avail * hTan), 2.15 / (vTan * useH)), 7.2, 24);
+      const centre = (colRight + railLeft) / 2;
+      camera.setViewOffset(W, H, -(centre - W / 2), -top / 2, W, H);
     }
     camera.updateProjectionMatrix();
     fitFog();
     invalidate();
   }
   addEventListener('resize', resize);
-  small.addEventListener('change', resize);
+  band.addEventListener('change', () => requestAnimationFrame(resize));
   resize();
 
   /* ---------- render loop with pausing ---------- */
   document.addEventListener('visibilitychange', () => { running = !document.hidden; if (running) { clock.getDelta(); invalidate(); } });
-  if (footer) new IntersectionObserver(([e]) => { footerCovers = e.intersectionRatio > .6; invalidate(); }, { threshold: [0, .6, 1] }).observe(footer);
+  if (footer) new IntersectionObserver(([e]) => { footerCovers = !band.matches && e.intersectionRatio > .6; invalidate(); }, { threshold: [0, .6, 1] }).observe(footer);
   canvas.addEventListener('webglcontextlost', e => { e.preventDefault(); running = false; root.classList.remove('gl'); });
   addEventListener('scroll', () => invalidate(), { passive: true });
   reduce.addEventListener('change', invalidate);
@@ -296,7 +306,7 @@ function init() {
 
     // camera
     const sp = scrollY / Math.max(1, document.documentElement.scrollHeight - innerHeight);
-    const wantA = mode === 'ex' ? exhibits[active].phi - (small.matches ? .6 : .42) : (still ? .55 : .55 + sp * .9);
+    const wantA = mode === 'ex' ? exhibits[active].phi - (band.matches ? .6 : .42) : (still ? .55 : .55 + sp * .9);
     camA = still ? wantA : angleLerp(camA, wantA, 1 - Math.pow(.15, dt));
     const ca = camA + (still ? 0 : Math.sin(t * .15) * .04);
     const s = camDist / 7.2;
@@ -337,7 +347,7 @@ function init() {
     fingers[0].position.y = .07 - grip * .035; fingers[1].position.y = -.07 + grip * .035;
 
     // exhibits + labels
-    const showAll = (mode === 'mouse') && !small.matches;
+    const showAll = (mode === 'mouse') && !band.matches && labelsAll;
     exhibits.forEach((ex, i) => {
       const on = i === active, hot = i === hovered;
       if (!still) {
@@ -352,16 +362,16 @@ function init() {
         ex.item.traverse(o => { if (o.isMesh) o.material.emissiveIntensity = ex.glow; });
       }
       ex.g.scale.setScalar(hot ? 1.06 : 1);
-      ex.g.getWorldPosition(tmp); tmp.y = ex.top + (small.matches ? .42 : .1); tmp.project(camera);
+      ex.g.getWorldPosition(tmp); tmp.y = ex.top + (band.matches ? .3 : .1); tmp.project(camera);
       const x = (tmp.x + 1) / 2 * W, y = (1 - tmp.y) / 2 * H;
       ex.tag.style.transform = `translate3d(${x.toFixed(1)}px,${y.toFixed(1)}px,0) translate(-50%,-100%)`;
       ex.tag.classList.toggle('on', on || hot || showAll);
       ex.tag.classList.toggle('hot', on || hot);
     });
 
-    if (hud && !small.matches && (frameNo++ % 4 === 0)) {
+    if (hud && !band.matches && (frameNo++ % 4 === 0)) {
       const deg = x => (x * 180 / Math.PI).toFixed(1);
-      hud.innerHTML = `J1 <b>${deg(ang.yaw)}°</b> &nbsp; J2 <b>${deg(ang.a1)}°</b><br>J3 <b>${deg(ang.a2)}°</b> &nbsp; J4 <b>${deg(w)}°</b><br>${sol.reach ? 'TARGET REACHABLE' : 'CLAMPED TO WORKSPACE'}`;
+      hud.innerHTML = `<span class="cap">Joint angles, solved live</span>J1 <b>${deg(ang.yaw)}°</b> &nbsp; J2 <b>${deg(ang.a1)}°</b><br>J3 <b>${deg(ang.a2)}°</b> &nbsp; J4 <b>${deg(w)}°</b><br>${sol.reach ? 'Target in reach' : 'Target out of reach'}`;
     }
 
     renderer.render(scene, camera);
@@ -371,6 +381,7 @@ function init() {
     if (still) { if (--dirty > 0) raf = requestAnimationFrame(frame); }
     else raf = requestAnimationFrame(frame);
   }
+
   invalidate();
 }
 

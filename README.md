@@ -1,11 +1,12 @@
 # Emanuel Medina — Personal Website
 
-Static site, no build step. Two candidate designs live side by side until one is chosen:
+Static site, no build step. Three candidate designs live side by side until one is chosen:
 
 | Path | What |
 |---|---|
 | `reach/` | 2D blueprint design with a canvas FABRIK inverse-kinematics arm |
 | `workcell/` | three.js 3D workcell with an analytic-IK robot arm |
+| `bento/` | Colourful bento-grid design with small interactive tiles |
 | `cv/` | Web CV; `cv/Emanuel-Medina-CV.pdf` is generated from it |
 | `llms.txt` | Summary for LLMs and AI tools ([llmstxt.org](https://llmstxt.org)) |
 | `assets/` | Self-hosted fonts, vendored three.js r170, images, favicon |

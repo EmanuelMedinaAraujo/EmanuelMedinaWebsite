@@ -42,10 +42,26 @@ function activate(sec) {
   window.dispatchEvent(new CustomEvent('wc:section', { detail: { t, id } }));
 }
 
-const io = new IntersectionObserver(entries => {
-  for (const e of entries) if (e.isIntersecting) activate(e.target);
-}, { rootMargin: '-48% 0px -48% 0px' });
-sections.forEach(s => io.observe(s));
+// A section becomes active when it crosses a reading line. In the upright mobile layout the
+// stage covers the top of the screen, so the line sits a quarter of the way into the visible text.
+const band = matchMedia('(max-width: 899px) and (orientation: portrait)');
+let io;
+function observe() {
+  if (io) io.disconnect();
+  let margin = '-48% 0px -48% 0px';
+  if (band.matches && root.classList.contains('gl')) {
+    const top = chips.getBoundingClientRect().bottom;
+    const line = Math.round(top + (innerHeight - top) * .25);
+    margin = `-${line}px 0px -${Math.max(0, innerHeight - line - 2)}px 0px`;
+  }
+  io = new IntersectionObserver(entries => {
+    for (const e of entries) if (e.isIntersecting) activate(e.target);
+  }, { rootMargin: margin });
+  sections.forEach(s => io.observe(s));
+}
+observe();
+let resizeT = 0;
+addEventListener('resize', () => { clearTimeout(resizeT); resizeT = setTimeout(observe, 150); });
 // Near the bottom the last section may never cross the centre line.
 addEventListener('scroll', () => {
   if (innerHeight + scrollY >= document.documentElement.scrollHeight - 4) activate(sections[sections.length - 1]);
