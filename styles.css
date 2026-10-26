@@ -107,7 +107,7 @@ html:not(.gl) #stage{display:none}
 main{position:relative;z-index:2;pointer-events:none}
 .col{width:min(560px,calc(100% - 32px));margin-left:max(24px,5vw)}
 html:not(.gl) .col{margin:0 auto;width:min(720px,calc(100% - 32px))}
-.sec{min-height:75vh;display:flex;flex-direction:column;justify-content:center;padding:var(--s7) 0}
+.sec{display:flex;flex-direction:column;justify-content:center;padding:clamp(28px,7vh,72px) 0}
 .sec.tall{min-height:100vh;min-height:100svh}
 .card{pointer-events:auto;background:var(--card);backdrop-filter:blur(16px) saturate(1.2);-webkit-backdrop-filter:blur(16px) saturate(1.2);border:1px solid var(--line);border-radius:var(--r);padding:clamp(22px,3vw,32px);box-shadow:var(--shadow)}
 .kicker{display:flex;align-items:center;gap:8px;font:500 12px/1.3 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--mute)}
@@ -273,17 +273,17 @@ html:not(.js) .deep-head .close{display:none}
   .shot.phone.inline{width:118px}
   .header-actions .btn-cv span{display:none}
 }
-/* Phones and tablets held upright: the 3D stage is a fixed band at the top and the
-   cards scroll underneath it, so nothing ever covers the arm or the active exhibit. */
+/* Phones and tablets held upright: the 3D stage is a fixed band at the bottom and the
+   cards scroll above it, so nothing ever covers the arm or the active exhibit. */
 @media (max-width:899px) and (orientation:portrait){
-  :root{--band:clamp(190px,34svh,400px);--stage-h:calc(var(--header) + var(--band))}
-  .gl #stage{bottom:auto;height:var(--stage-h);z-index:5;box-shadow:0 1px 0 var(--line)}
-  .gl .tags{z-index:6;bottom:auto;height:var(--stage-h);overflow:hidden}
-  .gl .chips{top:var(--stage-h)}
-  html.gl{scroll-padding-top:calc(var(--stage-h) + var(--chips) + 12px)}
+  :root{--band:clamp(180px,32svh,360px);--band-h:calc(var(--band) + env(safe-area-inset-bottom,0px))}
+  .gl #stage{top:auto;bottom:0;height:var(--band-h);z-index:5;box-shadow:0 -1px 0 var(--line)}
+  .gl .tags{z-index:6;top:auto;bottom:0;height:var(--band-h);overflow:hidden}
+  html.gl{scroll-padding-top:calc(var(--header) + var(--chips) + 12px)}
+  .gl body{padding-bottom:var(--band-h)}
   .gl .col{width:auto;margin:0 12px}
   .gl .sec,.gl .sec.tall{padding:0;min-height:auto;justify-content:flex-start;margin-bottom:12px}
-  .gl .sec.hero{padding-top:calc(var(--stage-h) + var(--chips) + 12px)}
+  .gl .sec.hero{padding-top:calc(var(--header) + var(--chips) + 12px)}
   .gl .sec:last-child{margin-bottom:24px}
 }
 /* Phones turned sideways: text on the left, stage on the right, like desktop. */

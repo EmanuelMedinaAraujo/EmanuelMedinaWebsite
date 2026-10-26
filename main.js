@@ -43,7 +43,7 @@ function activate(sec) {
 }
 
 // A section becomes active when it crosses a reading line. In the upright mobile layout the
-// stage covers the top of the screen, so the line sits a quarter of the way into the visible text.
+// stage covers the bottom of the screen, so the line sits a quarter of the way into the visible text.
 const band = matchMedia('(max-width: 899px) and (orientation: portrait)');
 let io;
 function observe() {
@@ -51,7 +51,8 @@ function observe() {
   let margin = '-48% 0px -48% 0px';
   if (band.matches && root.classList.contains('gl')) {
     const top = chips.getBoundingClientRect().bottom;
-    const line = Math.round(top + (innerHeight - top) * .25);
+    const bottom = document.getElementById('stage').getBoundingClientRect().top;
+    const line = Math.round(top + (bottom - top) * .25);
     margin = `-${line}px 0px -${Math.max(0, innerHeight - line - 2)}px 0px`;
   }
   io = new IntersectionObserver(entries => {

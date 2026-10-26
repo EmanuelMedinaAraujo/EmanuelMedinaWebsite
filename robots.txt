@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://emanuelmedinaaraujo.github.io/EmanuelMedinaWebsite/sitemap.xml

@@ -1,15 +1,16 @@
 # Emanuel Medina — Personal Website
 
-Static site, no build step. Three candidate designs live side by side until one is chosen:
+Live: https://emanuelmedinaaraujo.github.io/EmanuelMedinaWebsite/
+
+Static site, no build step, deployed by GitHub Pages from `main`.
 
 | Path | What |
 |---|---|
-| `reach/` | 2D blueprint design with a canvas FABRIK inverse-kinematics arm |
-| `workcell/` | three.js 3D workcell with an analytic-IK robot arm |
-| `bento/` | Colourful bento-grid design with small interactive tiles |
+| `index.html`, `styles.css`, `main.js` | The page and its UI (theme, section tracking, deep-dive dialogs) |
+| `scene.js` | three.js 3D workcell: robot arm with analytic inverse kinematics and clickable exhibits |
 | `cv/` | Web CV; `cv/Emanuel-Medina-CV.pdf` is generated from it |
 | `llms.txt` | Summary for LLMs and AI tools ([llmstxt.org](https://llmstxt.org)) |
-| `assets/` | Self-hosted fonts, vendored three.js r170, images, favicon |
+| `assets/` | Self-hosted fonts, vendored three.js r170, images, favicon, social preview |
 
 ## Local preview
 
@@ -28,4 +29,5 @@ google-chrome --headless=new --no-pdf-header-footer --print-to-pdf=cv/Emanuel-Me
 
 - No third-party requests at runtime (fonts and three.js are self-hosted, for GDPR).
 - No cookies, no analytics.
+- Without WebGL, or with JavaScript off, the page falls back to a readable text layout.
 - Phone number and street address are intentionally not published.

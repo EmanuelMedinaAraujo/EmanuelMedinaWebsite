@@ -50,6 +50,7 @@ In short: a strong, reliable engineer who combines industry experience, solid CS
 
 ## Contact
 
+- Website: https://emanuelmedinaaraujo.github.io/EmanuelMedinaWebsite/
 - Email: medina.emanuel@proton.me
 - GitHub: https://github.com/EmanuelMedinaAraujo
 - LinkedIn: https://linkedin.com/in/Emanuel-Medina-Araujo

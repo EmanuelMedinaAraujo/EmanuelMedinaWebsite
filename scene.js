@@ -10,7 +10,7 @@ const hud = document.getElementById('hud');
 const col = document.querySelector('.col');
 const footer = document.querySelector('.site-footer');
 const rail = document.getElementById('rail');
-// "band": phones/tablets held upright; the stage is a fixed strip at the top (see styles.css).
+// "band": phones/tablets held upright; the stage is a fixed strip at the bottom (see styles.css).
 const band = matchMedia('(max-width: 899px) and (orientation: portrait)');
 const reduce = matchMedia('(prefers-reduced-motion: reduce)');
 const lowPower = matchMedia('(max-width: 899px)').matches || matchMedia('(pointer: coarse)').matches || (navigator.hardwareConcurrency || 8) <= 4;
@@ -122,12 +122,12 @@ function init() {
   const angleLerp = (a, b, k) => a + Math.atan2(Math.sin(b - a), Math.cos(b - a)) * k;
 
   /* ---------- exhibits ---------- */
-  const R = 1.85, N = 7;
+  const R = 1.85, N = 9;
   const exhibits = [];
   const pickables = [];
   const M = (c, r = .5, m = 0) => new THREE.MeshStandardMaterial({ color: c, roughness: r, metalness: m });
   function pedestal(i, label, id, build) {
-    const phi = THREE.MathUtils.degToRad(-115 + i * (230 / (N - 1)));
+    const phi = THREE.MathUtils.degToRad(-125 + i * (250 / (N - 1)));
     const g = new THREE.Group();
     g.position.set(R * Math.sin(phi), 0, R * Math.cos(phi));
     scene.add(g);
@@ -183,7 +183,21 @@ function init() {
     const sc = mesh(new THREE.PlaneGeometry(.13, .27), M(0xf4ede4, .4)); sc.position.z = .0095; ph.add(sc);
     [[-.03, .06, 0xe36b3c], [.03, .06, 0x35558f], [-.03, -.03, 0xbf3a3a], [.03, -.03, 0xd8c3a5]].forEach(([x, y, c]) => { const t = mesh(new THREE.PlaneGeometry(.05, .07), M(c, .6)); t.position.set(x, y, .0005); sc.add(t); });
   });
-  pedestal(6, 'Ironman 14:21:26', 'off-the-clock', it => { // medal
+  pedestal(6, '6D pose', 'pose', it => { // tilted box with a pose gizmo
+    const box = mesh(new THREE.BoxGeometry(.16, .12, .12), M(0xe8e4da, .5)); box.position.y = .13; box.rotation.set(.35, .5, .2); it.add(box);
+    [[0xd8402f, [0, 0, -Math.PI / 2]], [0x3a9a4a, [0, 0, 0]], [0x2f62c8, [Math.PI / 2, 0, 0]]].forEach(([c, r]) => {
+      const ax = new THREE.Group(); ax.rotation.set(...r); box.add(ax);
+      const shaft = mesh(new THREE.CylinderGeometry(.007, .007, .16, 8), M(c, .4)); shaft.position.y = .08; ax.add(shaft);
+      const head = mesh(new THREE.ConeGeometry(.018, .045, 12), M(c, .4)); head.position.y = .17; ax.add(head);
+    });
+  });
+  pedestal(7, 'TUM · M.Sc.', 'education', it => { // graduation cap
+    const cap = mesh(new THREE.CylinderGeometry(.075, .085, .07, 24), M(0x1f2a44, .6)); cap.position.y = .05; it.add(cap);
+    const board = mesh(new THREE.BoxGeometry(.24, .014, .24), M(0x1f2a44, .55)); board.position.y = .092; board.rotation.y = Math.PI / 4; it.add(board);
+    const btn = mesh(new THREE.CylinderGeometry(.012, .012, .01, 12), M(0x3070b3, .4)); btn.position.y = .104; it.add(btn);
+    const tassel = mesh(new THREE.BoxGeometry(.008, .09, .008), M(0x3070b3, .5)); tassel.position.set(.11, .055, 0); it.add(tassel);
+  });
+  pedestal(8, 'Ironman 14:21:26', 'off-the-clock', it => { // medal
     const rib = mesh(new THREE.BoxGeometry(.06, .2, .01), M(0xc0202f, .7)); rib.position.set(0, .25, -.01); it.add(rib);
     const md = mesh(new THREE.CylinderGeometry(.09, .09, .02, 32), M(0xd4a72c, .25, 1)); md.rotation.x = Math.PI / 2; md.position.y = .12; it.add(md);
     const inner = mesh(new THREE.TorusGeometry(.065, .006, 8, 32), M(0xb08718, .3, 1)); inner.position.set(0, .12, .011); it.add(inner);
@@ -224,7 +238,7 @@ function init() {
   addEventListener('wc:section', e => setSection(e.detail.t));
 
   // Pointer position in the canvas's normalised device coordinates.
-  const toNdc = (x, y, v) => v.set(x / W * 2 - 1, -(y / H) * 2 + 1);
+  const toNdc = (x, y, v) => v.set((x - cx) / W * 2 - 1, -((y - cy) / H) * 2 + 1);
   function pick(clientX, clientY) {
     ray.setFromCamera(toNdc(clientX, clientY, new THREE.Vector2()), camera);
     const hit = ray.intersectObjects(pickables, false)[0];
@@ -251,27 +265,27 @@ function init() {
   });
 
   /* ---------- layout ---------- */
-  // The canvas starts at the top-left of the viewport, so client coordinates map 1:1.
-  let W = 0, H = 0, labelsAll = true;
+  // cx/cy: the canvas's offset in the viewport (it sits at the bottom in the band layout).
+  let W = 0, H = 0, cx = 0, cy = 0, labelsAll = true;
   const headerH = () => document.querySelector('.site-header')?.offsetHeight || 0;
   function resize() {
     W = canvas.clientWidth || innerWidth; H = canvas.clientHeight || innerHeight;
+    const rect = canvas.getBoundingClientRect(); cx = rect.left; cy = rect.top;
     renderer.setSize(W, H, false);
     camera.aspect = W / H;
     camera.fov = band.matches ? 38 : 32;
     const vTan = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)), hTan = vTan * camera.aspect;
     const top = headerH();
     if (band.matches) {
-      // Fit the whole cell (pedestals, arm at full reach, active label) into the strip below the header.
-      const useH = (H - top) / H;
-      camDist = THREE.MathUtils.clamp(Math.max(2.45 / hTan, 2.05 / (vTan * useH)), 6, 16);
-      camera.setViewOffset(W, H, 0, -top / 2, W, H);
+      // Fit the whole cell (pedestals, arm at full reach, active label) into the bottom strip.
+      camDist = THREE.MathUtils.clamp(Math.max(2.45 / hTan, 2.25 / vTan), 6, 16);
+      camera.setViewOffset(W, H, 0, H * .1, W, H); // nudge the cell up so the front pedestals stay inside
     } else {
       // Frame the cell in the free space between the text column and the section rail.
       const colRight = col ? col.getBoundingClientRect().right + 24 : W * .4;
       const railLeft = rail && getComputedStyle(rail).display !== 'none' ? rail.getBoundingClientRect().left - 16 : W - 16;
       const avail = Math.max(railLeft - colRight, W * .3);
-      labelsAll = avail >= 520; // all seven labels only fit when there is room for them
+      labelsAll = avail >= 600; // all nine labels only fit when there is room for them
       const useH = (H - top) / H;
       camDist = THREE.MathUtils.clamp(Math.max(2.55 * W / (avail * hTan), 2.15 / (vTan * useH)), 7.2, 24);
       const centre = (colRight + railLeft) / 2;
