@@ -8,12 +8,12 @@ Static site, no build step, deployed by GitHub Pages from `main`.
 |---|---|
 | `index.html`, `styles.css`, `main.js` | The page and its UI (theme, section tracking, deep-dive dialogs) |
 | `scene.js` | three.js 3D workcell: robot arm with analytic inverse kinematics and clickable exhibits |
-
-When you change `styles.css`, `main.js` or `scene.js`, bump the `?v=` number on their links in `index.html` so browsers fetch the new file instead of a cached one.
 | `cv/` | Web CV; `cv/Emanuel-Medina-CV.pdf` is generated from it |
-| `papers/` | Seminar papers (PDF), linked from the page |
+| `papers/` | Seminar papers and B.Sc. thesis (PDF), linked from the page |
 | `llms.txt` | Summary for LLMs and AI tools ([llmstxt.org](https://llmstxt.org)) |
 | `assets/` | Self-hosted fonts, vendored three.js r170, images, favicon, social preview |
+
+When you change `styles.css`, `main.js` or `scene.js`, bump the `?v=` number on their links in `index.html` so browsers fetch the new file instead of a cached one.
 
 ## Local preview
 
