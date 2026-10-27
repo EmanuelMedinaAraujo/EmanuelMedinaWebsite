@@ -169,7 +169,7 @@ function init() {
       card.position.set((k - 1.5) * .035, .14, k * .008); card.rotation.z = -(k - 1.5) * .22; it.add(card);
     });
   });
-  pedestal(4, 'Thesis', 'thesis', it => { // mini 2-link arm
+  pedestal(4, 'B.Sc. thesis', 'thesis', it => { // mini 2-link arm
     const b = mesh(new THREE.CylinderGeometry(.05, .06, .04, 20), M(0x2a2a2c)); b.position.y = .02; it.add(b);
     const l1 = new THREE.Group(); l1.position.y = .04; l1.rotation.z = .5; it.add(l1);
     const s1 = mesh(new THREE.BoxGeometry(.03, .16, .03), M(0x7fb4ff, .4)); s1.position.y = .08; l1.add(s1);
@@ -183,7 +183,7 @@ function init() {
     const sc = mesh(new THREE.PlaneGeometry(.13, .27), M(0xf4ede4, .4)); sc.position.z = .0095; ph.add(sc);
     [[-.03, .06, 0xe36b3c], [.03, .06, 0x35558f], [-.03, -.03, 0xbf3a3a], [.03, -.03, 0xd8c3a5]].forEach(([x, y, c]) => { const t = mesh(new THREE.PlaneGeometry(.05, .07), M(c, .6)); t.position.set(x, y, .0005); sc.add(t); });
   });
-  pedestal(6, '6D pose', 'pose', it => { // tilted box with a pose gizmo
+  pedestal(6, '6D pose seminar', 'pose', it => { // tilted box with a pose gizmo
     const box = mesh(new THREE.BoxGeometry(.16, .12, .12), M(0xe8e4da, .5)); box.position.y = .13; box.rotation.set(.35, .5, .2); it.add(box);
     [[0xd8402f, [0, 0, -Math.PI / 2]], [0x3a9a4a, [0, 0, 0]], [0x2f62c8, [Math.PI / 2, 0, 0]]].forEach(([c, r]) => {
       const ax = new THREE.Group(); ax.rotation.set(...r); box.add(ax);
