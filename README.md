@@ -9,6 +9,7 @@ Static site, no build step, deployed by GitHub Pages from `main`.
 | `index.html`, `styles.css`, `main.js` | The page and its UI (theme, section tracking, deep-dive dialogs) |
 | `scene.js` | three.js 3D workcell: robot arm with analytic inverse kinematics and clickable exhibits |
 | `cv/` | Web CV; `cv/Emanuel-Medina-CV.pdf` is generated from it |
+| `papers/` | Seminar papers (PDF), linked from the page |
 | `llms.txt` | Summary for LLMs and AI tools ([llmstxt.org](https://llmstxt.org)) |
 | `assets/` | Self-hosted fonts, vendored three.js r170, images, favicon, social preview |
 

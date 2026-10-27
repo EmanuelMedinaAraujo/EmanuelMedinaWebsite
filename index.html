@@ -154,6 +154,7 @@
           <li><a href="#thesis"><b>How robot arms learn to reach</b><span class="y">2024</span><span class="d">Bachelor thesis · machine learning</span></a></li>
           <li><a href="#fitfinder"><b>FitFinder</b><span class="y">Live</span><span class="d">Wardrobe organizer for the iPhone</span></a></li>
           <li><a href="#pose"><b>6D object pose estimation</b><span class="y">2026</span><span class="d">Robotics seminar paper</span></a></li>
+          <li><a href="#thesis"><b>Reaching around obstacles</b><span class="y">2023</span><span class="d">Seminar paper · inverse kinematics</span></a></li>
         </ul>
       </div>
     </section>
@@ -170,6 +171,9 @@
           <li><b>Shipped alpha versions 0.1 → 0.4</b> together with Product Management, including <span class="num">10% faster</span> file loading and a progress bar instead of a frozen screen.</li>
         </ul>
         <ul class="tagrow" aria-label="Technologies"><li>Unity</li><li>C#</li><li>OpenDRIVE</li><li>Rider</li></ul>
+        <div class="links">
+          <a class="btn btn-sm" href="https://www.vector.com/en/product/dyna4/dyna4-releases/">Announced by Vector (DYNA4 Release 10)</a>
+        </div>
       </div>
     </section>
 
@@ -185,6 +189,9 @@
           <li>Built tools that find files no longer used anywhere in a project and list every unsaved change in one place, and reworked the view engineers use to inspect recorded signals.</li>
         </ul>
         <ul class="tagrow" aria-label="Technologies"><li>Java</li><li>Eclipse RCP</li><li>JUnit</li><li>Jenkins</li></ul>
+        <div class="links">
+          <a class="btn btn-sm" href="https://www.vector.com/en/product/dyna4/">DYNA4 at Vector</a>
+        </div>
       </div>
     </section>
 
@@ -231,6 +238,7 @@
         <h2 id="ik-title">How robot arms learn to reach</h2>
         <p class="sub">Learning-Based Inverse Kinematics · Python / PyTorch</p>
         <p>To grab something, a robot arm has to work out how to bend each joint. I compared neural networks that learn this. <b>The simplest one won</b>: it solved <span class="num">all 10,000</span> test cases, in about 0.16 milliseconds each.</p>
+        <p>It built on my 2023 seminar paper, a survey of the classic step-by-step methods that let an arm reach a target <b>without hitting obstacles</b> around it.</p>
         <figure class="chart">
           <figcaption>Share of 10,000 test reaches solved (3-joint arm)</figcaption>
           <ul class="bars">
@@ -245,6 +253,7 @@
         <div class="links">
           <a class="btn btn-sm btn-primary" href="#deep-thesis" data-deep="deep-thesis">Deep dive</a>
           <a class="btn btn-sm" href="https://github.com/EmanuelMedinaAraujo/BachelorThesis">Source on GitHub</a>
+          <a class="btn btn-sm" href="papers/numerical-inverse-kinematics.pdf">2023 seminar paper (PDF)</a>
         </div>
       </div>
     </section>
@@ -274,6 +283,9 @@
         <p>How can a robot tell exactly where an object is and how it is turned, just from a camera image? I surveyed the methods, from classic geometry to the newest AI models that recognise objects they have never seen.</p>
         <p>My conclusion: the most practical systems combine both. A large model finds the object once, then a fast tracker follows it frame by frame.</p>
         <ul class="tagrow" aria-label="Topics"><li>Robotics</li><li>Computer vision</li><li>Foundation models</li></ul>
+        <div class="links">
+          <a class="btn btn-sm btn-primary" href="papers/6d-object-pose-estimation.pdf">Read the paper (PDF, 8 pages)</a>
+        </div>
       </div>
     </section>
 
