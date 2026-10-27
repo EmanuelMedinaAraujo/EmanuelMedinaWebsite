@@ -252,6 +252,7 @@
         </figure>
         <div class="links">
           <a class="btn btn-sm btn-primary" href="#deep-thesis" data-deep="deep-thesis">Deep dive</a>
+          <a class="btn btn-sm" href="papers/learning-based-inverse-kinematics.pdf">Read the thesis (PDF, 46 pages)</a>
           <a class="btn btn-sm" href="https://github.com/EmanuelMedinaAraujo/BachelorThesis">Source on GitHub</a>
           <a class="btn btn-sm" href="papers/numerical-inverse-kinematics.pdf">2023 seminar paper (PDF)</a>
         </div>
@@ -493,7 +494,7 @@
       <li>Random DH parameters (link lengths 0.3–0.5) and reachable goals are generated synthetically, so one model learns arbitrary arms rather than a single robot.</li>
       <li>Input: DH parameters plus goal. Output: (sin, cos) per joint, converted to angles with <code>atan2</code>.</li>
       <li>Loss: end-effector-to-goal distance through <b>differentiable forward kinematics</b>, so training needs no labelled angles.</li>
-      <li>Compared MLP, LSTM, hybrid MLP+LSTM and probabilistic heads (Normal, Beta, two-peak), plus a PPO baseline with Stable-Baselines3.</li>
+      <li>Compared MLP, LSTM, hybrid MLP+LSTM and probabilistic heads (Normal, Beta, two-peak), and PPO, a reinforcement-learning method (Stable-Baselines3).</li>
       <li>Hydra configs → Optuna hyperparameter search → Weights &amp; Biases tracking → bootstrapped summaries.</li>
     </ul>
     <h3>Results (accuracy %, single inference)</h3>
@@ -506,6 +507,7 @@
         <tr><td>Two-peak LSTM</td><td>67.71</td><td>92.99</td><td>366 / 514 µs</td></tr>
         <tr><td>Normal (manual reparam.)</td><td>97.5</td><td>75.59</td><td>321 / 372 µs</td></tr>
         <tr><td>Beta</td><td>5.19</td><td>8.48</td><td>207 / 257 µs</td></tr>
+        <tr><td>PPO (reinforcement learning)</td><td>69.98</td><td>56.45</td><td>444 / 465 µs</td></tr>
       </tbody>
     </table>
     <p style="margin-top:10px;font-size:14px;color:var(--mute)">10,000 test problems, 5 runs, accuracy is the share of problems solved within 0.01 tolerance. Best direct MLP from Optuna: hidden layers [2048, 256, 2048], Adam, batch size 512.</p>
@@ -513,11 +515,12 @@
     <ul>
       <li>IK is multimodal (several joint configurations reach the same goal), which motivated the two-peak distribution heads. In practice the direct model handled it best.</li>
       <li>Some probabilistic variants collapsed entirely (Beta: 5–8%), a useful negative result for choosing practical IK models.</li>
+      <li>PPO needed 45–50 million training steps and still solved only 56–70%: reinforcement learning is built for multi-step tasks, while IK is a single prediction.</li>
       <li>Solo project: about 4.7k lines of Python, 217 commits.</li>
     </ul>
     <h3>Stack</h3>
     <ul class="stack"><li>Python</li><li>PyTorch</li><li>Stable-Baselines3</li><li>Gymnasium</li><li>Hydra</li><li>Optuna</li><li>Weights &amp; Biases</li></ul>
-    <div class="deep-foot"><a class="btn btn-sm btn-primary" href="https://github.com/EmanuelMedinaAraujo/BachelorThesis">Read the source</a></div>
+    <div class="deep-foot"><a class="btn btn-sm btn-primary" href="papers/learning-based-inverse-kinematics.pdf">Read the thesis (PDF)</a><a class="btn btn-sm" href="https://github.com/EmanuelMedinaAraujo/BachelorThesis">Read the source</a></div>
   </div>
 </dialog>
 
