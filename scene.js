@@ -2,25 +2,112 @@
 // If anything here fails, the page keeps working as a plain text site (no .gl class).
 import * as THREE from 'three';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+import { band, reduceMotion, section, emit } from './wc.js';
 
 const root = document.documentElement;
 const canvas = document.getElementById('stage');
 const tagLayer = document.getElementById('tags');
 const hud = document.getElementById('hud');
 const col = document.querySelector('.col');
-const footer = document.querySelector('.site-footer');
 const rail = document.getElementById('rail');
-// "band": phones/tablets held upright; the stage is a fixed strip at the bottom (see styles.css).
-const band = matchMedia('(max-width: 899px) and (orientation: portrait)');
-const reduce = matchMedia('(prefers-reduced-motion: reduce)');
 const lowPower = matchMedia('(max-width: 899px)').matches || matchMedia('(pointer: coarse)').matches || (navigator.hardwareConcurrency || 8) <= 4;
 
 const PALETTE = {
-  light: { bg: 0xe9e7e2, floor: 0xe9e7e2, floorRough: 1, floorMetal: 0, ped: 0xf4f3ef, pedTop: 0x2a2a2c, ring: 0x141414, ringOp: .15, grid: 0x000000, gridOp: .05,
+  light: { bg: 0xe9e7e2, floor: 0xe9e7e2, floorRough: 1, ped: 0xf4f3ef, pedTop: 0x2a2a2c, ring: 0x141414, ringOp: .15, grid: 0x000000, gridOp: .05,
            sky: 0xffffff, ground: 0xbdb8ad, hemi: .6, sun: 2.2, rim: 0, env: 1, exposure: 1, fog: [9, 20] },
-  dark:  { bg: 0x0f1012, floor: 0x141518, floorRough: .95, floorMetal: 0, ped: 0x2c2d32, pedTop: 0x45464d, ring: 0xffffff, ringOp: .12, grid: 0xffffff, gridOp: .035,
+  dark:  { bg: 0x0f1012, floor: 0x141518, floorRough: .95, ped: 0x2c2d32, pedTop: 0x45464d, ring: 0xffffff, ringOp: .12, grid: 0xffffff, gridOp: .035,
            sky: 0x9aa6b8, ground: 0x0b0b0c, hemi: .38, sun: 1.5, rim: 1.1, env: .4, exposure: 1.08, fog: [9, 19] },
 };
+
+// Adds a shadow-casting mesh to parent. pos and rot are [x, y, z] arrays.
+function part(parent, geometry, material, { pos, rot } = {}) {
+  const o = new THREE.Mesh(geometry, material);
+  o.castShadow = o.receiveShadow = true;
+  if (pos) o.position.set(...pos);
+  if (rot) o.rotation.set(...rot);
+  parent.add(o);
+  return o;
+}
+
+/* ---------- inverse kinematics ---------- */
+const H0 = .62, L1 = 1.15, L2 = 1.0, L3 = .32;
+
+// Analytic IK: base yaw + planar 2-link solution, wrist kept pointing down.
+function solveIK(T) {
+  const wx = T.x, wy = T.y + L3, wz = T.z;
+  const yaw = Math.atan2(-wz, wx);
+  const r = Math.hypot(wx, wz), z = wy - H0;
+  let d = Math.hypot(r, z);
+  const reach = d <= L1 + L2 - .001;
+  d = THREE.MathUtils.clamp(d, Math.abs(L1 - L2) + .05, L1 + L2 - .001);
+  const a1 = Math.atan2(z, r) + Math.acos((L1 * L1 + d * d - L2 * L2) / (2 * L1 * d));
+  const a2 = -(Math.PI - Math.acos((L1 * L1 + L2 * L2 - d * d) / (2 * L1 * L2)));
+  return { yaw, a1, a2, reach };
+}
+const angleLerp = (a, b, k) => a + Math.atan2(Math.sin(b - a), Math.cos(b - a)) * k;
+
+/* ---------- exhibits ---------- */
+// One per section, placed around the arm in this order. Materials must not be shared: each exhibit's glow is set on them.
+const M = (c, r = .5, m = 0) => new THREE.MeshStandardMaterial({ color: c, roughness: r, metalness: m });
+const EXHIBITS = [
+  { id: 'vscenecreator', label: 'VSceneCreator', build(it) { // road tile
+    part(it, new THREE.BoxGeometry(.36, .04, .36), M(0x2d2e31, .9), { pos: [0, .02, 0] });
+    for (let k = -1; k <= 1; k++) part(it, new THREE.BoxGeometry(.02, .045, .06), M(0xf6c400, .6), { pos: [0, .025, k * .11] });
+    [-.16, .16].forEach(x => part(it, new THREE.BoxGeometry(.012, .045, .36), M(0xffffff, .6), { pos: [x, .025, 0] }));
+    part(it, new THREE.ConeGeometry(.05, .12, 4), M(0x1d4f9c, .4), { pos: [.1, .12, .1] });
+  } },
+  { id: 'dyna4', label: 'DYNA4', build(it) { // car
+    part(it, new THREE.BoxGeometry(.34, .08, .18), M(0x1d4f9c, .35, .3), { pos: [0, .08, 0] });
+    part(it, new THREE.BoxGeometry(.18, .07, .16), M(0xcfe3ff, .1, .2), { pos: [-.02, .155, 0] });
+    [[-.11, .09], [.11, .09], [-.11, -.09], [.11, -.09]].forEach(([x, z]) => part(it, new THREE.CylinderGeometry(.04, .04, .03, 16), M(0x111111, .8), { pos: [x, .04, z], rot: [Math.PI / 2, 0, 0] }));
+  } },
+  { id: 'loveneverdies', label: 'LoveNeverDies', build(it) { // padlock
+    part(it, new THREE.BoxGeometry(.24, .2, .1), M(0xd9a520, .25, .8), { pos: [0, .12, 0] });
+    part(it, new THREE.TorusGeometry(.08, .02, 12, 28, Math.PI), M(0xc8c8cc, .2, 1), { pos: [0, .22, 0] });
+    part(it, new THREE.CylinderGeometry(.02, .02, .11, 12), M(0x111111, .6), { pos: [0, .12, 0], rot: [Math.PI / 2, 0, 0] });
+  } },
+  { id: 'schafplay', label: 'SchafPlay', build(it) { // card fan
+    [0xc0202f, 0x2d7a3a, 0xd39a12, 0x6b3c1c].forEach((c, k) => {
+      const card = new THREE.Group();
+      part(card, new THREE.BoxGeometry(.15, .23, .006), M(0xf7f0e1, .6));
+      part(card, new THREE.CircleGeometry(.03, 20), M(c, .5), { pos: [0, 0, .0035] });
+      card.position.set((k - 1.5) * .035, .14, k * .008); card.rotation.z = -(k - 1.5) * .22; it.add(card);
+    });
+  } },
+  { id: 'thesis', label: 'B.Sc. thesis', build(it) { // mini 2-link arm
+    part(it, new THREE.CylinderGeometry(.05, .06, .04, 20), M(0x2a2a2c), { pos: [0, .02, 0] });
+    const l1 = new THREE.Group(); l1.position.y = .04; l1.rotation.z = .5; it.add(l1);
+    part(l1, new THREE.BoxGeometry(.03, .16, .03), M(0x7fb4ff, .4), { pos: [0, .08, 0] });
+    const l2 = new THREE.Group(); l2.position.y = .16; l2.rotation.z = -1.3; l1.add(l2);
+    part(l2, new THREE.BoxGeometry(.025, .13, .025), M(0x7fb4ff, .4), { pos: [0, .065, 0] });
+    part(l2, new THREE.SphereGeometry(.022, 12, 12), M(0xffd23f, .3), { pos: [0, .13, 0] });
+    it.userData.spin = l1;
+  } },
+  { id: 'fitfinder', label: 'FitFinder', build(it) { // phone
+    const ph = part(it, new THREE.BoxGeometry(.15, .3, .018), M(0x111111, .3, .4), { pos: [0, .17, 0], rot: [-.25, 0, 0] });
+    const sc = part(ph, new THREE.PlaneGeometry(.13, .27), M(0xf4ede4, .4), { pos: [0, 0, .0095] });
+    [[-.03, .06, 0xe36b3c], [.03, .06, 0x35558f], [-.03, -.03, 0xbf3a3a], [.03, -.03, 0xd8c3a5]].forEach(([x, y, c]) => part(sc, new THREE.PlaneGeometry(.05, .07), M(c, .6), { pos: [x, y, .0005] }));
+  } },
+  { id: 'pose', label: '6D pose seminar', build(it) { // tilted box with a pose gizmo
+    const box = part(it, new THREE.BoxGeometry(.16, .12, .12), M(0xe8e4da, .5), { pos: [0, .13, 0], rot: [.35, .5, .2] });
+    [[0xd8402f, [0, 0, -Math.PI / 2]], [0x3a9a4a, [0, 0, 0]], [0x2f62c8, [Math.PI / 2, 0, 0]]].forEach(([c, r]) => {
+      const ax = new THREE.Group(); ax.rotation.set(...r); box.add(ax);
+      part(ax, new THREE.CylinderGeometry(.007, .007, .16, 8), M(c, .4), { pos: [0, .08, 0] });
+      part(ax, new THREE.ConeGeometry(.018, .045, 12), M(c, .4), { pos: [0, .17, 0] });
+    });
+  } },
+  { id: 'education', label: 'TUM · M.Sc.', build(it) { // graduation cap
+    part(it, new THREE.CylinderGeometry(.075, .085, .07, 24), M(0x1f2a44, .6), { pos: [0, .05, 0] });
+    part(it, new THREE.BoxGeometry(.24, .014, .24), M(0x1f2a44, .55), { pos: [0, .092, 0], rot: [0, Math.PI / 4, 0] });
+    part(it, new THREE.CylinderGeometry(.012, .012, .01, 12), M(0x3070b3, .4), { pos: [0, .104, 0] });
+    part(it, new THREE.BoxGeometry(.008, .09, .008), M(0x3070b3, .5), { pos: [.11, .055, 0] });
+  } },
+  { id: 'off-the-clock', label: 'Ironman 14:21:26', build(it) { // medal
+    part(it, new THREE.BoxGeometry(.06, .2, .01), M(0xc0202f, .7), { pos: [0, .25, -.01] });
+    part(it, new THREE.CylinderGeometry(.09, .09, .02, 32), M(0xd4a72c, .25, 1), { pos: [0, .12, 0], rot: [Math.PI / 2, 0, 0] });
+    part(it, new THREE.TorusGeometry(.065, .006, 8, 32), M(0xb08718, .3, 1), { pos: [0, .12, .011] });
+  } },
+];
 
 function init() {
   let renderer;
@@ -34,7 +121,7 @@ function init() {
   root.classList.add('gl');
   let fogBase = [9, 20], camDist = 7.2;
   const fitFog = () => { const s = camDist / 7.2; scene.fog.near = fogBase[0] * s; scene.fog.far = fogBase[1] * s; };
-  let running = true, footerCovers = false, dirty = 2, raf = 0;
+  let running = true, dirty = 2, raf = 0;
   function invalidate() { dirty = Math.max(dirty, 3); if (running && !raf) raf = requestAnimationFrame(frame); }
   renderer.setPixelRatio(Math.min(devicePixelRatio, lowPower ? 1.5 : 2));
   renderer.shadowMap.enabled = true;
@@ -86,121 +173,46 @@ function init() {
   const STEEL = new THREE.MeshStandardMaterial({ color: 0xb9b9bd, roughness: .25, metalness: .9 });
   const PED = new THREE.MeshStandardMaterial({ color: 0xf4f3ef, roughness: .6 });
   const PEDTOP = new THREE.MeshStandardMaterial({ color: 0x2a2a2c, roughness: .5, metalness: .4 });
-  const mesh = (g, m, cast = true) => { const o = new THREE.Mesh(g, m); o.castShadow = cast; o.receiveShadow = true; return o; };
 
   /* ---------- robot arm ---------- */
-  const H0 = .62, L1 = 1.15, L2 = 1.0, L3 = .32;
+  const SIDEWAYS = [Math.PI / 2, 0, 0]; // lays a cylinder along the joint axis
   const arm = new THREE.Group();
   scene.add(arm);
-  const plinth = mesh(new THREE.CylinderGeometry(.42, .48, .12, SEG), DARK); plinth.position.y = .06; arm.add(plinth);
+  part(arm, new THREE.CylinderGeometry(.42, .48, .12, SEG), DARK, { pos: [0, .06, 0] });
   const yawG = new THREE.Group(); yawG.position.y = .12; arm.add(yawG);
-  const turret = mesh(new THREE.CylinderGeometry(.3, .36, .38, SEG), ORANGE); turret.position.y = .19; yawG.add(turret);
+  part(yawG, new THREE.CylinderGeometry(.3, .36, .38, SEG), ORANGE, { pos: [0, .19, 0] });
   const shoulder = new THREE.Group(); shoulder.position.y = H0 - .12; yawG.add(shoulder);
-  const sj = mesh(new THREE.CylinderGeometry(.2, .2, .46, SEG), DARK); sj.rotation.x = Math.PI / 2; shoulder.add(sj);
-  const upper = mesh(new THREE.BoxGeometry(L1, .22, .26), ORANGE); upper.position.x = L1 / 2; shoulder.add(upper);
+  part(shoulder, new THREE.CylinderGeometry(.2, .2, .46, SEG), DARK, { rot: SIDEWAYS });
+  part(shoulder, new THREE.BoxGeometry(L1, .22, .26), ORANGE, { pos: [L1 / 2, 0, 0] });
   const elbow = new THREE.Group(); elbow.position.x = L1; shoulder.add(elbow);
-  const ej = mesh(new THREE.CylinderGeometry(.16, .16, .36, SEG), DARK); ej.rotation.x = Math.PI / 2; elbow.add(ej);
-  const fore = mesh(new THREE.BoxGeometry(L2, .17, .2), ORANGE); fore.position.x = L2 / 2; elbow.add(fore);
+  part(elbow, new THREE.CylinderGeometry(.16, .16, .36, SEG), DARK, { rot: SIDEWAYS });
+  part(elbow, new THREE.BoxGeometry(L2, .17, .2), ORANGE, { pos: [L2 / 2, 0, 0] });
   const wrist = new THREE.Group(); wrist.position.x = L2; elbow.add(wrist);
-  const wj = mesh(new THREE.CylinderGeometry(.11, .11, .26, SEG), DARK); wj.rotation.x = Math.PI / 2; wrist.add(wj);
-  const flange = mesh(new THREE.CylinderGeometry(.08, .08, L3 * .6, SEG), STEEL); flange.rotation.z = Math.PI / 2; flange.position.x = L3 * .3; wrist.add(flange);
-  const palm = mesh(new THREE.BoxGeometry(.06, .24, .12), DARK); palm.position.x = L3 * .62; wrist.add(palm);
-  const fingers = [1, -1].map(s => { const f = mesh(new THREE.BoxGeometry(.14, .035, .08), STEEL); f.position.set(L3 * .62 + .09, .07 * s, 0); wrist.add(f); return f; });
+  part(wrist, new THREE.CylinderGeometry(.11, .11, .26, SEG), DARK, { rot: SIDEWAYS });
+  part(wrist, new THREE.CylinderGeometry(.08, .08, L3 * .6, SEG), STEEL, { pos: [L3 * .3, 0, 0], rot: [0, 0, Math.PI / 2] });
+  part(wrist, new THREE.BoxGeometry(.06, .24, .12), DARK, { pos: [L3 * .62, 0, 0] });
+  const fingers = [1, -1].map(s => part(wrist, new THREE.BoxGeometry(.14, .035, .08), STEEL, { pos: [L3 * .62 + .09, .07 * s, 0] }));
 
-  // Analytic IK: base yaw + planar 2-link solution, wrist kept pointing down.
-  function solveIK(T) {
-    const W = new THREE.Vector3(T.x, T.y + L3, T.z);
-    const yaw = Math.atan2(-W.z, W.x);
-    const r = Math.hypot(W.x, W.z), z = W.y - H0;
-    let d = Math.hypot(r, z);
-    const reach = d <= L1 + L2 - .001;
-    d = THREE.MathUtils.clamp(d, Math.abs(L1 - L2) + .05, L1 + L2 - .001);
-    const a1 = Math.atan2(z, r) + Math.acos((L1 * L1 + d * d - L2 * L2) / (2 * L1 * d));
-    const a2 = -(Math.PI - Math.acos((L1 * L1 + L2 * L2 - d * d) / (2 * L1 * L2)));
-    return { yaw, a1, a2, reach };
-  }
-  const angleLerp = (a, b, k) => a + Math.atan2(Math.sin(b - a), Math.cos(b - a)) * k;
-
-  /* ---------- exhibits ---------- */
-  const R = 1.85, N = 9;
+  /* ---------- exhibit pedestals ---------- */
+  const R = 1.85;
   const exhibits = [];
   const pickables = [];
-  const M = (c, r = .5, m = 0) => new THREE.MeshStandardMaterial({ color: c, roughness: r, metalness: m });
-  function pedestal(i, label, id, build) {
-    const phi = THREE.MathUtils.degToRad(-125 + i * (250 / (N - 1)));
+  EXHIBITS.forEach(({ id, label, build }, i) => {
+    const phi = THREE.MathUtils.degToRad(-125 + i * (250 / (EXHIBITS.length - 1)));
     const g = new THREE.Group();
     g.position.set(R * Math.sin(phi), 0, R * Math.cos(phi));
     scene.add(g);
-    const p = mesh(new THREE.CylinderGeometry(.24, .27, .5, SEG), PED); p.position.y = .25; g.add(p);
-    const top = mesh(new THREE.CylinderGeometry(.25, .25, .02, SEG), PEDTOP); top.position.y = .51; g.add(top);
+    part(g, new THREE.CylinderGeometry(.24, .27, .5, SEG), PED, { pos: [0, .25, 0] });
+    part(g, new THREE.CylinderGeometry(.25, .25, .02, SEG), PEDTOP, { pos: [0, .51, 0] });
     const item = new THREE.Group(); item.position.y = .52; g.add(item);
     build(item);
-    item.traverse(o => {
-      if (o.isMesh) { o.castShadow = true; o.material = o.material.clone(); o.material.emissive.setHex(0xff6a13); o.material.emissiveIntensity = 0; }
-    });
+    item.traverse(o => { if (o.isMesh) { o.material.emissive.setHex(0xff6a13); o.material.emissiveIntensity = 0; } });
     g.traverse(o => { if (o.isMesh) { o.userData.ex = i; pickables.push(o); } });
     const tag = document.createElement('button');
     tag.type = 'button'; tag.className = 'tag'; tag.tabIndex = -1; tag.textContent = label;
-    tag.addEventListener('click', () => window.dispatchEvent(new CustomEvent('wc:goto', { detail: { id } })));
+    tag.addEventListener('click', () => emit('goto', { id }));
     tagLayer.appendChild(tag);
     exhibits.push({ g, item, tag, phi, id, top: .84, glow: 0 });
-  }
-  pedestal(0, 'VSceneCreator', 'vscenecreator', it => { // road tile
-    const tile = mesh(new THREE.BoxGeometry(.36, .04, .36), M(0x2d2e31, .9)); tile.position.y = .02; it.add(tile);
-    for (let k = -1; k <= 1; k++) { const d = mesh(new THREE.BoxGeometry(.02, .045, .06), M(0xf6c400, .6)); d.position.set(0, .025, k * .11); it.add(d); }
-    [-.16, .16].forEach(x => { const e = mesh(new THREE.BoxGeometry(.012, .045, .36), M(0xffffff, .6)); e.position.set(x, .025, 0); it.add(e); });
-    const tw = mesh(new THREE.ConeGeometry(.05, .12, 4), M(0x1d4f9c, .4)); tw.position.set(.1, .12, .1); it.add(tw);
-  });
-  pedestal(1, 'DYNA4', 'dyna4', it => { // car
-    const body = mesh(new THREE.BoxGeometry(.34, .08, .18), M(0x1d4f9c, .35, .3)); body.position.y = .08; it.add(body);
-    const cab = mesh(new THREE.BoxGeometry(.18, .07, .16), M(0xcfe3ff, .1, .2)); cab.position.set(-.02, .155, 0); it.add(cab);
-    [[-.11, .09], [.11, .09], [-.11, -.09], [.11, -.09]].forEach(([x, z]) => { const w = mesh(new THREE.CylinderGeometry(.04, .04, .03, 16), M(0x111111, .8)); w.rotation.x = Math.PI / 2; w.position.set(x, .04, z); it.add(w); });
-  });
-  pedestal(2, 'LoveNeverDies', 'loveneverdies', it => { // padlock
-    const b = mesh(new THREE.BoxGeometry(.24, .2, .1), M(0xd9a520, .25, .8)); b.position.y = .12; it.add(b);
-    const sh = mesh(new THREE.TorusGeometry(.08, .02, 12, 28, Math.PI), M(0xc8c8cc, .2, 1)); sh.position.y = .22; it.add(sh);
-    const kh = mesh(new THREE.CylinderGeometry(.02, .02, .11, 12), M(0x111111, .6)); kh.rotation.x = Math.PI / 2; kh.position.y = .12; it.add(kh);
-  });
-  pedestal(3, 'SchafPlay', 'schafplay', it => { // card fan
-    [0xc0202f, 0x2d7a3a, 0xd39a12, 0x6b3c1c].forEach((c, k) => {
-      const card = new THREE.Group();
-      card.add(mesh(new THREE.BoxGeometry(.15, .23, .006), M(0xf7f0e1, .6)));
-      const pip = mesh(new THREE.CircleGeometry(.03, 20), M(c, .5)); pip.position.z = .0035; card.add(pip);
-      card.position.set((k - 1.5) * .035, .14, k * .008); card.rotation.z = -(k - 1.5) * .22; it.add(card);
-    });
-  });
-  pedestal(4, 'B.Sc. thesis', 'thesis', it => { // mini 2-link arm
-    const b = mesh(new THREE.CylinderGeometry(.05, .06, .04, 20), M(0x2a2a2c)); b.position.y = .02; it.add(b);
-    const l1 = new THREE.Group(); l1.position.y = .04; l1.rotation.z = .5; it.add(l1);
-    const s1 = mesh(new THREE.BoxGeometry(.03, .16, .03), M(0x7fb4ff, .4)); s1.position.y = .08; l1.add(s1);
-    const l2 = new THREE.Group(); l2.position.y = .16; l2.rotation.z = -1.3; l1.add(l2);
-    const s2 = mesh(new THREE.BoxGeometry(.025, .13, .025), M(0x7fb4ff, .4)); s2.position.y = .065; l2.add(s2);
-    const tip = mesh(new THREE.SphereGeometry(.022, 12, 12), M(0xffd23f, .3)); tip.position.y = .13; l2.add(tip);
-    it.userData.spin = l1;
-  });
-  pedestal(5, 'FitFinder', 'fitfinder', it => { // phone
-    const ph = mesh(new THREE.BoxGeometry(.15, .3, .018), M(0x111111, .3, .4)); ph.position.y = .17; ph.rotation.x = -.25; it.add(ph);
-    const sc = mesh(new THREE.PlaneGeometry(.13, .27), M(0xf4ede4, .4)); sc.position.z = .0095; ph.add(sc);
-    [[-.03, .06, 0xe36b3c], [.03, .06, 0x35558f], [-.03, -.03, 0xbf3a3a], [.03, -.03, 0xd8c3a5]].forEach(([x, y, c]) => { const t = mesh(new THREE.PlaneGeometry(.05, .07), M(c, .6)); t.position.set(x, y, .0005); sc.add(t); });
-  });
-  pedestal(6, '6D pose seminar', 'pose', it => { // tilted box with a pose gizmo
-    const box = mesh(new THREE.BoxGeometry(.16, .12, .12), M(0xe8e4da, .5)); box.position.y = .13; box.rotation.set(.35, .5, .2); it.add(box);
-    [[0xd8402f, [0, 0, -Math.PI / 2]], [0x3a9a4a, [0, 0, 0]], [0x2f62c8, [Math.PI / 2, 0, 0]]].forEach(([c, r]) => {
-      const ax = new THREE.Group(); ax.rotation.set(...r); box.add(ax);
-      const shaft = mesh(new THREE.CylinderGeometry(.007, .007, .16, 8), M(c, .4)); shaft.position.y = .08; ax.add(shaft);
-      const head = mesh(new THREE.ConeGeometry(.018, .045, 12), M(c, .4)); head.position.y = .17; ax.add(head);
-    });
-  });
-  pedestal(7, 'TUM · M.Sc.', 'education', it => { // graduation cap
-    const cap = mesh(new THREE.CylinderGeometry(.075, .085, .07, 24), M(0x1f2a44, .6)); cap.position.y = .05; it.add(cap);
-    const board = mesh(new THREE.BoxGeometry(.24, .014, .24), M(0x1f2a44, .55)); board.position.y = .092; board.rotation.y = Math.PI / 4; it.add(board);
-    const btn = mesh(new THREE.CylinderGeometry(.012, .012, .01, 12), M(0x3070b3, .4)); btn.position.y = .104; it.add(btn);
-    const tassel = mesh(new THREE.BoxGeometry(.008, .09, .008), M(0x3070b3, .5)); tassel.position.set(.11, .055, 0); it.add(tassel);
-  });
-  pedestal(8, 'Ironman 14:21:26', 'off-the-clock', it => { // medal
-    const rib = mesh(new THREE.BoxGeometry(.06, .2, .01), M(0xc0202f, .7)); rib.position.set(0, .25, -.01); it.add(rib);
-    const md = mesh(new THREE.CylinderGeometry(.09, .09, .02, 32), M(0xd4a72c, .25, 1)); md.rotation.x = Math.PI / 2; md.position.y = .12; it.add(md);
-    const inner = mesh(new THREE.TorusGeometry(.065, .006, 8, 32), M(0xb08718, .3, 1)); inner.position.set(0, .12, .011); it.add(inner);
   });
 
   /* ---------- theme ---------- */
@@ -208,7 +220,7 @@ function init() {
     const P = dark ? PALETTE.dark : PALETTE.light;
     scene.background.setHex(P.bg);
     scene.fog.color.setHex(P.bg); fogBase = P.fog; fitFog();
-    floorMat.color.setHex(P.floor); floorMat.roughness = P.floorRough; floorMat.metalness = P.floorMetal;
+    floorMat.color.setHex(P.floor); floorMat.roughness = P.floorRough;
     PED.color.setHex(P.ped); PEDTOP.color.setHex(P.pedTop);
     ring.material.color.setHex(P.ring); ring.material.opacity = P.ringOp;
     grid.material.color.setHex(P.grid); grid.material.opacity = P.gridOp;
@@ -229,13 +241,13 @@ function init() {
   const plane = new THREE.Plane(new THREE.Vector3(0, 1, 0), -1.0);
   const tmp = new THREE.Vector3();
 
-  function setSection(t) {
-    if (t === 'mouse' || t === 'idle' || t === 'wave') { mode = t; active = -1; }
-    else { mode = 'ex'; active = +t; }
+  function syncSection() {
+    active = exhibits.findIndex(ex => ex.id === section.id);
+    mode = active >= 0 ? 'ex' : section.arm || 'mouse';
     invalidate();
   }
-  setSection((window.__wc && window.__wc.t) || 'mouse');
-  addEventListener('wc:section', e => setSection(e.detail.t));
+  syncSection();
+  addEventListener('wc:section', syncSection);
 
   // Pointer position in the canvas's normalised device coordinates.
   const toNdc = (x, y, v) => v.set((x - cx) / W * 2 - 1, -((y - cy) / H) * 2 + 1);
@@ -261,7 +273,7 @@ function init() {
   }, { passive: true });
   canvas.addEventListener('click', e => {
     const i = pick(e.clientX, e.clientY);
-    if (i >= 0) window.dispatchEvent(new CustomEvent('wc:goto', { detail: { id: exhibits[i].id } }));
+    if (i >= 0) emit('goto', { id: exhibits[i].id });
   });
 
   /* ---------- layout ---------- */
@@ -301,24 +313,15 @@ function init() {
 
   /* ---------- render loop with pausing ---------- */
   document.addEventListener('visibilitychange', () => { running = !document.hidden; if (running) { clock.getDelta(); invalidate(); } });
-  if (footer) new IntersectionObserver(([e]) => { footerCovers = !band.matches && e.intersectionRatio > .6; invalidate(); }, { threshold: [0, .6, 1] }).observe(footer);
   canvas.addEventListener('webglcontextlost', e => { e.preventDefault(); running = false; root.classList.remove('gl'); });
   addEventListener('scroll', () => invalidate(), { passive: true });
-  reduce.addEventListener('change', invalidate);
+  reduceMotion.addEventListener('change', invalidate);
 
   const clock = new THREE.Clock();
   let camA = .55, frameNo = 0;
-  const ang = { yaw: -.8, a1: 1.2, a2: -2 };
-  let lastS = solveIK(target);
+  const ang = { yaw: -.8, a1: 1.2, a2: -2, wrist: 0 };
 
-  function frame() {
-    raf = 0;
-    if (!running || footerCovers) return;
-    const still = reduce.matches;
-    const dt = Math.min(clock.getDelta(), .05), t = clock.elapsedTime;
-    const k = still ? 1 : 1 - Math.pow(.02, dt);
-
-    // camera
+  function updateCamera(t, dt, still) {
     const sp = scrollY / Math.max(1, document.documentElement.scrollHeight - innerHeight);
     const wantA = mode === 'ex' ? exhibits[active].phi - (band.matches ? .6 : .42) : (still ? .55 : .55 + sp * .9);
     camA = still ? wantA : angleLerp(camA, wantA, 1 - Math.pow(.15, dt));
@@ -327,8 +330,10 @@ function init() {
     camera.position.set(Math.sin(ca) * camDist, (3.4 - (still ? 0 : sp * .6)) * s, Math.cos(ca) * camDist);
     camera.lookAt(0, .75, 0);
     camera.updateMatrixWorld();
+  }
 
-    // arm goal
+  // Sets where the gripper is heading and how far it is closed.
+  function updateGoal(t, still) {
     if (mode === 'mouse') {
       if (!pointerSeen && !still) { goal.set(Math.sin(t * .6) * 1.2 + .4, 1.0 + Math.sin(t * .9) * .15, Math.cos(t * .6) * .9 + .9); }
       else {
@@ -344,23 +349,26 @@ function init() {
       ex.g.getWorldPosition(tmp);
       goal.set(tmp.x, ex.top + .06 + (still ? 0 : Math.sin(t * 2) * .03), tmp.z);
       gripGoal = 1;
-    } else if (mode === 'idle') {
-      goal.set(still ? 1.2 : 1.2 + Math.sin(t * .5) * .25, 1.45, still ? 1.2 : 1.2 + Math.cos(t * .5) * .25);
-      gripGoal = .3;
     } else { // wave
       goal.set(still ? .9 : Math.sin(t * 3) * .6 + .9, 1.9, .9);
       gripGoal = still ? 0 : (Math.sin(t * 6) > 0 ? 1 : 0);
     }
-    target.lerp(goal, k);
-    const sol = solveIK(target); lastS = sol;
+  }
+
+  // Moves the joints towards the goal and returns the IK solution.
+  function updateArm(dt, still) {
+    target.lerp(goal, still ? 1 : 1 - Math.pow(.02, dt));
+    const sol = solveIK(target);
     const jk = still ? 1 : .18;
     ang.yaw = angleLerp(ang.yaw, sol.yaw, jk); ang.a1 += (sol.a1 - ang.a1) * jk; ang.a2 += (sol.a2 - ang.a2) * jk;
-    const w = -Math.PI / 2 - ang.a1 - ang.a2;
-    yawG.rotation.y = ang.yaw; shoulder.rotation.z = ang.a1; elbow.rotation.z = ang.a2; wrist.rotation.z = w;
+    ang.wrist = -Math.PI / 2 - ang.a1 - ang.a2;
+    yawG.rotation.y = ang.yaw; shoulder.rotation.z = ang.a1; elbow.rotation.z = ang.a2; wrist.rotation.z = ang.wrist;
     grip += (gripGoal - grip) * (still ? 1 : .15);
     fingers[0].position.y = .07 - grip * .035; fingers[1].position.y = -.07 + grip * .035;
+    return sol;
+  }
 
-    // exhibits + labels
+  function updateExhibits(t, dt, still) {
     const showAll = (mode === 'mouse') && !band.matches && labelsAll;
     exhibits.forEach((ex, i) => {
       const on = i === active, hot = i === hovered;
@@ -382,11 +390,26 @@ function init() {
       ex.tag.classList.toggle('on', on || hot || showAll);
       ex.tag.classList.toggle('hot', on || hot);
     });
+  }
 
-    if (hud && !band.matches && (frameNo++ % 4 === 0)) {
-      const deg = x => (x * 180 / Math.PI).toFixed(1);
-      hud.innerHTML = `<span class="cap">Joint angles, solved live</span>J1 <b>${deg(ang.yaw)}°</b> &nbsp; J2 <b>${deg(ang.a1)}°</b><br>J3 <b>${deg(ang.a2)}°</b> &nbsp; J4 <b>${deg(w)}°</b><br>${sol.reach ? 'Target in reach' : 'Target out of reach'}`;
-    }
+  hud.innerHTML = '<span class="cap">Joint angles, solved live</span>J1 <b></b> &nbsp; J2 <b></b><br>J3 <b></b> &nbsp; J4 <b></b><br><span></span>';
+  const hudAngles = hud.querySelectorAll('b'), hudReach = hud.lastElementChild;
+  function updateHud(reach) {
+    [ang.yaw, ang.a1, ang.a2, ang.wrist].forEach((a, i) => { hudAngles[i].textContent = (a * 180 / Math.PI).toFixed(1) + '°'; });
+    hudReach.textContent = reach ? 'Target in reach' : 'Target out of reach';
+  }
+
+  function frame() {
+    raf = 0;
+    if (!running) return;
+    const still = reduceMotion.matches;
+    const dt = Math.min(clock.getDelta(), .05), t = clock.elapsedTime;
+
+    updateCamera(t, dt, still);
+    updateGoal(t, still);
+    const sol = updateArm(dt, still);
+    updateExhibits(t, dt, still);
+    if (!band.matches && (frameNo++ % 4 === 0)) updateHud(sol.reach);
 
     renderer.render(scene, camera);
     window.__wcReady = true;

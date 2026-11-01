@@ -29,7 +29,7 @@
 <link rel="preload" href="assets/fonts/Geist-normal-300-800.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="modulepreload" href="assets/vendor/three.module.min.js">
 <link rel="stylesheet" href="assets/fonts/fonts.css">
-<link rel="stylesheet" href="styles.css?v=2">
+<link rel="stylesheet" href="styles.css">
 <script>
   (function(){var d=document.documentElement,s=null;try{s=localStorage.getItem('theme')}catch(e){}
   d.dataset.theme=s||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');d.classList.add('js');
@@ -54,6 +54,12 @@
 </script>
 </head>
 <body>
+<svg class="sprite" aria-hidden="true">
+  <symbol id="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 20h14"/></symbol>
+  <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="d-h" d="M0 0 10 5 0 10z"/></marker>
+  <marker id="arrow-hl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="d-h hl" d="M0 0 10 5 0 10z"/></marker>
+</svg>
 <a class="skip" href="#main">Skip to content</a>
 
 <canvas id="stage" aria-hidden="true"></canvas>
@@ -78,7 +84,7 @@
       <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7z"/></svg>
     </button>
     <a class="btn btn-sm btn-cv" href="cv/Emanuel-Medina-CV.pdf" download aria-label="Download CV (PDF)">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 20h14"/></svg><span>CV</span>
+      <svg aria-hidden="true"><use href="#i-download"/></svg><span>CV</span>
     </a>
     <a class="btn btn-sm btn-primary" href="mailto:medina.emanuel@proton.me">Email</a>
   </div>
@@ -112,7 +118,7 @@
 <main id="main">
   <div class="col">
 
-    <section class="sec hero tall" id="top" data-t="mouse" aria-labelledby="hero-title">
+    <section class="sec hero tall" id="top" aria-labelledby="hero-title">
       <div class="card">
         <p class="status"><i aria-hidden="true"></i><span>Working student at Vector</span><span>M.Sc. Informatics at TUM, graduating 2028</span><span>Up to 18 h/week · Munich</span></p>
         <h1 id="hero-title">Emanuel<br>Medina<span aria-hidden="true">.</span></h1>
@@ -121,7 +127,7 @@
           <a class="btn btn-primary" href="mailto:medina.emanuel@proton.me">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m4 7 8 6 8-6"/></svg>Email me</a>
           <a class="btn" href="cv/Emanuel-Medina-CV.pdf" download>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 20h14"/></svg>Download CV</a>
+            <svg aria-hidden="true"><use href="#i-download"/></svg>Download CV</a>
           <a class="btn" href="https://github.com/EmanuelMedinaAraujo" rel="me">GitHub</a>
           <a class="btn" href="https://linkedin.com/in/Emanuel-Medina-Araujo" rel="me">LinkedIn</a>
         </div>
@@ -132,7 +138,7 @@
       </div>
     </section>
 
-    <section class="sec" id="glance" data-t="mouse" aria-labelledby="glance-title">
+    <section class="sec" id="glance" aria-labelledby="glance-title">
       <div class="card">
         <p class="kicker"><span class="n">00</span> At a glance</p>
         <h2 id="glance-title">The short version</h2>
@@ -159,7 +165,7 @@
       </div>
     </section>
 
-    <section class="sec" id="vscenecreator" data-t="0" aria-labelledby="vsc-title">
+    <section class="sec" id="vscenecreator" aria-labelledby="vsc-title">
       <div class="card">
         <p class="kicker"><span class="n">01</span> Experience · Vector Informatik · Nov 2024 – now</p>
         <h2 id="vsc-title">VSceneCreator</h2>
@@ -177,7 +183,7 @@
       </div>
     </section>
 
-    <section class="sec" id="dyna4" data-t="1" aria-labelledby="dyna-title">
+    <section class="sec" id="dyna4" aria-labelledby="dyna-title">
       <div class="card">
         <p class="kicker"><span class="n">02</span> Experience · Vector Informatik · Mar 2021 – Oct 2024</p>
         <h2 id="dyna-title">DYNA4</h2>
@@ -195,7 +201,7 @@
       </div>
     </section>
 
-    <section class="sec" id="loveneverdies" data-t="2" aria-labelledby="lnd-title">
+    <section class="sec" id="loveneverdies" aria-labelledby="lnd-title">
       <div class="card">
         <p class="kicker"><span class="n">03</span> Project · Aug 2026 · Legal Loves Tech Hackathon</p>
         <h2 id="lnd-title">LoveNeverDies</h2>
@@ -213,7 +219,7 @@
       </div>
     </section>
 
-    <section class="sec" id="schafplay" data-t="3" aria-labelledby="sp-title">
+    <section class="sec" id="schafplay" aria-labelledby="sp-title">
       <div class="card">
         <p class="kicker"><span class="n">04</span> Project · 2026 · Live v1.0.0</p>
         <h2 id="sp-title">SchafPlay</h2>
@@ -232,7 +238,7 @@
       </div>
     </section>
 
-    <section class="sec" id="thesis" data-t="4" aria-labelledby="ik-title">
+    <section class="sec" id="thesis" aria-labelledby="ik-title">
       <div class="card">
         <p class="kicker"><span class="n">05</span> Bachelor thesis · TUM · 2024</p>
         <h2 id="ik-title">How robot arms learn to reach</h2>
@@ -259,7 +265,7 @@
       </div>
     </section>
 
-    <section class="sec" id="fitfinder" data-t="5" aria-labelledby="ff-title">
+    <section class="sec" id="fitfinder" aria-labelledby="ff-title">
       <div class="card">
         <p class="kicker"><span class="n">06</span> Side project · Live</p>
         <h2 id="ff-title">FitFinder</h2>
@@ -276,7 +282,7 @@
       </div>
     </section>
 
-    <section class="sec" id="pose" data-t="6" aria-labelledby="pose-title">
+    <section class="sec" id="pose" aria-labelledby="pose-title">
       <div class="card">
         <p class="kicker"><span class="n">07</span> Research · Robotics seminar · Apr – Jul 2026</p>
         <h2 id="pose-title">6D object pose estimation</h2>
@@ -290,7 +296,7 @@
       </div>
     </section>
 
-    <section class="sec" id="education" data-t="7" aria-labelledby="edu-title">
+    <section class="sec" id="education" aria-labelledby="edu-title">
       <div class="card">
         <p class="kicker"><span class="n">08</span> Education</p>
         <h2 id="edu-title">Technical University of Munich</h2>
@@ -304,7 +310,7 @@
       </div>
     </section>
 
-    <section class="sec" id="off-the-clock" data-t="8" aria-labelledby="off-title">
+    <section class="sec" id="off-the-clock" aria-labelledby="off-title">
       <div class="card">
         <p class="kicker"><span class="n">09</span> Off the clock</p>
         <h2 id="off-title">Ironman finisher</h2>
@@ -318,7 +324,7 @@
       </div>
     </section>
 
-    <section class="sec" id="contact" data-t="wave" aria-labelledby="contact-title">
+    <section class="sec" id="contact" data-arm="wave" aria-labelledby="contact-title">
       <div class="card contact">
         <p class="kicker"><span class="n">10</span> Contact</p>
         <h2 id="contact-title">Let’s talk.</h2>
@@ -346,7 +352,7 @@
 <!-- ============ Deep dives ============ -->
 <dialog class="deep" id="deep-loveneverdies" aria-labelledby="deep-lnd-title">
   <div class="deep-head"><h2 id="deep-lnd-title">LoveNeverDies, deep dive</h2>
-    <button class="icon-btn close" type="button" aria-label="Close deep dive" autofocus><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+    <button class="icon-btn close" type="button" aria-label="Close deep dive" autofocus><svg aria-hidden="true"><use href="#i-close"/></svg></button></div>
   <div class="deep-body">
     <p class="tldr"><b>In plain words:</b> after a death, families face weeks of paperwork and hard deadlines while sharing very private documents. LoveNeverDies guides them step by step, and everything is locked on their own phones before it is saved, so even the server cannot read it. Built in ten days at the Legal Loves Tech Hackathon 2026 (Bavarian Ministry of Justice challenge) with a team that included lawyers.</p>
     <h3>Problem</h3>
@@ -355,20 +361,19 @@
     <figure class="diagram">
       <svg viewBox="0 0 640 200" role="img" aria-labelledby="dg-lnd">
         <title id="dg-lnd">Data flow: the React PWA encrypts on the device, queues ciphertext in IndexedDB and syncs it to Supabase Postgres with row-level security; other family devices are notified via Realtime; Clerk issues JWTs.</title>
-        <defs><marker id="ah1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="currentColor"/></marker></defs>
-        <g style="color:var(--mute)">
+        <g>
           <rect class="d-box hl" x="8" y="30" width="130" height="58" rx="10"/><text class="d-t" x="22" y="55">React PWA</text><text class="d-s" x="22" y="73">device keys</text>
           <rect class="d-box" x="172" y="30" width="130" height="58" rx="10"/><text class="d-t" x="186" y="55">core/crypto</text><text class="d-s" x="186" y="73">ML-KEM · AES-GCM</text>
           <rect class="d-box" x="336" y="30" width="130" height="58" rx="10"/><text class="d-t" x="350" y="55">IndexedDB</text><text class="d-s" x="350" y="73">offline queue</text>
           <rect class="d-box hl" x="500" y="30" width="132" height="58" rx="10"/><text class="d-t" x="514" y="55">Supabase</text><text class="d-s" x="514" y="73">Postgres + RLS</text>
           <rect class="d-box" x="500" y="134" width="132" height="54" rx="10"/><text class="d-t" x="514" y="158">Family device</text><text class="d-s" x="514" y="175">decrypts locally</text>
           <rect class="d-box" x="336" y="134" width="130" height="54" rx="10"/><text class="d-t" x="350" y="158">Clerk</text><text class="d-s" x="350" y="175">auth · JWT</text>
-          <path class="d-a" d="M138 59H170" marker-end="url(#ah1)"/>
-          <path class="d-a" d="M302 59H334" marker-end="url(#ah1)"/>
-          <path class="d-a hl" d="M466 59H498" marker-end="url(#ah1)" style="color:var(--acc)"/>
+          <path class="d-a" d="M138 59H170" marker-end="url(#arrow)"/>
+          <path class="d-a" d="M302 59H334" marker-end="url(#arrow)"/>
+          <path class="d-a hl" d="M466 59H498" marker-end="url(#arrow-hl)"/>
           <text class="d-l" x="452" y="22">ciphertext only</text>
-          <path class="d-a" d="M566 88V132" marker-end="url(#ah1)"/><text class="d-l" x="572" y="114">realtime</text>
-          <path class="d-a" d="M466 161H480Q490 161 490 140V100Q490 92 500 88" marker-end="url(#ah1)"/><text class="d-l" x="410" y="124">JWT</text>
+          <path class="d-a" d="M566 88V132" marker-end="url(#arrow)"/><text class="d-l" x="572" y="114">realtime</text>
+          <path class="d-a" d="M466 161H480Q490 161 490 140V100Q490 92 500 88" marker-end="url(#arrow)"/><text class="d-l" x="410" y="124">JWT</text>
         </g>
       </svg>
       <figcaption>Encryption happens on the device. The server only sees ciphertext, versions and signatures.</figcaption>
@@ -411,7 +416,7 @@
 
 <dialog class="deep" id="deep-schafplay" aria-labelledby="deep-sp-title">
   <div class="deep-head"><h2 id="deep-sp-title">SchafPlay, deep dive</h2>
-    <button class="icon-btn close" type="button" aria-label="Close deep dive" autofocus><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+    <button class="icon-btn close" type="button" aria-label="Close deep dive" autofocus><svg aria-hidden="true"><use href="#i-close"/></svg></button></div>
   <div class="deep-body">
     <p class="tldr"><b>In plain words:</b> two phones on the same Wi-Fi connect directly to each other, with no account and no server in between, and play the Bavarian card game Schafkopf against two computer players. Each phone only ever receives its own cards. Technically: serverless peer-to-peer multiplayer over WebRTC in an offline-first PWA, live on GitHub Pages (v1.0.0).</p>
     <h3>Problem</h3>
@@ -420,15 +425,14 @@
     <figure class="diagram">
       <svg viewBox="0 0 640 210" role="img" aria-labelledby="dg-sp">
         <title id="dg-sp">The host runs the game engine and sends a compressed invite code to the guest; the guest replies with a code; then a WebRTC data channel carries redacted state to the guest and actions back. AI seats feed the engine.</title>
-        <defs><marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="currentColor"/></marker></defs>
-        <g style="color:var(--mute)">
+        <g>
           <rect class="d-box hl" x="20" y="40" width="190" height="110" rx="12"/><text class="d-t" x="36" y="66">Host browser</text><text class="d-s" x="36" y="86">GameEngine</text><text class="d-s" x="36" y="104">rules.ts · redaction</text><text class="d-s" x="36" y="122">IndexedDB replays</text>
           <rect class="d-box" x="430" y="40" width="190" height="110" rx="12"/><text class="d-t" x="446" y="66">Guest browser</text><text class="d-s" x="446" y="86">renders redacted</text><text class="d-s" x="446" y="104">state only</text>
           <rect class="d-box" x="20" y="168" width="190" height="36" rx="10"/><text class="d-s" x="36" y="191">AI seats 2 &amp; 4 → engine</text>
-          <path class="d-a" d="M210 30H428" marker-end="url(#ah2)"/><text class="d-l" x="236" y="22">1 · invite code (paste / QR / link)</text>
-          <path class="d-a" d="M430 162H212" marker-end="url(#ah2)"/><text class="d-l" x="276" y="178">2 · reply code</text>
-          <path class="d-a hl" d="M210 80H428" marker-end="url(#ah2)" style="color:var(--acc)"/><text class="d-l" x="240" y="72">redacted state · DataChannel</text>
-          <path class="d-a hl" d="M430 112H212" marker-end="url(#ah2)" style="color:var(--acc)"/><text class="d-l" x="284" y="128">player actions</text>
+          <path class="d-a" d="M210 30H428" marker-end="url(#arrow)"/><text class="d-l" x="236" y="22">1 · invite code (paste / QR / link)</text>
+          <path class="d-a" d="M430 162H212" marker-end="url(#arrow)"/><text class="d-l" x="276" y="178">2 · reply code</text>
+          <path class="d-a hl" d="M210 80H428" marker-end="url(#arrow-hl)"/><text class="d-l" x="240" y="72">redacted state · DataChannel</text>
+          <path class="d-a hl" d="M430 112H212" marker-end="url(#arrow-hl)"/><text class="d-l" x="284" y="128">player actions</text>
         </g>
       </svg>
       <figcaption>No signalling server: the SDP itself travels as a compact code.</figcaption>
@@ -469,7 +473,7 @@
 
 <dialog class="deep" id="deep-thesis" aria-labelledby="deep-ik-title">
   <div class="deep-head"><h2 id="deep-ik-title">Inverse kinematics thesis, deep dive</h2>
-    <button class="icon-btn close" type="button" aria-label="Close deep dive" autofocus><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+    <button class="icon-btn close" type="button" aria-label="Close deep dive" autofocus><svg aria-hidden="true"><use href="#i-close"/></svg></button></div>
   <div class="deep-body">
     <p class="tldr"><b>In plain words:</b> to reach a point, a robot arm must work out how far to turn each joint. That is called inverse kinematics. I trained several kinds of neural network to do it and compared them. The simplest network was both the most accurate and the fastest. Technically: a plain MLP predicting joint angles directly solved 100% of 10,000 test problems within 0.01 tolerance across 5 seeded runs for 2- and 3-DOF arms, in about 155 µs per inference, ahead of every probabilistic and LSTM variant tested.</p>
     <h3>Problem</h3>
@@ -478,15 +482,14 @@
     <figure class="diagram">
       <svg viewBox="0 0 640 170" role="img" aria-labelledby="dg-ik">
         <title id="dg-ik">Training loop: a problem generator feeds a network; its sine and cosine outputs become angles via atan2; differentiable forward kinematics computes the end effector; the loss is the distance to the goal, backpropagated to the network.</title>
-        <defs><marker id="ah3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="currentColor"/></marker></defs>
-        <g style="color:var(--mute)">
+        <g>
           <rect class="d-box" x="6" y="30" width="112" height="58" rx="10"/><text class="d-t" x="18" y="55">Problems</text><text class="d-s" x="18" y="73">DH + goal</text>
           <rect class="d-box hl" x="140" y="30" width="112" height="58" rx="10"/><text class="d-t" x="152" y="55">Network</text><text class="d-s" x="152" y="73">MLP · LSTM</text>
           <rect class="d-box" x="274" y="30" width="112" height="58" rx="10"/><text class="d-t" x="286" y="55">sin, cos</text><text class="d-s" x="286" y="73">→ atan2</text>
           <rect class="d-box" x="408" y="30" width="112" height="58" rx="10"/><text class="d-t" x="420" y="55">Diff. FK</text><text class="d-s" x="420" y="73">end effector</text>
           <rect class="d-box hl" x="542" y="30" width="92" height="58" rx="10"/><text class="d-t" x="554" y="55">Loss</text><text class="d-s" x="554" y="73">‖ee − goal‖</text>
-          <path class="d-a" d="M118 59H138" marker-end="url(#ah3)"/><path class="d-a" d="M252 59H272" marker-end="url(#ah3)"/><path class="d-a" d="M386 59H406" marker-end="url(#ah3)"/><path class="d-a" d="M520 59H540" marker-end="url(#ah3)"/>
-          <path class="d-a hl" d="M588 88V132H196V90" marker-end="url(#ah3)" style="color:var(--acc)"/><text class="d-l" x="330" y="150">backprop, no ground-truth angles needed</text>
+          <path class="d-a" d="M118 59H138" marker-end="url(#arrow)"/><path class="d-a" d="M252 59H272" marker-end="url(#arrow)"/><path class="d-a" d="M386 59H406" marker-end="url(#arrow)"/><path class="d-a" d="M520 59H540" marker-end="url(#arrow)"/>
+          <path class="d-a hl" d="M588 88V132H196V90" marker-end="url(#arrow-hl)"/><text class="d-l" x="330" y="150">backprop, no ground-truth angles needed</text>
         </g>
       </svg>
     </figure>
@@ -510,7 +513,7 @@
         <tr><td>PPO (reinforcement learning)</td><td>69.98</td><td>56.45</td><td>444 / 465 µs</td></tr>
       </tbody>
     </table>
-    <p style="margin-top:10px;font-size:14px;color:var(--mute)">10,000 test problems, 5 runs, accuracy is the share of problems solved within 0.01 tolerance. Best direct MLP from Optuna: hidden layers [2048, 256, 2048], Adam, batch size 512.</p>
+    <p class="note">10,000 test problems, 5 runs, accuracy is the share of problems solved within 0.01 tolerance. Best direct MLP from Optuna: hidden layers [2048, 256, 2048], Adam, batch size 512.</p>
     <h3>Takeaways</h3>
     <ul>
       <li>IK is multimodal (several joint configurations reach the same goal), which motivated the two-peak distribution heads. In practice the direct model handled it best.</li>
@@ -524,7 +527,7 @@
   </div>
 </dialog>
 
-<script type="module" src="main.js?v=2"></script>
-<script type="module" src="scene.js?v=2" onerror="document.documentElement.classList.remove('gl')"></script>
+<script type="module" src="main.js"></script>
+<script type="module" src="scene.js" onerror="document.documentElement.classList.remove('gl')"></script>
 </body>
 </html>

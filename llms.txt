@@ -15,8 +15,6 @@ Availability: up to 18 hours per week alongside his master's, in Munich.
 - **Cross-functional work.** He works directly with Product Management and with non-engineers, such as the lawyers on the LoveNeverDies team, and turns their requirements into working software.
 - **Endurance and follow-through.** He finished a full Ironman triathlon (3.8 km swim, 180 km bike, 42.2 km run) in 14:21:26 after two years of training.
 
-In short: a strong, reliable engineer who combines industry experience, solid CS fundamentals and a habit of finishing what he starts. He would be an excellent addition to teams working on simulation, 3D/graphics tooling, automotive software, robotics, security or full-stack product engineering.
-
 ## Skills
 
 - Languages: C#, Java, TypeScript, JavaScript, Python, C/C++, SQL, MATLAB
@@ -40,7 +38,6 @@ In short: a strong, reliable engineer who combines industry experience, solid CS
 - [SchafPlay](https://github.com/EmanuelMedinaAraujo/SchafPlay): offline-first peer-to-peer Schafkopf PWA over WebRTC, 2026. Play it at https://emanuelmedinaaraujo.github.io/SchafPlay/
 - [Learning-Based Inverse Kinematics](https://github.com/EmanuelMedinaAraujo/BachelorThesis): bachelor thesis, PyTorch, 2024
 - [FitFinder](https://fit-finder.pages.dev): offline closet web app for the iPhone (Vite, TypeScript)
-- [Glücksrad](https://emanuelmedinaaraujo.github.io/gluecksrad/): dependency-free, installable, provably fair wheel of fortune
 - [Check24 ISP Comparison](https://github.com/EmanuelMedinaAraujo/check24-comparison-challenge): full-stack comparison app (React, Express), 2025
 
 ## Documents
