@@ -8,12 +8,13 @@ Static site, no build step, deployed by GitHub Pages from `main`.
 |---|---|
 | `index.html`, `styles.css`, `main.js` | The page and its UI (theme, section tracking, deep-dive dialogs) |
 | `scene.js` | three.js 3D workcell: robot arm with analytic inverse kinematics and clickable exhibits |
+| `wc.js` | Media queries, current section and events shared by `main.js` and `scene.js` |
 | `cv/` | Web CV; `cv/Emanuel-Medina-CV.pdf` is generated from it |
 | `papers/` | Seminar papers and B.Sc. thesis (PDF), linked from the page |
 | `llms.txt` | Summary for LLMs and AI tools ([llmstxt.org](https://llmstxt.org)) |
 | `assets/` | Self-hosted fonts, vendored three.js r170, images, favicon, social preview |
 
-When you change `styles.css`, `main.js` or `scene.js`, bump the `?v=` number on their links in `index.html` so browsers fetch the new file instead of a cached one.
+GitHub Pages lets browsers cache files for 10 minutes, so a deploy can take that long to reach returning visitors.
 
 ## Local preview
 
@@ -34,3 +35,4 @@ google-chrome --headless=new --no-pdf-header-footer --print-to-pdf=cv/Emanuel-Me
 - No cookies, no analytics.
 - Without WebGL, or with JavaScript off, the page falls back to a readable text layout.
 - Phone number and street address are intentionally not published.
+- A GitHub Action checks links on every pull request and push to `main`.

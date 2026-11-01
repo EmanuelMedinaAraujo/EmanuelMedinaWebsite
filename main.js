@@ -1,8 +1,8 @@
 // Workcell UI: theme, section tracking, navigation, deep-dive dialogs.
 // Independent of three.js so the page stays fully usable if WebGL fails.
+import { band, reduceMotion, section, emit } from './wc.js';
 
 const root = document.documentElement;
-const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)');
 
 /* ---------- theme ---------- */
 const toggle = document.querySelector('.theme-toggle');
@@ -15,7 +15,7 @@ function setTheme(theme, persist) {
   const dark = theme === 'dark';
   toggle.setAttribute('aria-pressed', String(dark));
   toggle.setAttribute('aria-label', dark ? 'Switch to light theme' : 'Switch to dark theme');
-  window.dispatchEvent(new CustomEvent('wc:theme', { detail: { dark } }));
+  emit('theme', { dark });
 }
 setTheme(root.dataset.theme || 'light', false);
 toggle.addEventListener('click', () => setTheme(root.dataset.theme === 'dark' ? 'light' : 'dark', true));
@@ -25,12 +25,12 @@ sysDark.addEventListener('change', e => { if (!stored()) setTheme(e.matches ? 'd
 const sections = [...document.querySelectorAll('main section[id]')];
 const navLinks = [...document.querySelectorAll('#rail a, #chips a')];
 const chips = document.getElementById('chips');
-window.__wc = window.__wc || { t: 'mouse', id: null };
 
 function activate(sec) {
-  const id = sec.id, t = sec.dataset.t;
-  if (window.__wc.id === id) return;
-  window.__wc = { t, id };
+  const id = sec.id;
+  if (section.id === id) return;
+  section.id = id;
+  section.arm = sec.dataset.arm;
   for (const a of navLinks) {
     const on = a.getAttribute('href') === '#' + id;
     a.setAttribute('aria-current', on ? 'true' : 'false');
@@ -39,12 +39,11 @@ function activate(sec) {
       chips.scrollTo({ left, behavior: reduceMotion.matches ? 'auto' : 'smooth' });
     }
   }
-  window.dispatchEvent(new CustomEvent('wc:section', { detail: { t, id } }));
+  emit('section');
 }
 
 // A section becomes active when it crosses a reading line. In the upright mobile layout the
 // stage covers the bottom of the screen, so the line sits a quarter of the way into the visible text.
-const band = matchMedia('(max-width: 899px) and (orientation: portrait)');
 let io;
 function observe() {
   if (io) io.disconnect();
@@ -98,7 +97,6 @@ function openDeep(id, from) {
   opener = from || document.activeElement;
   dlg.showModal();
   document.body.classList.add('lock');
-  dlg.querySelector('.deep-body').scrollTop = 0;
   dlg.scrollTop = 0;
   history.replaceState(null, '', '#' + id);
 }
@@ -111,7 +109,7 @@ document.querySelectorAll('dialog.deep').forEach(dlg => {
   dlg.addEventListener('click', e => { if (e.target === dlg) dlg.close(); }); // backdrop
   dlg.addEventListener('close', () => {
     document.body.classList.remove('lock');
-    const sec = window.__wc.id;
+    const sec = section.id;
     history.replaceState(null, '', sec && sec !== 'top' ? '#' + sec : location.pathname + location.search);
     if (opener && opener.focus) opener.focus({ preventScroll: true });
     opener = null;
