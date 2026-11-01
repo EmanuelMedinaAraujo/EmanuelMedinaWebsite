@@ -37,7 +37,7 @@ Availability: up to 18 hours per week alongside his master's, in Munich.
 - [LoveNeverDies](https://github.com/EmanuelMedinaAraujo/LoveNeverDies): end-to-end encrypted estate assistant (React, TypeScript, Supabase), 2026
 - [SchafPlay](https://github.com/EmanuelMedinaAraujo/SchafPlay): offline-first peer-to-peer Schafkopf PWA over WebRTC, 2026. Play it at https://emanuelmedinaaraujo.github.io/SchafPlay/
 - [Learning-Based Inverse Kinematics](https://github.com/EmanuelMedinaAraujo/BachelorThesis): bachelor thesis, PyTorch, 2024
-- [FitFinder](https://fit-finder.pages.dev): offline closet web app for the iPhone (Vite, TypeScript)
+- FitFinder: offline closet web app for the iPhone (Vite, TypeScript)
 - [Check24 ISP Comparison](https://github.com/EmanuelMedinaAraujo/check24-comparison-challenge): full-stack comparison app (React, Express), 2025
 
 ## Documents
