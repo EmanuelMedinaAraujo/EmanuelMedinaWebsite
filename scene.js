@@ -349,9 +349,9 @@ function init() {
       ex.g.getWorldPosition(tmp);
       goal.set(tmp.x, ex.top + .06 + (still ? 0 : Math.sin(t * 2) * .03), tmp.z);
       gripGoal = 1;
-    } else { // wave
-      goal.set(still ? .9 : Math.sin(t * 3) * .6 + .9, 1.9, .9);
-      gripGoal = still ? 0 : (Math.sin(t * 6) > 0 ? 1 : 0);
+    } else { // wave (contact section): hold a still, raised pose, well inside reach (L1 + L2)
+      goal.set(.85, 1.5, .85);
+      gripGoal = 0;
     }
   }
 
