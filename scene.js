@@ -392,11 +392,10 @@ function init() {
     });
   }
 
-  hud.innerHTML = '<span class="cap">Joint angles, solved live</span>J1 <b></b> &nbsp; J2 <b></b><br>J3 <b></b> &nbsp; J4 <b></b><br><span></span>';
-  const hudAngles = hud.querySelectorAll('b'), hudReach = hud.lastElementChild;
-  function updateHud(reach) {
+  hud.innerHTML = '<span class="cap">Joint angles, solved live</span>J1 <b></b> &nbsp; J2 <b></b><br>J3 <b></b> &nbsp; J4 <b></b>';
+  const hudAngles = hud.querySelectorAll('b');
+  function updateHud() {
     [ang.yaw, ang.a1, ang.a2, ang.wrist].forEach((a, i) => { hudAngles[i].textContent = (a * 180 / Math.PI).toFixed(1) + '°'; });
-    hudReach.textContent = reach ? 'Target in reach' : 'Target out of reach';
   }
 
   function frame() {
@@ -409,7 +408,7 @@ function init() {
     updateGoal(t, still);
     const sol = updateArm(dt, still);
     updateExhibits(t, dt, still);
-    if (!band.matches && (frameNo++ % 4 === 0)) updateHud(sol.reach);
+    if (!band.matches && (frameNo++ % 4 === 0)) updateHud();
 
     renderer.render(scene, camera);
     window.__wcReady = true;
