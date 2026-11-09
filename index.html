@@ -57,6 +57,7 @@
 <svg class="sprite" aria-hidden="true">
   <symbol id="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></symbol>
   <symbol id="i-external" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6M20 4l-9 9M18 14v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m4 7 8 6 8-6"/></symbol>
   <symbol id="i-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 20h14"/></symbol>
   <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="d-h" d="M0 0 10 5 0 10z"/></marker>
   <marker id="arrow-hl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="d-h hl" d="M0 0 10 5 0 10z"/></marker>
@@ -87,12 +88,21 @@
     <a class="btn btn-sm btn-cv" href="cv/Emanuel-Medina-CV.pdf" download aria-label="Download CV (PDF)">
       <svg aria-hidden="true"><use href="#i-download"/></svg><span>CV</span>
     </a>
-    <a class="btn btn-sm btn-primary" href="mailto:medina.emanuel@proton.me">Email</a>
+    <a class="btn btn-sm btn-primary btn-mail" href="mailto:medina.emanuel@proton.me" aria-label="Email me">
+      <svg aria-hidden="true"><use href="#i-mail"/></svg><span>Email</span>
+    </a>
+    <button class="icon-btn menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu">
+      <svg class="burger" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      <svg class="x" aria-hidden="true"><use href="#i-close"/></svg>
+    </button>
   </div>
 </header>
 
-<nav class="chips" id="chips" aria-label="Sections">
-  <a href="#top">Intro</a><a href="#glance">At a glance</a><a href="#vscenecreator">VSceneCreator</a><a href="#dyna4">DYNA4</a><a href="#loveneverdies">LoveNeverDies</a><a href="#schafplay">SchafPlay</a><a href="#thesis">B.Sc. thesis</a><a href="#fitfinder">FitFinder</a><a href="#pose">6D pose seminar</a><a href="#education">Education</a><a href="#off-the-clock">Off the clock</a><a href="#contact">Contact</a>
+<nav class="menu" id="menu" aria-label="Sections" hidden>
+  <p>Intro</p><a href="#top">Overview</a><a href="#glance">At a glance</a>
+  <p>Experience</p><a href="#vscenecreator">VSceneCreator</a><a href="#dyna4">DYNA4</a>
+  <p>Projects</p><a href="#loveneverdies">LoveNeverDies</a><a href="#schafplay">SchafPlay</a><a href="#thesis">B.Sc. thesis</a><a href="#fitfinder">FitFinder</a><a href="#pose">6D pose seminar</a>
+  <p>About</p><a href="#education">Education</a><a href="#off-the-clock">Off the clock</a><a href="#contact">Contact</a>
 </nav>
 
 <nav class="rail" id="rail" aria-label="Section index">
