@@ -23,8 +23,8 @@ sysDark.addEventListener('change', e => { if (!stored()) setTheme(e.matches ? 'd
 
 /* ---------- section tracking ---------- */
 const sections = [...document.querySelectorAll('main section[id]')];
-const navLinks = [...document.querySelectorAll('#rail a, #chips a')];
-const chips = document.getElementById('chips');
+const navLinks = [...document.querySelectorAll('#rail a, #menu a')];
+const header = document.querySelector('.site-header');
 
 function activate(sec) {
   const id = sec.id;
@@ -34,10 +34,6 @@ function activate(sec) {
   for (const a of navLinks) {
     const on = a.getAttribute('href') === '#' + id;
     a.setAttribute('aria-current', on ? 'true' : 'false');
-    if (on && a.parentElement === chips) {
-      const left = a.offsetLeft - (chips.clientWidth - a.offsetWidth) / 2;
-      chips.scrollTo({ left, behavior: reduceMotion.matches ? 'auto' : 'smooth' });
-    }
   }
   emit('section');
 }
@@ -49,7 +45,7 @@ function observe() {
   if (io) io.disconnect();
   let margin = '-48% 0px -48% 0px';
   if (band.matches && root.classList.contains('gl')) {
-    const top = chips.getBoundingClientRect().bottom;
+    const top = header.getBoundingClientRect().bottom;
     const bottom = document.getElementById('stage').getBoundingClientRect().top;
     const line = Math.round(top + (bottom - top) * .25);
     margin = `-${line}px 0px -${Math.max(0, innerHeight - line - 2)}px 0px`;
@@ -67,6 +63,20 @@ addEventListener('scroll', () => {
   if (innerHeight + scrollY >= document.documentElement.scrollHeight - 4) activate(sections[sections.length - 1]);
 }, { passive: true });
 activate(sections[0]);
+
+/* ---------- menu (narrow screens) ---------- */
+const menu = document.getElementById('menu');
+const menuBtn = document.querySelector('.menu-btn');
+function setMenu(open) {
+  menu.hidden = !open;
+  menuBtn.setAttribute('aria-expanded', String(open));
+  menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+}
+menuBtn.addEventListener('click', () => setMenu(menu.hidden));
+menu.addEventListener('click', e => { if (e.target.closest('a')) setMenu(false); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && !menu.hidden) { setMenu(false); menuBtn.focus(); } });
+document.addEventListener('click', e => { if (!menu.hidden && !menu.contains(e.target) && !menuBtn.contains(e.target)) setMenu(false); });
+matchMedia('(min-width: 900px)').addEventListener('change', e => { if (e.matches) setMenu(false); });
 
 /* ---------- navigation ---------- */
 function goTo(id, focus = false) {
