@@ -7,8 +7,8 @@
 <meta name="description" content="Emanuel Medina Araujo: software engineer in Munich with 5+ years as a working student at Vector Informatik, building driving-simulation software. M.Sc. Informatics at TUM (graduating 2028), available up to 18 hours a week.">
 <meta name="author" content="Emanuel Medina Araujo">
 <meta name="color-scheme" content="light dark">
-<meta name="theme-color" content="#e9e7e2" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#0f1012" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f3f1ec" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#111215" media="(prefers-color-scheme: dark)">
 <link rel="canonical" href="https://emanuelmedinaaraujo.github.io/EmanuelMedinaWebsite/">
 <meta property="og:url" content="https://emanuelmedinaaraujo.github.io/EmanuelMedinaWebsite/">
 <meta property="og:image" content="https://emanuelmedinaaraujo.github.io/EmanuelMedinaWebsite/assets/og.jpg">
@@ -61,6 +61,7 @@
   <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m4 7 8 6 8-6"/></symbol>
   <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></symbol>
   <symbol id="i-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 20h14"/></symbol>
+  <symbol id="i-zoom" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6M20 4l-6.5 6.5M10 20H4v-6M4 20l6.5-6.5"/></symbol>
   <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="d-h" d="M0 0 10 5 0 10z"/></marker>
   <marker id="arrow-hl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="d-h hl" d="M0 0 10 5 0 10z"/></marker>
 </svg>
@@ -96,9 +97,13 @@
 
 <nav class="menu" id="menu" aria-label="Sections" hidden>
   <p>Experience</p><a href="#vscenecreator"><i class="st">01</i>VSceneCreator</a><a href="#dyna4"><i class="st">02</i>DYNA4</a>
-  <p>Projects</p><a href="#loveneverdies"><i class="st">03</i>LoveNeverDies</a><a href="#schafplay"><i class="st">04</i>SchafPlay</a><a href="#thesis"><i class="st">05</i>Bachelor thesis</a><a href="#fitfinder"><i class="st">06</i>FitFinder</a><a href="#pose"><i class="st">07</i>6D pose estimation</a>
-  <p>About</p><a href="#education"><i class="st">08</i>Education</a><a href="#off-the-clock"><i class="st">09</i>Ironman</a><a href="#contact"><i class="st">→</i>Contact</a>
-  <a class="btn btn-primary" href="cv/Emanuel-Medina-CV.pdf" download>Download CV (PDF)</a>
+  <p>Projects</p><a href="#loveneverdies"><i class="st">03</i>LoveNeverDies</a><a href="#schafplay"><i class="st">04</i>SchafPlay</a><a href="#thesis"><i class="st">05</i>Bachelor thesis</a><a href="#fitfinder"><i class="st">06</i>FitFinder</a><a href="#pose"><i class="st">07</i>6D object pose estimation</a>
+  <p>About</p><a href="#education"><i class="st">08</i>Education</a><a href="#off-the-clock"><i class="st">09</i>Ironman</a><a href="#contact"><i class="st"><svg aria-hidden="true"><use href="#i-arrow"/></svg></i>Contact</a>
+  <div class="menu-foot">
+    <a class="lnk" href="mailto:medina.emanuel@proton.me">Email</a>
+    <a class="lnk" href="https://github.com/EmanuelMedinaAraujo" rel="me noopener" target="_blank">GitHub<svg aria-hidden="true"><use href="#i-external"/></svg><span class="sr-only"> (opens in a new tab)</span></a>
+    <a class="lnk" href="https://linkedin.com/in/Emanuel-Medina-Araujo" rel="me noopener" target="_blank">LinkedIn<svg aria-hidden="true"><use href="#i-external"/></svg><span class="sr-only"> (opens in a new tab)</span></a>
+  </div>
 </nav>
 
 
@@ -107,8 +112,8 @@
 
     <section class="sec hero tall" id="top" aria-labelledby="hero-title">
       <div class="card">
-        <p class="status">Emanuel Medina · Software engineer · M.Sc. TUM · up to 18&nbsp;h/week</p>
-        <h1 id="hero-title">I build driving&#8209;simulation software at Vector.</h1>
+        <p class="status">Software engineer · Munich</p>
+        <h1 id="hero-title">I build driving&#8209;simulation software at Vector<em>.</em></h1>
         <p class="pitch">Five years on DYNA4, the simulator carmakers use to test cars on virtual roads, and now on its new 3D road editor, VSceneCreator. Alongside, I’m studying for an M.Sc. in Informatics at TUM, focused on robotics and machine learning.</p>
         <div class="ctas">
           <a class="btn btn-primary" href="mailto:medina.emanuel@proton.me">Email me</a>
@@ -118,19 +123,30 @@
             <a class="lnk" href="https://linkedin.com/in/Emanuel-Medina-Araujo" rel="me noopener" target="_blank">LinkedIn<svg aria-hidden="true"><use href="#i-external"/></svg><span class="sr-only"> (opens in a new tab)</span></a>
           </span>
         </div>
+        <ul class="facts">
+          <li><b>Vector Informatik</b><span>Working student, 5+ years</span></li>
+          <li><b>M.Sc. Informatics, TUM</b><span>Graduating 2028</span></li>
+          <li><b>Up to 18&nbsp;h/week</b><span>Available in Munich</span></li>
+        </ul>
       </div>
     </section>
 
 
     <section class="sec grp" data-group="Experience" id="vscenecreator" aria-labelledby="vsc-title">
+      <p class="grp-h">Experience<span>01–02</span></p>
       <div class="card">
         <p class="kicker"><span><i class="st">01</i><b>Vector Informatik</b></span><span class="when">Unity, C# · Nov 2024 – now</span></p>
         <h2 id="vsc-title">VSceneCreator</h2>
         <p>A 3D editor for building the roads and junctions that driving simulations run on.</p>
+        <ul class="figs">
+          <li><b>70%</b>faster into edit mode, at best</li>
+          <li><b>10%</b>faster file loading</li>
+          <li><b>4</b>alpha versions shipped</li>
+        </ul>
         <ul class="bullets">
-          <li>Made switching a scene into edit mode <span class="num">up to 70% faster</span> by loading only the objects that are visible or actually needed.</li>
+          <li>The faster switch comes from loading only the objects that are visible or actually needed.</li>
           <li>Designed Explore Mode, a read-only way to look around a road scene. It now serves as a preview for licensed users and a friendlier first experience for free users.</li>
-          <li>Shipped alpha versions 0.1–0.4 together with Product Management, including <span class="num">10% faster</span> file loading and a progress bar instead of a frozen screen.</li>
+          <li>Shipped alpha versions 0.1–0.4 together with Product Management. They brought faster file loading and a progress bar instead of a frozen screen.</li>
         </ul>
         <div class="links">
           <a class="lnk" href="https://www.vector.com/en/product/dyna4/dyna4-releases/" target="_blank" rel="noopener">Announced by Vector (DYNA4 Release 10)<svg aria-hidden="true"><use href="#i-external"/></svg><span class="sr-only"> (opens in a new tab)</span></a>
@@ -148,9 +164,9 @@
           <li>Designed a way for engineers to give measurement signals readable names, with its own file format, saving and loading, and automatic checks that offer one-click fixes.</li>
           <li>Built tools that find files no longer used anywhere in a project and list every unsaved change in one place, and reworked the view engineers use to inspect recorded signals.</li>
         </ul>
-        <figure class="shot app">
-          <img src="assets/dyna4-kinematics.webp" width="1120" height="722" loading="lazy" decoding="async" alt="DYNA4 with a vehicle model open: the model tree, a table of front-axle suspension hard points and a 3D plot of the McPherson axle.">
-          <figcaption>DYNA4 with a vehicle model open. Screenshot: Vector Informatik.</figcaption>
+        <figure class="shot mat">
+          <figcaption><span>DYNA4 with a vehicle model open. Screenshot: Vector Informatik.</span><a class="lnk zoom" href="assets/dyna4-simulation.webp">Enlarge<svg aria-hidden="true"><use href="#i-zoom"/></svg></a></figcaption>
+          <a class="zoom" href="assets/dyna4-simulation.webp" aria-label="Enlarge the DYNA4 screenshot"><img class="lightshot" src="assets/dyna4-simulation.webp" width="1600" height="900" loading="lazy" decoding="async" alt="The DYNA4 window with a vehicle model open: simulation controls and the project tree on the left, the model tree in the middle, and on the right a table of front-axle suspension hard points above a 3D plot of the McPherson axle."></a>
         </figure>
         <div class="links">
           <a class="lnk" href="https://www.vector.com/en/product/dyna4/" target="_blank" rel="noopener">DYNA4 at Vector<svg aria-hidden="true"><use href="#i-external"/></svg><span class="sr-only"> (opens in a new tab)</span></a>
@@ -159,13 +175,16 @@
     </section>
 
     <section class="sec grp" data-group="Projects" id="loveneverdies" aria-labelledby="lnd-title">
+      <p class="grp-h">Projects<span>03–07</span></p>
       <div class="card">
         <p class="kicker"><span><i class="st">03</i><b>Legal Loves Tech Hackathon</b></span><span class="when">React, Supabase · Aug 2026</span></p>
         <h2 id="lnd-title">LoveNeverDies</h2>
         <p>An app that guides grieving families through the paperwork and deadlines after a death, built in ten days with a team of lawyers for a Bavarian Ministry of Justice challenge. Everything is encrypted on the family’s own devices, so not even the server can read it.</p>
-        <figure class="shot">
-          <img class="img-light" src="assets/loveneverdies-pair.webp" width="682" height="534" loading="lazy" decoding="async" alt="Two LoveNeverDies phone screens: the family's task list, and the pairing code for adding a relative's device.">
-          <img class="img-dark" src="assets/loveneverdies-pair-dark.webp" width="682" height="534" loading="lazy" decoding="async" alt="">
+        <figure class="screens mat">
+          <span><img class="lightshot" src="assets/loveneverdies-tasks.webp" width="540" height="919" loading="lazy" decoding="async" alt="LoveNeverDies: the list of all tasks after a death, each with its progress and who it is assigned to."></span>
+          <span><img class="lightshot" src="assets/loveneverdies-pairing.webp" width="540" height="919" loading="lazy" decoding="async" alt="LoveNeverDies: the pairing code and spoken check code for adding a relative’s device."></span>
+          <span><img class="lightshot" src="assets/loveneverdies-result.webp" width="540" height="919" loading="lazy" decoding="async" alt="LoveNeverDies: the result of the question tree for someone who does not want the inheritance, with the deadline and the next steps."></span>
+          <figcaption><span class="cap-3">The app is in German: the task list, pairing a relative’s device, and a result of the legal question tree.</span><span class="cap-2">The app is in German: the task list and pairing a relative’s device.</span></figcaption>
         </figure>
         <div class="links">
           <a class="lnk" href="#deep-loveneverdies" data-deep="deep-loveneverdies">Encryption design<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
@@ -178,9 +197,10 @@
       <div class="card">
         <p class="kicker"><span><i class="st">04</i><b>Side project</b></span><span class="when">React, WebRTC · 2026</span></p>
         <h2 id="sp-title">SchafPlay</h2>
-        <p>Schafkopf, the Bavarian card game, to play solo or with a friend on the same Wi-Fi. No accounts and no server: two devices connect directly through a QR code or link, and computer players fill the other seats. Each device only ever receives its own cards.</p>
-        <figure class="shot framed">
+        <p>Schafkopf, the Bavarian card game, to play solo or with a friend on the same Wi&#8209;Fi. No accounts and no server: two devices connect directly through a QR code or link, and computer players fill the other seats. Each device only ever receives its own cards.</p>
+        <figure class="shot">
           <img src="assets/schafplay-table.webp" width="1266" height="585" loading="lazy" decoding="async" alt="A SchafPlay round in progress: three computer players around a wooden table in an Alpine meadow have played their cards, and the player's hand of eight cards is fanned out at the bottom.">
+          <figcaption>A round in progress against three computer players.</figcaption>
         </figure>
         <div class="links">
           <a class="lnk" href="#deep-schafplay" data-deep="deep-schafplay">Peer-to-peer design<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
@@ -220,9 +240,11 @@
         <p class="kicker"><span><i class="st">06</i><b>Side project</b></span><span class="when">TypeScript, iPhone web app · 2026</span></p>
         <h2 id="ff-title">FitFinder</h2>
         <p>Your whole wardrobe on your phone: photograph each piece once, sort it, put outfits together and pick today’s in seconds. Works offline.</p>
-        <figure class="screens">
-          <span><img class="img-light" src="assets/fitfinder-journal-light.webp" width="390" height="844" loading="lazy" decoding="async" alt="FitFinder journal: what you wore each day of the month on a calendar."><img class="img-dark" src="assets/fitfinder-journal-dark.webp" width="390" height="844" loading="lazy" decoding="async" alt=""></span>
-          <span><img class="img-light" src="assets/fitfinder-trip-light.webp" width="390" height="844" loading="lazy" decoding="async" alt="FitFinder trip planner: outfits for a four-day weekend in Lisbon."><img class="img-dark" src="assets/fitfinder-trip-dark.webp" width="390" height="844" loading="lazy" decoding="async" alt=""></span>
+        <figure class="screens" style="--crop:540/980">
+          <span><img class="img-light" src="assets/fitfinder-today-light.webp" width="540" height="1169" loading="lazy" decoding="async" alt="FitFinder’s Today screen: a greeting, today’s weather in Lisbon and the saved outfits you can wear."><img class="img-dark" src="assets/fitfinder-today-dark.webp" width="540" height="1169" loading="lazy" decoding="async" alt=""></span>
+          <span><img class="img-light" src="assets/fitfinder-journal-light.webp" width="540" height="1169" loading="lazy" decoding="async" alt="FitFinder journal: what you wore each day of the month on a calendar."><img class="img-dark" src="assets/fitfinder-journal-dark.webp" width="540" height="1169" loading="lazy" decoding="async" alt=""></span>
+          <span><img class="img-light" src="assets/fitfinder-closet-light.webp" width="540" height="1169" loading="lazy" decoding="async" alt="FitFinder closet: every piece of clothing as a tile in a grid."><img class="img-dark" src="assets/fitfinder-closet-dark.webp" width="540" height="1169" loading="lazy" decoding="async" alt=""></span>
+          <figcaption><span class="cap-3">Today with the weather, the journal of what was worn, and the closet.</span><span class="cap-2">Today with the weather, and the journal of what was worn.</span></figcaption>
         </figure>
       </div>
     </section>
@@ -240,9 +262,10 @@
     </section>
 
     <section class="sec grp" data-group="About" id="education" aria-labelledby="edu-title">
+      <p class="grp-h">About<span>08–09</span></p>
       <div class="card">
-        <p class="kicker"><span><i class="st">08</i><b>Education</b></span></p>
-        <h2 id="edu-title">Technical University of Munich</h2>
+        <p class="kicker"><span><i class="st">08</i><b>Technical University of Munich</b></span></p>
+        <h2 id="edu-title">Education</h2>
         <ul class="edu">
           <li><b>M.Sc. Informatics</b><span class="y">Oct 2026 – 2028 (expected)</span><span>Focus on robotics and machine learning.</span></li>
           <li><b>B.Sc. Computer Science, application area Physics</b><span class="y">2020 – 2026</span><span>Completed alongside part-time work at Vector. Thesis: how robot arms learn to reach (learning-based inverse kinematics).</span></li>
@@ -257,7 +280,7 @@
 
     <section class="sec" id="off-the-clock" aria-labelledby="off-title">
       <div class="card">
-        <p class="kicker"><span><i class="st">09</i><b>Outside work</b></span><span class="when">Ironman triathlon</span></p>
+        <p class="kicker"><span><i class="st">09</i><b>Ironman triathlon</b></span><span class="when">Outside work</span></p>
         <h2 id="off-title" class="finish"><span class="sr-only">Ironman finisher in </span><span aria-label="14 hours 21 minutes 26 seconds">14:21:26</span></h2>
         <p class="sub">Finish time over 3.8&nbsp;km swim, 180&nbsp;km bike, 42.2&nbsp;km run</p>
         <p>When I’m not training or coding, I play trombone and piano.</p>
@@ -265,6 +288,7 @@
     </section>
 
     <section class="sec grp" data-group="Contact" id="contact" data-arm="wave" aria-labelledby="contact-title">
+      <p class="grp-h">Contact</p>
       <div class="card contact">
         <h2 id="contact-title"><a class="email-big" href="mailto:medina.emanuel@proton.me">medina.emanuel@proton.me</a></h2>
         <p>I’m in Munich and available for up to 18 hours a week alongside my master’s.</p>
@@ -291,26 +315,27 @@
     <button class="icon-btn close" type="button" aria-label="Close deep dive"><svg aria-hidden="true"><use href="#i-close"/></svg></button></div>
   <div class="deep-body">
     <h3>Who it is for</h3>
-    <p>Bereaved families, often older and not tech-savvy, have to handle certificates of inheritance, a six-week renunciation window, probate courts and wills, and share highly sensitive documents while doing it. The app turns this into a task list. The legal decision tree behind it has 141 nodes and 80 outcomes, written by the team’s lawyers, and the court lookup covers 611 probate courts.</p>
+    <p>Bereaved families, often older and not tech-savvy, have to handle certificates of inheritance, a six&#8209;week renunciation window, probate courts and wills, and share highly sensitive documents while doing it. The app turns this into a task list. The legal decision tree behind it has 141 nodes and 80 outcomes, written by the team’s lawyers, and the court lookup covers 611 probate courts.</p>
     <h3>Data flow</h3>
     <figure class="diagram">
-      <svg viewBox="0 0 640 200" role="img" aria-labelledby="dg-lnd">
+      <svg class="dg-wide" viewBox="5 0 630 200" role="img" aria-labelledby="dg-lnd">
         <title id="dg-lnd">Data flow: the React PWA encrypts on the device, queues ciphertext in IndexedDB and syncs it to Supabase Postgres with row-level security; other family devices are notified via Realtime; Clerk issues JWTs.</title>
         <g>
-          <rect class="d-box hl" x="8" y="30" width="130" height="58" rx="4"/><text class="d-t" x="22" y="55">React PWA</text><text class="d-s" x="22" y="73">device keys</text>
-          <rect class="d-box" x="172" y="30" width="130" height="58" rx="4"/><text class="d-t" x="186" y="55">core/crypto</text><text class="d-s" x="186" y="73">ML-KEM · AES-GCM</text>
-          <rect class="d-box" x="336" y="30" width="130" height="58" rx="4"/><text class="d-t" x="350" y="55">IndexedDB</text><text class="d-s" x="350" y="73">offline queue</text>
-          <rect class="d-box hl" x="500" y="30" width="132" height="58" rx="4"/><text class="d-t" x="514" y="55">Supabase</text><text class="d-s" x="514" y="73">Postgres + RLS</text>
-          <rect class="d-box" x="500" y="134" width="132" height="54" rx="4"/><text class="d-t" x="514" y="158">Family device</text><text class="d-s" x="514" y="175">decrypts locally</text>
-          <rect class="d-box" x="336" y="134" width="130" height="54" rx="4"/><text class="d-t" x="350" y="158">Clerk</text><text class="d-s" x="350" y="175">auth · JWT</text>
-          <path class="d-a" d="M138 59H170" marker-end="url(#arrow)"/>
-          <path class="d-a" d="M302 59H334" marker-end="url(#arrow)"/>
-          <path class="d-a hl" d="M466 59H498" marker-end="url(#arrow-hl)"/>
-          <text class="d-l" x="452" y="22">ciphertext only</text>
-          <path class="d-a" d="M566 88V132" marker-end="url(#arrow)"/><text class="d-l" x="572" y="114">realtime</text>
-          <path class="d-a" d="M466 150H483V111H530V91" marker-end="url(#arrow)"/><text class="d-l" x="488" y="105">JWT</text>
+          <rect class="d-box hl" x="6" y="30" width="110" height="58" rx="4"/><text class="d-t" x="18" y="55">React PWA</text><text class="d-s" x="18" y="73">device keys</text>
+          <rect class="d-box" x="136" y="30" width="110" height="58" rx="4"/><text class="d-t" x="148" y="55">core/crypto</text><text class="d-s" x="148" y="73">ML-KEM · AES</text>
+          <rect class="d-box" x="266" y="30" width="110" height="58" rx="4"/><text class="d-t" x="278" y="55">IndexedDB</text><text class="d-s" x="278" y="73">offline queue</text>
+          <rect class="d-box hl" x="510" y="30" width="124" height="58" rx="4"/><text class="d-t" x="522" y="55">Supabase</text><text class="d-s" x="522" y="73">Postgres + RLS</text>
+          <rect class="d-box" x="510" y="140" width="124" height="54" rx="4"/><text class="d-t" x="522" y="164">Family device</text><text class="d-s" x="522" y="181">decrypts locally</text>
+          <rect class="d-box" x="266" y="140" width="110" height="54" rx="4"/><text class="d-t" x="278" y="164">Clerk</text><text class="d-s" x="278" y="181">auth</text>
+          <path class="d-a" d="M116 59H134" marker-end="url(#arrow)"/>
+          <path class="d-a" d="M246 59H264" marker-end="url(#arrow)"/>
+          <path class="d-a hl" d="M376 59H508" marker-end="url(#arrow-hl)"/>
+          <text class="d-l" x="442" y="49" text-anchor="middle">ciphertext only</text>
+          <path class="d-a" d="M572 88V138" marker-end="url(#arrow)"/><text class="d-l" x="581" y="118">realtime</text>
+          <path class="d-a" d="M376 167H442V114H530V91" marker-end="url(#arrow)"/><text class="d-l" x="409" y="157" text-anchor="middle">JWT</text>
         </g>
       </svg>
+      <svg class="dg-tall" viewBox="0 0 340 392" role="img" aria-label="Data flow, top to bottom: the React PWA encrypts on the device, queues ciphertext in IndexedDB and syncs it to Supabase Postgres with row-level security; other family devices are notified via Realtime; Clerk issues JWTs."><g><rect class="d-box hl" x="1" y="4" width="338" height="54" rx="4"/><text class="d-t" x="13" y="28">React PWA</text><text class="d-s" x="13" y="46">device keys</text><path class="d-a" d="M170 58V78" marker-end="url(#arrow)"/><rect class="d-box" x="1" y="80" width="338" height="54" rx="4"/><text class="d-t" x="13" y="104">core/crypto</text><text class="d-s" x="13" y="122">ML-KEM · AES-GCM</text><path class="d-a" d="M170 134V154" marker-end="url(#arrow)"/><rect class="d-box" x="1" y="156" width="338" height="54" rx="4"/><text class="d-t" x="13" y="180">IndexedDB</text><text class="d-s" x="13" y="198">offline queue</text><path class="d-a hl" d="M170 210V242" marker-end="url(#arrow-hl)"/><text class="d-l" x="180" y="230">ciphertext only</text><rect class="d-box hl" x="1" y="244" width="338" height="54" rx="4"/><text class="d-t" x="13" y="268">Supabase</text><text class="d-s" x="13" y="286">Postgres + RLS</text><path class="d-a" d="M81 298V330" marker-end="url(#arrow)"/><text class="d-l" x="91" y="318">realtime</text><path class="d-a" d="M259 332V301" marker-end="url(#arrow)"/><text class="d-l" x="269" y="320">JWT</text><rect class="d-box" x="1" y="332" width="160" height="54" rx="4"/><text class="d-t" x="13" y="356">Family device</text><text class="d-s" x="13" y="374">decrypts locally</text><rect class="d-box" x="179" y="332" width="160" height="54" rx="4"/><text class="d-t" x="191" y="356">Clerk</text><text class="d-s" x="191" y="374">auth</text></g></svg>
       <figcaption>Encryption happens on the device. The server only sees ciphertext, versions and signatures.</figcaption>
     </figure>
     <ul>
@@ -348,7 +373,7 @@
     <p>Play Schafkopf with a friend, with AI filling the empty seats, and no accounts, servers or signalling infrastructure to run.</p>
     <h3>Pairing two phones</h3>
     <figure class="diagram">
-      <svg viewBox="0 0 640 210" role="img" aria-labelledby="dg-sp">
+      <svg class="dg-wide" viewBox="0 0 640 210" role="img" aria-labelledby="dg-sp">
         <title id="dg-sp">The host runs the game engine and sends a compressed invite code to the guest; the guest replies with a code; then a WebRTC data channel carries redacted state to the guest and actions back. AI seats feed the engine.</title>
         <g>
           <rect class="d-box hl" x="20" y="40" width="190" height="110" rx="4"/><text class="d-t" x="36" y="66">Host browser</text><text class="d-s" x="36" y="86">GameEngine</text><text class="d-s" x="36" y="104">rules.ts · redaction</text><text class="d-s" x="36" y="122">IndexedDB replays</text>
@@ -360,6 +385,7 @@
           <path class="d-a hl" d="M430 112H212" marker-end="url(#arrow-hl)"/><text class="d-l" x="284" y="128">player actions</text>
         </g>
       </svg>
+      <svg class="dg-tall" viewBox="0 0 340 246" role="img" aria-label="The host runs the game engine and sends an invite code to the guest; the guest replies with a code; then a WebRTC data channel carries redacted state to the guest and player actions back. AI seats feed the host’s engine."><g><rect class="d-box hl" x="2" y="30" width="112" height="150" rx="4"/><text class="d-t" x="14" y="54">Host browser</text><text class="d-s" x="14" y="72">GameEngine</text><text class="d-s" x="14" y="89">rules.ts</text><text class="d-s" x="14" y="106">redaction</text><text class="d-s" x="14" y="123">replays</text><rect class="d-box" x="226" y="30" width="112" height="150" rx="4"/><text class="d-t" x="238" y="54">Guest browser</text><text class="d-s" x="238" y="72">renders</text><text class="d-s" x="238" y="89">redacted</text><text class="d-s" x="238" y="106">state only</text><path class="d-a" d="M114 60H224" marker-end="url(#arrow)"/><text class="d-l" x="120" y="52">1 · invite code</text><path class="d-a" d="M226 98H116" marker-end="url(#arrow)"/><text class="d-l" x="120" y="90">2 · reply code</text><path class="d-a hl" d="M114 136H224" marker-end="url(#arrow-hl)"/><text class="d-l" x="120" y="128">redacted state</text><path class="d-a hl" d="M226 170H116" marker-end="url(#arrow-hl)"/><text class="d-l" x="120" y="162">player actions</text><rect class="d-box" x="2" y="204" width="112" height="36" rx="4"/><text class="d-s" x="14" y="227">AI seats 2 &amp; 4</text><path class="d-a" d="M58 204V183" marker-end="url(#arrow)"/></g></svg>
       <figcaption>No signalling server: the SDP itself travels as a compact code.</figcaption>
     </figure>
     <ul>
@@ -396,7 +422,7 @@
     <p>Map an arm’s geometry (Denavit–Hartenberg parameters) and a goal position to joint angles. Compare direct versus probabilistic outputs, and feed-forward versus recurrent architectures.</p>
     <h3>Training without labelled answers</h3>
     <figure class="diagram">
-      <svg viewBox="0 0 640 170" role="img" aria-labelledby="dg-ik">
+      <svg class="dg-wide" viewBox="0 0 640 170" role="img" aria-labelledby="dg-ik">
         <title id="dg-ik">Training loop: a problem generator feeds a network; its sine and cosine outputs become angles via atan2; differentiable forward kinematics computes the end effector; the loss is the distance to the goal, backpropagated to the network.</title>
         <g>
           <rect class="d-box" x="6" y="30" width="112" height="58" rx="4"/><text class="d-t" x="18" y="55">Problems</text><text class="d-s" x="18" y="73">DH + goal</text>
@@ -408,6 +434,7 @@
           <path class="d-a hl" d="M588 88V132H196V90" marker-end="url(#arrow-hl)"/><text class="d-l" x="330" y="150">backprop, no ground-truth angles needed</text>
         </g>
       </svg>
+      <svg class="dg-tall" viewBox="0 0 340 368" role="img" aria-label="Training loop, top to bottom: a problem generator feeds a network; its sine and cosine outputs become angles via atan2; differentiable forward kinematics computes the end effector; the loss is the distance to the goal, backpropagated to the network."><g><rect class="d-box" x="4" y="4" width="176" height="54" rx="4"/><text class="d-t" x="16" y="28">Problems</text><text class="d-s" x="16" y="46">DH + goal</text><path class="d-a" d="M92 58V78" marker-end="url(#arrow)"/><rect class="d-box hl" x="4" y="80" width="176" height="54" rx="4"/><text class="d-t" x="16" y="104">Network</text><text class="d-s" x="16" y="122">MLP · LSTM</text><path class="d-a" d="M92 134V154" marker-end="url(#arrow)"/><rect class="d-box" x="4" y="156" width="176" height="54" rx="4"/><text class="d-t" x="16" y="180">sin, cos</text><text class="d-s" x="16" y="198">→ atan2</text><path class="d-a" d="M92 210V230" marker-end="url(#arrow)"/><rect class="d-box" x="4" y="232" width="176" height="54" rx="4"/><text class="d-t" x="16" y="256">Diff. FK</text><text class="d-s" x="16" y="274">end effector</text><path class="d-a" d="M92 286V306" marker-end="url(#arrow)"/><rect class="d-box hl" x="4" y="308" width="176" height="54" rx="4"/><text class="d-t" x="16" y="332">Loss</text><text class="d-s" x="16" y="350">‖ee − goal‖</text><path class="d-a hl" d="M180 335H218V107H183" marker-end="url(#arrow-hl)"/><text class="d-l" x="228" y="205">backprop,</text><text class="d-l" x="228" y="220">no ground-truth</text><text class="d-l" x="228" y="235">angles needed</text></g></svg>
     </figure>
     <ul>
       <li>Random DH parameters (link lengths 0.3–0.5) and reachable goals are generated synthetically, so one model learns arbitrary arms rather than a single robot.</li>
@@ -441,6 +468,8 @@
     <div class="deep-foot"><a class="btn btn-sm btn-primary" href="papers/learning-based-inverse-kinematics.pdf">Read the thesis (PDF)<svg aria-hidden="true"><use href="#i-download"/></svg></a><a class="lnk" href="https://github.com/EmanuelMedinaAraujo/BachelorThesis" rel="noopener" target="_blank">Read the source<svg aria-hidden="true"><use href="#i-external"/></svg><span class="sr-only"> (opens in a new tab)</span></a></div>
   </div>
 </dialog>
+
+<dialog class="zoomed" aria-label="Enlarged image"><img alt=""><button class="icon-btn close" type="button" aria-label="Close enlarged image"><svg aria-hidden="true"><use href="#i-close"/></svg></button></dialog>
 
 <script type="module" src="main.js"></script>
 <script type="module" src="scene.js" onerror="document.documentElement.classList.remove('gl')"></script>
