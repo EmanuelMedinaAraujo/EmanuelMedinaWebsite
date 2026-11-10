@@ -23,7 +23,11 @@ sysDark.addEventListener('change', e => { if (!stored()) setTheme(e.matches ? 'd
 
 /* ---------- section tracking ---------- */
 const sections = [...document.querySelectorAll('main section[id]')];
-const navLinks = [...document.querySelectorAll('#rail a, #menu a')];
+const navLinks = [...document.querySelectorAll('#menu a, .nav a')];
+// Each section belongs to the group that starts at or before it (data-group), so the
+// desktop nav can mark Experience, Projects, About or Contact.
+let group = null;
+const groupOf = new Map(sections.map(s => [s, group = s.dataset.group ? s : group]));
 const header = document.querySelector('.site-header');
 
 function activate(sec) {
@@ -31,8 +35,11 @@ function activate(sec) {
   if (section.id === id) return;
   section.id = id;
   section.arm = sec.dataset.arm;
+  for (const s of sections) s.classList.toggle('on', s === sec);
+  const g = groupOf.get(sec);
   for (const a of navLinks) {
-    const on = a.getAttribute('href') === '#' + id;
+    const to = document.getElementById(a.getAttribute('href').slice(1));
+    const on = a.closest('.nav') ? !!g && groupOf.get(to) === g : to === sec;
     a.setAttribute('aria-current', on ? 'true' : 'false');
   }
   emit('section');
@@ -43,7 +50,7 @@ function activate(sec) {
 let io;
 function observe() {
   if (io) io.disconnect();
-  let margin = '-48% 0px -48% 0px';
+  let margin = '-35% 0px -64% 0px'; // a thin reading line a third of the way down
   if (band.matches && root.classList.contains('gl')) {
     const top = header.getBoundingClientRect().bottom;
     const bottom = document.getElementById('stage').getBoundingClientRect().top;
