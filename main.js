@@ -23,7 +23,7 @@ sysDark.addEventListener('change', e => { if (!stored()) setTheme(e.matches ? 'd
 
 /* ---------- section tracking ---------- */
 const sections = [...document.querySelectorAll('main section[id]')];
-const navLinks = [...document.querySelectorAll('#menu a, .nav a')];
+const navLinks = [...document.querySelectorAll('#menu a[href^="#"], .nav a')];
 // Each section belongs to the group that starts at or before it (data-group), so the
 // desktop nav can mark Experience, Projects, About or Contact.
 let group = null;
@@ -58,6 +58,7 @@ function observe() {
     margin = `-${line}px 0px -${Math.max(0, innerHeight - line - 2)}px 0px`;
   }
   io = new IntersectionObserver(entries => {
+    if (atEnd()) return; // the last section owns the end of the page (see below)
     for (const e of entries) if (e.isIntersecting) activate(e.target);
   }, { rootMargin: margin });
   sections.forEach(s => io.observe(s));
@@ -65,10 +66,9 @@ function observe() {
 observe();
 let resizeT = 0;
 addEventListener('resize', () => { clearTimeout(resizeT); resizeT = setTimeout(observe, 150); });
-// Near the bottom the last section may never cross the centre line.
-addEventListener('scroll', () => {
-  if (innerHeight + scrollY >= document.documentElement.scrollHeight - 4) activate(sections[sections.length - 1]);
-}, { passive: true });
+// Near the bottom the last section may never cross the reading line.
+function atEnd() { return scrollY > 0 && innerHeight + scrollY >= document.documentElement.scrollHeight - 4; }
+addEventListener('scroll', () => { if (atEnd()) activate(sections[sections.length - 1]); }, { passive: true });
 activate(sections[0]);
 
 /* ---------- menu (narrow screens) ---------- */
@@ -133,3 +133,13 @@ document.querySelectorAll('dialog.deep').forEach(dlg => {
   });
 });
 if (location.hash.startsWith('#deep-')) openDeep(location.hash.slice(1));
+
+/* ---------- enlarge a screenshot ---------- */
+const zoomed = document.querySelector('dialog.zoomed');
+document.querySelectorAll('a.zoom').forEach(a => a.addEventListener('click', e => {
+  e.preventDefault();
+  const img = zoomed.querySelector('img');
+  img.src = a.href; img.alt = a.closest('figure').querySelector('img').alt;
+  zoomed.showModal();
+}));
+zoomed.addEventListener('click', () => zoomed.close());
