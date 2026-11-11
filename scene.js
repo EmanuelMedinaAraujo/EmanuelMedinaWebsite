@@ -415,7 +415,7 @@ function init() {
     if (band.matches) {
       // Whole cell in the strip when nothing is active; a close view of the active station otherwise.
       open.d = THREE.MathUtils.clamp(Math.max(3.2 / hTan, 1.45 / vTan), 3, 30);
-      closeD = Math.max(2 / hTan, .72 / vTan);
+      closeD = Math.max(1.7 / hTan, 1.1 / vTan);
       open.x = W / 2; open.y = H / 2;
     } else {
       // Open: the cell fills the free space right of the text column.
@@ -483,10 +483,10 @@ function init() {
     camLook = camA + (still ? 0 : Math.sin(t * .15) * .04);
     // The phone strip moves in on the active station: its prop, its neighbours and the gripper coming down.
     near += ((strip && ex ? 1 : 0) - near) * k;
-    if (strip && ex) focus.copy(exhibits[active].g.position); else focus.set(0, 0, 0);
+    if (strip && ex) focus.copy(exhibits[active].g.position).multiplyScalar(.55); else focus.set(0, 0, 0); // between the arm and its station, so both stay in the strip
     view.lerp(focus, k);
     const d = strip ? camDist + (closeD - camDist) * near : camDist, s = d / 7.2;
-    const lookY = strip ? .75 - .15 * near : .42;
+    const lookY = strip ? .75 - .3 * near : .42;
     const high = strip ? 1.15 + (lookY + closeD * .3 - 1.15) * near : (5.5 - (still ? 0 : sp * .4)) * s;
     camera.position.set(view.x + Math.sin(camLook) * d, high, view.z + Math.cos(camLook) * d);
     camera.lookAt(view.x, lookY, view.z);

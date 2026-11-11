@@ -272,7 +272,7 @@ html:not(.js) .deep-head .close{display:none}
   /* A section with pictures takes the page's width. Its first row is title, text and a slot the cell
      parks in (scene.js moves the cell there); the pictures follow across the full width. */
   .gl .sec.wide>.card,.gl .sec.wide>.grp-h{width:auto}
-  .gl .sec.wide>.card{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,5fr) clamp(260px,24vw,340px);column-gap:48px;align-items:start}
+  .gl .sec.wide>.card{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,5fr) clamp(340px,31vw,470px);column-gap:48px;align-items:start}
   .gl .sec.wide .cell-slot{display:block;aspect-ratio:3/2}
   .gl .sec.wide .fig{grid-column:1/-1;margin-top:44px}
   .gl .sec.wide .body>.bullets{margin-top:8px}
@@ -300,10 +300,10 @@ html:not(.js) .deep-head .close{display:none}
    text scrolls above it, so nothing ever covers the arm or the active exhibit. */
 @media (max-width:899px) and (orientation:portrait){
   .gl main::before{display:none}
-  :root{--band:clamp(112px,15.5svh,150px);--band-h:calc(var(--band) + env(safe-area-inset-bottom,0px))}
+  :root{--band:clamp(132px,19svh,184px);--band-h:calc(var(--band) + env(safe-area-inset-bottom,0px))}
   .gl #stage{top:auto;bottom:0;height:var(--band-h);z-index:5;background:var(--bg-2)}
   /* neighbouring stations fade out towards the edges instead of being cut */
-  .gl #stage{-webkit-mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent);mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent)}
+  .gl #stage{-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
   .gl body::after{content:"";position:fixed;left:0;right:0;bottom:0;height:var(--band-h);z-index:4;background:var(--bg-2);border-top:1px solid var(--line-2)}
   .gl .tags{z-index:6;top:auto;bottom:0;height:var(--band-h);overflow:hidden}
   html.gl{scroll-padding-bottom:calc(var(--band-h) + 24px)}
