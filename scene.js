@@ -7,16 +7,16 @@ import { band, reduceMotion, section, emit } from './wc.js';
 const root = document.documentElement;
 const canvas = document.getElementById('stage');
 const tagLayer = document.getElementById('tags');
-const col = document.querySelector('.col');
 const lowPower = matchMedia('(max-width: 899px)').matches || matchMedia('(pointer: coarse)').matches || (navigator.hardwareConcurrency || 8) <= 4;
 
+// Light: a pale cell floor in a cabinet-grey hall. Dark: asphalt, with the markings in white.
 const PALETTE = {
-  light: { bg: 0xf3f1ec, shadow: .11, ped: 0xfdfcfa, joint: 0x26272b, prop: 0x2d2e31, side: 0xcfcbc2, blob: .06,
-           floor: ['#e8e4dc', '#dfdbd2'], ink: '21,21,26', num: 0x15151a, numOp: .72, acc: 0xd9540c,
-           sky: 0xffffff, ground: 0xcfcabf, hemi: .4, sun: 1.45, fill: .25, rim: 0, env: .62, exposure: .92, fog: [11, 26] },
-  dark:  { bg: 0x111215, shadow: .5, ped: 0x2f3138, joint: 0x3d3f47, prop: 0x6b6e79, side: 0x08080a, blob: .5,
-           floor: ['#25272d', '#1d1f24'], ink: '255,255,255', num: 0xffffff, numOp: .78, acc: 0xff7a2b,
-           sky: 0x9aa6b8, ground: 0x0b0b0c, hemi: .6, sun: 2.3, fill: .25, rim: .7, env: .5, exposure: 1.05, fog: [11, 24] },
+  light: { bg: 0xe7e9e5, shadow: .13, ped: 0xffffff, joint: 0x1d2023, prop: 0x2d2e31, side: 0xbfc3bd, blob: .07,
+           floor: ['#f2f3f0', '#e9ebe7'], ink: '0,0,0', lane: .34, num: 0x000000, numOp: .72, acc: 0xf05a00,
+           sky: 0xffffff, ground: 0xc9cdc7, hemi: .4, sun: 1.45, fill: .25, rim: 0, env: .62, exposure: .92, fog: [11, 26] },
+  dark:  { bg: 0x2b2e31, shadow: .5, ped: 0xc4c8c4, joint: 0x4a4f55, prop: 0x34383c, side: 0x101112, blob: .4,
+           floor: ['#202326', '#1b1d20'], ink: '255,255,255', lane: .8, num: 0xffffff, numOp: .85, acc: 0xff7a2b,
+           sky: 0xb4bcc6, ground: 0x151617, hemi: .7, sun: 2.2, fill: .35, rim: .9, env: .6, exposure: 1.05, fog: [11, 24] },
 };
 
 // Adds a shadow-casting mesh to parent. pos and rot are [x, y, z] arrays.
@@ -195,9 +195,9 @@ function init() {
     grad.addColorStop(0, P.floor[0]); grad.addColorStop(1, P.floor[1]);
     g.fillStyle = grad; g.beginPath(); g.arc(c, c, c, 0, Math.PI * 2); g.fill();
     const circle = (r, w, a, dash = []) => { g.beginPath(); g.setLineDash(dash); g.arc(c, c, r * u, 0, Math.PI * 2); g.lineWidth = w * u; g.strokeStyle = ink(a); g.stroke(); g.setLineDash([]); };
-    circle(TABLE - .012, .024, .22);           // rim
-    circle(R, .008, .16);                      // station track
-    circle(.78, .008, .16, [.05 * u, .05 * u]); // keep-out zone round the base
+    circle(TABLE - .014, .028, P.lane * .8);   // rim, a solid edge line
+    circle(R, .03, P.lane, [.2 * u, .4 * u]);   // station track, marked like a lane: one on, two off
+    circle(.78, .008, .2, [.05 * u, .05 * u]);  // keep-out zone round the base
     for (let d = 0; d < 360 && !band.matches; d += 3) { // degree ticks (too fine for the phone strip)
       const major = d % 15 === 0, a = THREE.MathUtils.degToRad(d);
       const r0 = (TABLE - (major ? .13 : .09)) * u, r1 = (TABLE - .045) * u;
@@ -222,7 +222,7 @@ function init() {
     for (const n of numerals) {
       const g = n.cv.getContext('2d');
       g.clearRect(0, 0, 192, 96);
-      g.font = '500 78px "IBM Plex Mono", ui-monospace, monospace';
+      g.font = '600 88px "Barlow Condensed", ui-sans-serif, sans-serif';
       g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillStyle = '#fff';
       g.fillText(n.text, 96, 52);
       n.tex.needsUpdate = true;
@@ -248,7 +248,7 @@ function init() {
     gr.addColorStop(0, 'rgba(0,0,0,1)'); gr.addColorStop(.4, 'rgba(0,0,0,.45)'); gr.addColorStop(1, 'rgba(0,0,0,0)');
     g.fillStyle = gr; g.fillRect(0, 0, 256, 256); }
   const BLOB = new THREE.MeshBasicMaterial({ map: new THREE.CanvasTexture(blobCv), transparent: true, depthWrite: false, toneMapped: false, fog: false });
-  const blob = new THREE.Mesh(new THREE.PlaneGeometry(TABLE * 2.32, TABLE * 2.32), BLOB);
+  const blob = new THREE.Mesh(new THREE.PlaneGeometry(TABLE * 2.16, TABLE * 2.16), BLOB);
   blob.rotation.x = -Math.PI / 2; blob.position.set(-.12, -.08, -.16); blob.renderOrder = -1;
   scene.add(blob);
 
@@ -348,7 +348,7 @@ function init() {
   }
   applyTheme(root.dataset.theme === 'dark');
   // The floor numbers use the site's mono face; repaint once it has loaded.
-  document.fonts?.load('500 16px "IBM Plex Mono"').then(() => { paintNumerals(); invalidate(); }).catch(() => {});
+  document.fonts?.load('600 16px "Barlow Condensed"').then(() => { paintNumerals(); invalidate(); }).catch(() => {});
   addEventListener('wc:theme', e => applyTheme(e.detail.dark));
 
   /* ---------- state & input ---------- */
@@ -398,36 +398,64 @@ function init() {
   // cx/cy: the canvas's offset in the viewport (it sits at the bottom in the band layout).
   let W = 0, H = 0, cx = 0, cy = 0;
   const headerH = () => document.querySelector('.site-header')?.offsetHeight || 0;
+  const heroCard = document.querySelector('.hero .card');
+  const wideCards = [...document.querySelectorAll('.sec.wide > .card')];
+  const slots = wideCards.map(c => c.querySelector('.cell-slot'));
+  const open = { x: 0, y: 0, d: 7.2 }, dock = { x: 0, y: 0, d: 7.2 }; // where the cell's centre sits on screen, and how far the camera is
+  let dockK = 0, dockWant = 0, closeD = 5, slot = null, hTan = .46;
   function resize() {
     W = canvas.clientWidth || innerWidth; H = canvas.clientHeight || innerHeight;
     const rect = canvas.getBoundingClientRect(); cx = rect.left; cy = rect.top;
     renderer.setSize(W, H, false);
     camera.aspect = W / H;
     camera.fov = band.matches ? 20 : 32;
-    const vTan = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)), hTan = vTan * camera.aspect;
+    const vTan = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2));
+    hTan = vTan * camera.aspect;
     const top = headerH();
     if (band.matches) {
-      // Fit the whole cell (disc, arm at full reach) into the bottom strip.
-      camDist = THREE.MathUtils.clamp(Math.max(3.2 / hTan, 1.45 / vTan), 3, 30);
-      camera.setViewOffset(W, H, 0, 0, W, H);
+      // Whole cell in the strip when nothing is active; a close view of the active station otherwise.
+      open.d = THREE.MathUtils.clamp(Math.max(3.2 / hTan, 1.45 / vTan), 3, 30);
+      closeD = Math.max(2 / hTan, .72 / vTan);
+      open.x = W / 2; open.y = H / 2;
     } else {
-      // Frame the cell in the free space right of the text column.
-      const colRight = col ? col.getBoundingClientRect().right + 44 : W * .4;
-      const railLeft = W - Math.max(24, W * .05);
-      root.style.setProperty('--stage-left', Math.round(colRight) + 'px');
-      const avail = Math.max(railLeft - colRight, W * .3);
-      const useH = (H - top) / H;
-      camDist = THREE.MathUtils.clamp(Math.max(2.24 * W / (avail * hTan), 1.9 / (vTan * useH)), 4.8, 26);
-      const centre = (colRight + railLeft) / 2;
-      camera.setViewOffset(W, H, -(centre - W / 2), -top / 2 + H * .1, W, H);
+      // Open: the cell fills the free space right of the text column.
+      const colRight = (heroCard ? heroCard.getBoundingClientRect().right : W * .4) + 44, right = W - Math.max(24, W * .05);
+      const avail = Math.max(right - colRight, W * .3), useH = (H - top) / H;
+      open.d = THREE.MathUtils.clamp(Math.max(2.24 * W / (avail * hTan), 1.9 / (vTan * useH)), 4.8, 26);
+      open.x = (colRight + right) / 2; open.y = H * .4 + top / 2;
     }
-    camera.updateProjectionMatrix();
-    fitFog();
+    checkDock();
+    frameCell();
     invalidate();
   }
+  // Applies the framing between open (0) and docked (1).
+  function frameCell() {
+    const e = dockK * dockK * (3 - 2 * dockK);
+    const x = open.x + (dock.x - open.x) * e, y = open.y + (dock.y - open.y) * e;
+    camDist = 1 / (1 / open.d + (1 / dock.d - 1 / open.d) * e);
+    camera.setViewOffset(W, H, W / 2 - x, H / 2 - y, W, H);
+    camera.updateProjectionMatrix();
+    fitFog();
+  }
+  // A section with pictures takes the page's width, so the cell parks in the slot beside that section's
+  // title and scrolls with it. It comes back out once no such section crosses the space it stands in.
+  function checkDock() {
+    dockWant = 0;
+    if (band.matches || innerWidth < 1181) { slot = null; Object.assign(dock, open); return; }
+    const zoneTop = headerH() + 40, zoneBottom = innerHeight * .8;
+    wideCards.forEach((c, i) => {
+      const r = c.getBoundingClientRect();
+      if (r.top < zoneBottom && r.bottom > zoneTop) dockWant = 1;
+      if (r.top < innerHeight && r.bottom > zoneTop) slot = slots[i]; // the lowest one in view
+    });
+    if (!slot) return;
+    const r = slot.getBoundingClientRect();
+    dock.x = r.left + r.width / 2; dock.y = r.top + r.height * .5; dock.d = 2.45 * W / (r.width * hTan);
+  }
+  addEventListener('scroll', checkDock, { passive: true });
   addEventListener('resize', resize);
   band.addEventListener('change', () => requestAnimationFrame(() => { paintFloor(); resize(); }));
-  resize();
+  resize(); dockK = dockWant; frameCell();
 
   /* ---------- render loop with pausing ---------- */
   document.addEventListener('visibilitychange', () => { running = !document.hidden; if (running) { clock.getDelta(); invalidate(); } });
@@ -436,24 +464,32 @@ function init() {
   reduceMotion.addEventListener('change', invalidate);
 
   const clock = new THREE.Clock();
-  let camA = 0, camLook = 0, near = 1;
+  let camA = 0, camLook = 0, near = 0;
   const focus = new THREE.Vector3(), view = new THREE.Vector3(); // on phones the camera centres between arm and active exhibit
   const ang = { yaw: -.8, a1: 1.2, a2: -2, wrist: 0 };
 
   function updateCamera(t, dt, still) {
     const sp = scrollY / Math.max(1, document.documentElement.scrollHeight - innerHeight);
-    // With no station active the camera looks in through the gap in the ring, so the arm hides none of them.
-    const wantA = mode === 'ex' ? exhibits[active].phi - (band.matches ? .55 : STEP) : 0; // the far side of the view always falls between two stations
+    const k = still ? 1 : 1 - Math.pow(.05, dt);
+    if (dockK !== dockWant || dockK > 0) { // glide between the open and the docked framing; the slot moves with the page
+      dockK = still || Math.abs(dockWant - dockK) < .002 ? dockWant : dockK + (dockWant - dockK) * (1 - Math.pow(.001, dt));
+      frameCell();
+    }
+    const ex = mode === 'ex', strip = band.matches;
+    // With no station active the camera looks in through the gap at the back of the ring, so the arm hides none of them.
+    // With one active, that station comes to the front right and the far side of the view falls between two stations.
+    const wantA = ex ? exhibits[active].phi - (strip ? .5 : STEP) : 0;
     camA = still ? wantA : angleLerp(camA, wantA, 1 - Math.pow(.15, dt));
     camLook = camA + (still ? 0 : Math.sin(t * .15) * .04);
-    focus.set(0, 0, 0);
-    const k = still ? 1 : 1 - Math.pow(.05, dt);
-    view.lerp(focus, k); near = 1;
-    const d = camDist * near, s = d / 7.2;
-    // The strip on phones is wide and low, so the camera sits lower there to keep arm and station in frame.
-    const high = band.matches ? 1.15 : (5.5 - (still ? 0 : sp * .4)) * s;
+    // The phone strip moves in on the active station: its prop, its neighbours and the gripper coming down.
+    near += ((strip && ex ? 1 : 0) - near) * k;
+    if (strip && ex) focus.copy(exhibits[active].g.position); else focus.set(0, 0, 0);
+    view.lerp(focus, k);
+    const d = strip ? camDist + (closeD - camDist) * near : camDist, s = d / 7.2;
+    const lookY = strip ? .75 - .15 * near : .42;
+    const high = strip ? 1.15 + (lookY + closeD * .3 - 1.15) * near : (5.5 - (still ? 0 : sp * .4)) * s;
     camera.position.set(view.x + Math.sin(camLook) * d, high, view.z + Math.cos(camLook) * d);
-    camera.lookAt(view.x, band.matches ? .75 : .42, view.z);
+    camera.lookAt(view.x, lookY, view.z);
     camera.updateMatrixWorld();
   }
 
@@ -533,7 +569,7 @@ function init() {
       const a = ex.box, n = numerals[i], on = i === active;
       const nw = a.half * .45, nh = a.half * .2;
       const covered = exhibits.some(o => o !== ex && o.box.dist < a.dist && Math.abs(a.nx - o.box.x) < o.box.half + nw && a.ny + nh > o.box.top && a.ny - nh < o.box.bottom);
-      const want = covered || band.matches ? 0 : on ? 1 : P.numOp; // in the phone strip the chip names the station instead
+      const want = covered || band.matches || (dockK > .5 && !on) ? 0 : on ? 1 : P.numOp; // the strip's chip names the station; the docked cell shows only the active number
       n.mat.opacity = still ? want : n.mat.opacity + (want - n.mat.opacity) * (1 - Math.pow(.01, dt));
     });
   }

@@ -7,8 +7,8 @@
 <meta name="description" content="Emanuel Medina Araujo: software engineer in Munich with 5+ years as a working student at Vector Informatik, building driving-simulation software. M.Sc. Informatics at TUM (graduating 2028), available up to 18 hours a week.">
 <meta name="author" content="Emanuel Medina Araujo">
 <meta name="color-scheme" content="light dark">
-<meta name="theme-color" content="#f3f1ec" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#111215" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#e4e6e2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#2b2e31" media="(prefers-color-scheme: dark)">
 <link rel="canonical" href="https://emanuelmedinaaraujo.github.io/EmanuelMedinaWebsite/">
 <meta property="og:url" content="https://emanuelmedinaaraujo.github.io/EmanuelMedinaWebsite/">
 <meta property="og:image" content="https://emanuelmedinaaraujo.github.io/EmanuelMedinaWebsite/assets/og.jpg">
@@ -26,8 +26,8 @@
 <meta name="twitter:description" content="5+ years as a working student at Vector. M.Sc. Informatics at TUM, graduating 2028. Available up to 18 hours a week.">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="alternate" type="text/plain" href="llms.txt" title="llms.txt">
-<link rel="preload" href="assets/fonts/IBMPlexSans-normal-300-700.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="assets/fonts/IBMPlexSansCondensed-normal-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/Barlow-normal-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/BarlowCondensed-normal-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="modulepreload" href="assets/vendor/three.module.min.js">
 <link rel="stylesheet" href="assets/fonts/fonts.css">
 <link rel="stylesheet" href="styles.css">
@@ -62,6 +62,7 @@
   <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></symbol>
   <symbol id="i-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 20h14"/></symbol>
   <symbol id="i-zoom" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6M20 4l-6.5 6.5M10 20H4v-6M4 20l6.5-6.5"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></symbol>
   <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="d-h" d="M0 0 10 5 0 10z"/></marker>
   <marker id="arrow-hl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="d-h hl" d="M0 0 10 5 0 10z"/></marker>
 </svg>
@@ -98,7 +99,7 @@
 <nav class="menu" id="menu" aria-label="Sections" hidden>
   <p>Experience</p><a href="#vscenecreator"><i class="st">01</i>VSceneCreator</a><a href="#dyna4"><i class="st">02</i>DYNA4</a>
   <p>Projects</p><a href="#loveneverdies"><i class="st">03</i>LoveNeverDies</a><a href="#schafplay"><i class="st">04</i>SchafPlay</a><a href="#thesis"><i class="st">05</i>Bachelor thesis</a><a href="#fitfinder"><i class="st">06</i>FitFinder</a><a href="#pose"><i class="st">07</i>6D object pose estimation</a>
-  <p>About</p><a href="#education"><i class="st">08</i>Education</a><a href="#off-the-clock"><i class="st">09</i>Ironman</a><a href="#contact"><i class="st"><svg aria-hidden="true"><use href="#i-arrow"/></svg></i>Contact</a>
+  <p>About</p><a href="#education"><i class="st">08</i>Education</a><a href="#off-the-clock"><i class="st">09</i>Ironman</a><a href="#contact"><i class="st"></i>Contact</a>
   <div class="menu-foot">
     <a class="lnk" href="mailto:medina.emanuel@proton.me">Email</a>
     <a class="lnk" href="https://github.com/EmanuelMedinaAraujo" rel="me noopener" target="_blank">GitHub<svg aria-hidden="true"><use href="#i-external"/></svg><span class="sr-only"> (opens in a new tab)</span></a>
@@ -112,8 +113,8 @@
 
     <section class="sec hero tall" id="top" aria-labelledby="hero-title">
       <div class="card">
-        <p class="status">Software engineer · Munich</p>
-        <h1 id="hero-title">I build driving&#8209;simulation software at Vector<em>.</em></h1>
+        <p class="status">Software engineer, Munich</p>
+        <h1 id="hero-title">I build driving&#8209;simulation software at Vector.</h1>
         <p class="pitch">Five years on DYNA4, the simulator carmakers use to test cars on virtual roads, and now on its new 3D road editor, VSceneCreator. Alongside, I’m studying for an M.Sc. in Informatics at TUM, focused on robotics and machine learning.</p>
         <div class="ctas">
           <a class="btn btn-primary" href="mailto:medina.emanuel@proton.me">Email me</a>
@@ -133,14 +134,14 @@
 
 
     <section class="sec grp" data-group="Experience" id="vscenecreator" aria-labelledby="vsc-title">
-      <p class="grp-h">Experience<span>01–02</span></p>
+      <p class="grp-h">Experience</p>
       <div class="card">
-        <p class="kicker"><span><i class="st">01</i><b>Vector Informatik</b></span><span class="when">Unity, C# · Nov 2024 – now</span></p>
+        <p class="kicker"><span><i class="st">01</i><b>Vector Informatik</b></span><span class="when"><span>Unity, C#</span><span>Nov 2024 – now</span></span></p>
         <h2 id="vsc-title">VSceneCreator</h2>
         <p>A 3D editor for building the roads and junctions that driving simulations run on.</p>
         <ul class="figs">
-          <li><b>70%</b>faster into edit mode, at best</li>
-          <li><b>10%</b>faster file loading</li>
+          <li><b>70<small>%</small></b>faster into edit mode, at best</li>
+          <li><b>10<small>%</small></b>faster file loading</li>
           <li><b>4</b>alpha versions shipped</li>
         </ul>
         <ul class="bullets">
@@ -154,67 +155,83 @@
       </div>
     </section>
 
-    <section class="sec" id="dyna4" aria-labelledby="dyna-title">
+    <section class="sec wide" id="dyna4" aria-labelledby="dyna-title">
       <div class="card">
-        <p class="kicker"><span><i class="st">02</i><b>Vector Informatik</b></span><span class="when">Java, Eclipse RCP · Mar 2021 – Oct 2024</span></p>
-        <h2 id="dyna-title">DYNA4</h2>
-        <p>A simulator carmakers use to test driving functions on a virtual road before testing on a real one.</p>
-        <ul class="bullets">
-          <li>Worked on <span class="num">5 major releases</span> (5.0–9.0): new features, fixes for critical bugs and a better interface.</li>
-          <li>Designed a way for engineers to give measurement signals readable names, with its own file format, saving and loading, and automatic checks that offer one-click fixes.</li>
-          <li>Built tools that find files no longer used anywhere in a project and list every unsaved change in one place, and reworked the view engineers use to inspect recorded signals.</li>
-        </ul>
-        <figure class="shot mat">
-          <figcaption><span>DYNA4 with a vehicle model open. Screenshot: Vector Informatik.</span><a class="lnk zoom" href="assets/dyna4-simulation.webp">Enlarge<svg aria-hidden="true"><use href="#i-zoom"/></svg></a></figcaption>
-          <a class="zoom" href="assets/dyna4-simulation.webp" aria-label="Enlarge the DYNA4 screenshot"><img class="lightshot" src="assets/dyna4-simulation.webp" width="1600" height="900" loading="lazy" decoding="async" alt="The DYNA4 window with a vehicle model open: simulation controls and the project tree on the left, the model tree in the middle, and on the right a table of front-axle suspension hard points above a 3D plot of the McPherson axle."></a>
-        </figure>
-        <div class="links">
-          <a class="lnk" href="https://www.vector.com/en/product/dyna4/" target="_blank" rel="noopener">DYNA4 at Vector<svg aria-hidden="true"><use href="#i-external"/></svg><span class="sr-only"> (opens in a new tab)</span></a>
+        <div class="lead">
+          <p class="kicker"><span><i class="st">02</i><b>Vector Informatik</b></span><span class="when"><span>Java, Eclipse RCP</span><span>Mar 2021 – Oct 2024</span></span></p>
+          <h2 id="dyna-title">DYNA4</h2>
         </div>
+        <div class="body">
+          <p>A simulator carmakers use to test driving functions on a virtual road before testing on a real one.</p>
+          <ul class="bullets">
+            <li>Worked on <b>5 major releases</b> (5.0–9.0): new features, fixes for critical bugs and a better interface.</li>
+            <li>Designed a way for engineers to give measurement signals readable names, with its own file format, saving and loading, and automatic checks that offer one-click fixes.</li>
+            <li>Built tools that find files no longer used anywhere in a project and list every unsaved change in one place, and reworked the view engineers use to inspect recorded signals.</li>
+          </ul>
+          <div class="links">
+            <a class="lnk" href="https://www.vector.com/en/product/dyna4/" target="_blank" rel="noopener">DYNA4 at Vector<svg aria-hidden="true"><use href="#i-external"/></svg><span class="sr-only"> (opens in a new tab)</span></a>
+          </div>
+        </div>
+        <div class="cell-slot" aria-hidden="true"></div>
+        <figure class="fig">
+          <a class="zoom" href="assets/dyna4-simulation.webp" aria-label="Enlarge the DYNA4 screenshot"><img class="lightshot" src="assets/dyna4-simulation.webp" width="1600" height="900" loading="lazy" decoding="async" alt="The DYNA4 window with a vehicle model open: simulation controls and the project tree on the left, the model tree in the middle, and on the right a table of front-axle suspension hard points above a 3D plot of the McPherson axle."><svg aria-hidden="true"><use href="#i-zoom"/></svg></a>
+          <figcaption>DYNA4 with a vehicle model open. Select the picture to enlarge it. Screenshot: Vector Informatik.</figcaption>
+        </figure>
       </div>
     </section>
 
-    <section class="sec grp" data-group="Projects" id="loveneverdies" aria-labelledby="lnd-title">
-      <p class="grp-h">Projects<span>03–07</span></p>
+    <section class="sec grp wide" data-group="Projects" id="loveneverdies" aria-labelledby="lnd-title">
+      <p class="grp-h">Projects</p>
       <div class="card">
-        <p class="kicker"><span><i class="st">03</i><b>Legal Loves Tech Hackathon</b></span><span class="when">React, Supabase · Aug 2026</span></p>
-        <h2 id="lnd-title">LoveNeverDies</h2>
-        <p>An app that guides grieving families through the paperwork and deadlines after a death, built in ten days with a team of lawyers for a Bavarian Ministry of Justice challenge. Everything is encrypted on the family’s own devices, so not even the server can read it.</p>
-        <figure class="screens mat">
+        <div class="lead">
+          <p class="kicker"><span><i class="st">03</i><b>Legal Loves Tech Hackathon</b></span><span class="when"><span>React, Supabase</span><span>Aug 2026</span></span></p>
+          <h2 id="lnd-title">LoveNeverDies</h2>
+        </div>
+        <div class="body">
+          <p>An app that guides grieving families through the paperwork and deadlines after a death, built in ten days with a team of lawyers for a Bavarian Ministry of Justice challenge. Everything is encrypted on the family’s own devices, so not even the server can read it.</p>
+          <div class="links">
+            <a class="lnk" href="#deep-loveneverdies" data-deep="deep-loveneverdies">Encryption design<svg aria-hidden="true"><use href="#i-plus"/></svg></a>
+            <a class="lnk" href="https://github.com/EmanuelMedinaAraujo/LoveNeverDies" rel="noopener" target="_blank">Source on GitHub<svg aria-hidden="true"><use href="#i-external"/></svg><span class="sr-only"> (opens in a new tab)</span></a>
+          </div>
+        </div>
+        <div class="cell-slot" aria-hidden="true"></div>
+        <figure class="fig screens">
           <span><img class="lightshot" src="assets/loveneverdies-tasks.webp" width="540" height="919" loading="lazy" decoding="async" alt="LoveNeverDies: the list of all tasks after a death, each with its progress and who it is assigned to."></span>
           <span><img class="lightshot" src="assets/loveneverdies-pairing.webp" width="540" height="919" loading="lazy" decoding="async" alt="LoveNeverDies: the pairing code and spoken check code for adding a relative’s device."></span>
+          <span><img class="lightshot" src="assets/loveneverdies-task.webp" width="540" height="919" loading="lazy" decoding="async" alt="LoveNeverDies: one task, refusing the inheritance, with its deadline and a search for the court responsible."></span>
           <span><img class="lightshot" src="assets/loveneverdies-result.webp" width="540" height="919" loading="lazy" decoding="async" alt="LoveNeverDies: the result of the question tree for someone who does not want the inheritance, with the deadline and the next steps."></span>
-          <figcaption><span class="cap-3">The app is in German: the task list, pairing a relative’s device, and a result of the legal question tree.</span><span class="cap-2">The app is in German: the task list and pairing a relative’s device.</span></figcaption>
+          <figcaption><span class="cap-4">The app is in German: the task list, pairing a relative’s device, one task with the court responsible for it, and a result of the legal question tree.</span><span class="cap-2">The app is in German: the task list and pairing a relative’s device.</span></figcaption>
         </figure>
-        <div class="links">
-          <a class="lnk" href="#deep-loveneverdies" data-deep="deep-loveneverdies">Encryption design<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
-          <a class="lnk" href="https://github.com/EmanuelMedinaAraujo/LoveNeverDies" rel="noopener" target="_blank">Source on GitHub<svg aria-hidden="true"><use href="#i-external"/></svg><span class="sr-only"> (opens in a new tab)</span></a>
-        </div>
       </div>
     </section>
 
-    <section class="sec" id="schafplay" aria-labelledby="sp-title">
+    <section class="sec wide" id="schafplay" aria-labelledby="sp-title">
       <div class="card">
-        <p class="kicker"><span><i class="st">04</i><b>Side project</b></span><span class="when">React, WebRTC · 2026</span></p>
-        <h2 id="sp-title">SchafPlay</h2>
-        <p>Schafkopf, the Bavarian card game, to play solo or with a friend on the same Wi&#8209;Fi. No accounts and no server: two devices connect directly through a QR code or link, and computer players fill the other seats. Each device only ever receives its own cards.</p>
-        <figure class="shot">
+        <div class="lead">
+          <p class="kicker"><span><i class="st">04</i><b>Side project</b></span><span class="when"><span>React, WebRTC</span><span>2026</span></span></p>
+          <h2 id="sp-title">SchafPlay</h2>
+        </div>
+        <div class="body">
+          <p>Schafkopf, the Bavarian card game, to play solo or with a friend on the same Wi&#8209;Fi. No accounts and no server: two devices connect directly through a QR code or link, and computer players fill the other seats. Each device only ever receives its own cards.</p>
+          <div class="links">
+            <a class="lnk" href="#deep-schafplay" data-deep="deep-schafplay">Peer-to-peer design<svg aria-hidden="true"><use href="#i-plus"/></svg></a>
+            <a class="lnk" href="https://emanuelmedinaaraujo.github.io/SchafPlay/" rel="noopener" target="_blank">Play it<svg aria-hidden="true"><use href="#i-external"/></svg><span class="sr-only"> (opens in a new tab)</span></a>
+            <a class="lnk" href="https://github.com/EmanuelMedinaAraujo/SchafPlay" rel="noopener" target="_blank">Source<svg aria-hidden="true"><use href="#i-external"/></svg><span class="sr-only"> (opens in a new tab)</span></a>
+          </div>
+        </div>
+        <div class="cell-slot" aria-hidden="true"></div>
+        <figure class="fig">
           <img src="assets/schafplay-table.webp" width="1266" height="585" loading="lazy" decoding="async" alt="A SchafPlay round in progress: three computer players around a wooden table in an Alpine meadow have played their cards, and the player's hand of eight cards is fanned out at the bottom.">
           <figcaption>A round in progress against three computer players.</figcaption>
         </figure>
-        <div class="links">
-          <a class="lnk" href="#deep-schafplay" data-deep="deep-schafplay">Peer-to-peer design<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
-          <a class="lnk" href="https://emanuelmedinaaraujo.github.io/SchafPlay/" rel="noopener" target="_blank">Play it<svg aria-hidden="true"><use href="#i-external"/></svg><span class="sr-only"> (opens in a new tab)</span></a>
-          <a class="lnk" href="https://github.com/EmanuelMedinaAraujo/SchafPlay" rel="noopener" target="_blank">Source<svg aria-hidden="true"><use href="#i-external"/></svg><span class="sr-only"> (opens in a new tab)</span></a>
-        </div>
       </div>
     </section>
 
     <section class="sec" id="thesis" aria-labelledby="ik-title">
       <div class="card">
-        <p class="kicker"><span><i class="st">05</i><b>Bachelor thesis, TUM</b></span><span class="when">Python, PyTorch · 2024</span></p>
+        <p class="kicker"><span><i class="st">05</i><b>Bachelor thesis, TUM</b></span><span class="when"><span>Python, PyTorch</span><span>2024</span></span></p>
         <h2 id="ik-title">How robot arms learn to reach</h2>
-        <p>To grab something, a robot arm has to work out how to bend each joint. I compared neural networks that learn this. The simplest one won: it solved <span class="num">all 10,000</span> test cases, in about 0.16 milliseconds each.</p>
+        <p>To grab something, a robot arm has to work out how to bend each joint. I compared neural networks that learn this. The simplest one won: it solved <b>all 10,000</b> test cases, in about 0.16 milliseconds each.</p>
         <p>A year earlier, with the same advisor and supervisor, I wrote a seminar paper on the classic step-by-step methods that let an arm reach a target without hitting obstacles around it (<a class="inl" href="papers/numerical-inverse-kinematics.pdf">PDF</a>).</p>
         <figure class="chart">
           <figcaption>Share of 10,000 test reaches solved (3-joint arm)</figcaption>
@@ -228,23 +245,29 @@
           </ul>
         </figure>
         <div class="links">
-          <a class="lnk" href="#deep-thesis" data-deep="deep-thesis">Method and results<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a class="lnk" href="#deep-thesis" data-deep="deep-thesis">Method and results<svg aria-hidden="true"><use href="#i-plus"/></svg></a>
           <a class="lnk" href="papers/learning-based-inverse-kinematics.pdf">Thesis (PDF, 46 pages)<svg aria-hidden="true"><use href="#i-download"/></svg></a>
           <a class="lnk" href="https://github.com/EmanuelMedinaAraujo/BachelorThesis" rel="noopener" target="_blank">Source on GitHub<svg aria-hidden="true"><use href="#i-external"/></svg><span class="sr-only"> (opens in a new tab)</span></a>
         </div>
       </div>
     </section>
 
-    <section class="sec" id="fitfinder" aria-labelledby="ff-title">
+    <section class="sec wide" id="fitfinder" aria-labelledby="ff-title">
       <div class="card">
-        <p class="kicker"><span><i class="st">06</i><b>Side project</b></span><span class="when">TypeScript, iPhone web app · 2026</span></p>
-        <h2 id="ff-title">FitFinder</h2>
-        <p>Your whole wardrobe on your phone: photograph each piece once, sort it, put outfits together and pick today’s in seconds. Works offline.</p>
-        <figure class="screens" style="--crop:540/980">
+        <div class="lead">
+          <p class="kicker"><span><i class="st">06</i><b>Side project</b></span><span class="when"><span>TypeScript, iPhone web app</span><span>2026</span></span></p>
+          <h2 id="ff-title">FitFinder</h2>
+        </div>
+        <div class="body">
+          <p>Your whole wardrobe on your phone: photograph each piece once, sort it, put outfits together and pick today’s in seconds. Works offline.</p>
+        </div>
+        <div class="cell-slot" aria-hidden="true"></div>
+        <figure class="fig screens">
           <span><img class="img-light" src="assets/fitfinder-today-light.webp" width="540" height="1169" loading="lazy" decoding="async" alt="FitFinder’s Today screen: a greeting, today’s weather in Lisbon and the saved outfits you can wear."><img class="img-dark" src="assets/fitfinder-today-dark.webp" width="540" height="1169" loading="lazy" decoding="async" alt=""></span>
           <span><img class="img-light" src="assets/fitfinder-journal-light.webp" width="540" height="1169" loading="lazy" decoding="async" alt="FitFinder journal: what you wore each day of the month on a calendar."><img class="img-dark" src="assets/fitfinder-journal-dark.webp" width="540" height="1169" loading="lazy" decoding="async" alt=""></span>
           <span><img class="img-light" src="assets/fitfinder-closet-light.webp" width="540" height="1169" loading="lazy" decoding="async" alt="FitFinder closet: every piece of clothing as a tile in a grid."><img class="img-dark" src="assets/fitfinder-closet-dark.webp" width="540" height="1169" loading="lazy" decoding="async" alt=""></span>
-          <figcaption><span class="cap-3">Today with the weather, the journal of what was worn, and the closet.</span><span class="cap-2">Today with the weather, and the journal of what was worn.</span></figcaption>
+          <span><img class="img-light" src="assets/fitfinder-stats-light.webp" width="540" height="1169" loading="lazy" decoding="async" alt="FitFinder statistics: days logged, the current streak, how much of the closet was worn and the most worn outfits."><img class="img-dark" src="assets/fitfinder-stats-dark.webp" width="540" height="1169" loading="lazy" decoding="async" alt=""></span>
+          <figcaption><span class="cap-4">Today with the weather, the journal of what was worn, the closet, and wear statistics.</span><span class="cap-2">Today with the weather, and the journal of what was worn.</span></figcaption>
         </figure>
       </div>
     </section>
@@ -262,7 +285,7 @@
     </section>
 
     <section class="sec grp" data-group="About" id="education" aria-labelledby="edu-title">
-      <p class="grp-h">About<span>08–09</span></p>
+      <p class="grp-h">About</p>
       <div class="card">
         <p class="kicker"><span><i class="st">08</i><b>Technical University of Munich</b></span></p>
         <h2 id="edu-title">Education</h2>
@@ -305,7 +328,8 @@
 
 <footer class="site-footer">
   <div class="in">
-    <span>© 2026 Emanuel Medina · <a href="cv/">CV&nbsp;as&nbsp;a&nbsp;web&nbsp;page</a></span>
+    <span>© 2026 Emanuel Medina</span>
+    <a href="cv/">CV as a web page</a>
   </div>
 </footer>
 
